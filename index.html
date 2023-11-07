@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .card {
+            background-color: #fff;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            padding: 20px;
+            width: 25vw;
+            height: 100px;
+            margin: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Center vertically */
+            text-align: center; /* Center horizontally */
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px; /* Add space between title and content */
+            font-family: "Arial", sans-serif; /* Use a prettier font */
+        }
+
+        .card-content {
+            font-size: 16px;
+            font-family: "Arial", sans-serif; /* Use the same font as the title */
+        }
+
+        .team-member-row {
+            display: flex;
+            justify-content: space-between;
+            margin-left: 5vw; 
+            margin-right: 5vw; 
+        }
+
+        .full-width-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+    <img src="landing-page.png" alt="Full-Width Image" class="full-width-image">
+    <section>
+        <div class="team-member-row">
+            <div class="card">
+                <div class="card-title">
+                    Ioana Mocanu
+                </div>
+                <div class="card-content">
+                     Product Owner<br>
+                     ioana.mocanu31@gmail.com
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">
+                    Andreea Tatulescu
+                </div>
+                <div class="card-content">
+                     Project Manager <br>
+                     andreea.tatulescu2610@gmail.com
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">
+                    Razvan Abagiu
+                </div>
+                <div class="card-content">
+                     DevOps <br>
+                     abagiurazvan8989@gmail.com
+                </div>
+            </div>
+        </div>
+
+        <div class="team-member-row">
+            <div class="card">
+                <div class="card-title">
+                    Andrei Petrea
+                </div>
+                <div class="card-content">
+                     Cloud Engineer<br>
+                     andrei.petrea2206@gmail.com
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">
+                    Amalia Gruia
+                </div>
+                <div class="card-content">
+                     BackEnd Developer<br>
+                     amaliagruia24@gmail.com
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">
+                    Maria Brinza
+                </div>
+                <div class="card-content">
+                     FrontEnd Developer<br>
+                     brinzamaria01@gmail.com
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="problem-solution">
+        <div class="problem-solution-card">
+            <h2>Problem</h2>
+            <p>Describe the problem here...</p>
+        </div>
+
+        <div class="problem-solution-card">
+            <h2>Solution</h2>
+            <p>Describe the solution here...</p>
+        </div>
+    </section>
+</body>
+</html>
