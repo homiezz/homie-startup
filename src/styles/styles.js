@@ -95,4 +95,13 @@ export const inputStyle = {
     fontSize: '18px',
     padding: '10px',
     borderRadius: '5px',
-  };
+};
+
+export const buttonStyle = {
+  border: '2px solid #E89E84',
+  fontFamily: 'Poppins, sans-serif',
+  color: 'white',
+  display: 'flex',
+  alignItems: 'center',
+  padding: '8px',
+};
