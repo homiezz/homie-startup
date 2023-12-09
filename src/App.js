@@ -1,9 +1,9 @@
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Button } from 'react-bootstrap';
-import homieLogo from './assets/logo-homie.png';
-import React, { useState } from 'react';
-import EmailModal from './components/dialog-component';
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Button } from "react-bootstrap";
+import homieLogo from "./assets/logo-homie.png";
+import React, { useState } from "react";
+import EmailModal from "./components/dialog-component";
 import {
   backgroundStyle,
   overlayStyle,
@@ -14,7 +14,7 @@ import {
   imageStyle,
   buttonContainerStyle,
   buttonLinkStyle,
-} from './styles/styles';
+} from "./styles/styles";
 
 function App() {
   const [showModal, setShowModal] = useState(false);
@@ -32,33 +32,37 @@ function App() {
       <div style={overlayStyle}>
         <div style={textStyles}>Homie</div>
         <div style={subtitleStyles}>
-          Join us in reshaping renting into a <br /> 
-          seamless and enjoyable journey for all!
+          Platformă de recenzii pentru proprietari și chiriași <br />
+          Încrederea se câștigă prin transparență
         </div>
         <div style={inputContainerStyle}>
-          <Button variant="primary" onClick={handleOpenModal}>
-            Open Popup
+          <Button
+            variant="primary"
+            onClick={handleOpenModal}
+            className="btn-send-email"
+          >
+            Arată-mi recenzii
           </Button>
-          <EmailModal 
-            showModal={showModal} 
-            handleCloseModal={handleCloseModal} 
+
+          <EmailModal
+            showModal={showModal}
+            handleCloseModal={handleCloseModal}
           />
         </div>
       </div>
       <div style={navbarStyle}>
         <div>
-          <img 
-            src={homieLogo} 
-            alt="House Icon" 
-            style={imageStyle} 
-          />
+          <img src={homieLogo} alt="House Icon" style={imageStyle} />
         </div>
         <div style={buttonContainerStyle}>
           <Button variant="link" style={buttonLinkStyle}>
-            About us
+            Vezi imobiliare disponibile
           </Button>
           <Button variant="link" style={buttonLinkStyle}>
-            Explore rentals
+            Înregistrează-ți imobilul
+          </Button>
+          <Button variant="link" style={buttonLinkStyle}>
+            Contact
           </Button>
           <Button variant="link" style={buttonLinkStyle}>
             Log in
