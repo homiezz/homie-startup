@@ -1,6 +1,7 @@
 import React from "react";
 import { Modal, Form } from "react-bootstrap";
 import { useForm, ValidationError } from "@formspree/react";
+import './EmailModal.css';
 
 const EmailModal = ({ showModal, handleCloseModal }) => {
   const [state, handleSubmit] = useForm(
@@ -14,20 +15,25 @@ const EmailModal = ({ showModal, handleCloseModal }) => {
   }
   const labelStyle = {
     display: "block",
-    marginBottom: "5px",
+    marginBottom: "5px"
   };
 
+  const textBox = {
+    backgroundColor: "#C5AFA7",
+    border: "1px solid #C5AFA7"
+  }
+
   return (
-    <Modal show={showModal} onHide={handleCloseModal}>
-      <Modal.Header closeButton>
+    <Modal className='custom-modal' show={showModal} onHide={handleCloseModal} centered>
+      <Modal.Header className="modal-header" closeButton>
         <Modal.Title>Te anunțăm când ne lansăm</Modal.Title>
       </Modal.Header>
 
-      <Modal.Body>
+      <Modal.Body className='modal-body'>
         <Form onSubmit={handleSubmit}>
-          <Form.Group controlId="formBasicEmail">
+          <Form.Group className="modal-field" controlId="formBasicEmail">
             <Form.Label style={labelStyle}>Email</Form.Label>
-            <Form.Control type="email" placeholder="Scrie email" name="email" />
+            <Form.Control style={textBox} type="email" placeholder="Scrie email" name="email" />
             <Form.Text className="text-muted">
               Îți vom trimite prin e-mail confirmările și notificările.
             </Form.Text>
@@ -37,15 +43,15 @@ const EmailModal = ({ showModal, handleCloseModal }) => {
               errors={state.errors}
             />
           </Form.Group>
-          <Form.Group controlId="formBasicName">
+          <Form.Group className="modal-field" controlId="formBasicName">
             <Form.Label style={labelStyle}>Nume complet </Form.Label>
-            <Form.Control type="text" placeholder="Popescu Ion" name="name" />
+            <Form.Control style={textBox} type="text" placeholder="Popescu Ion" name="name" />
             <Form.Text className="text-muted">
               Asigură-te că se potrivește cu numele de pe actul tău de
               identitate.
             </Form.Text>
           </Form.Group>
-          <button type="submit" disabled={state.submitting}>
+          <button className='submit-form-button' type="submit" disabled={state.submitting}>
             Trimite
           </button>
         </Form>

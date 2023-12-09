@@ -13,6 +13,26 @@
   }
 }
 
+@media only screen and (max-width: 600px){
+  body .btn-send-email{
+    /* Override font color for mobile devices */
+    background-color: #E89E84!important;
+  }
+}
+
+@media only screen and (min-width: 601px) {
+  body .btn-send-email {
+    background-color: #E89E84 !important;
+    color: white !important;
+    font-size: 1.5rem !important;
+    padding: 6px 12px !important;
+    border: #E89E84;
+    border-radius: 10px !important;
+  }
+  
+}
+
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -42,10 +62,9 @@
   }
 }
 
-body .btn-send-email {
-  background-color: rgb(229, 194, 79) !important;
-  color: black !important;
-  font-size: 1.5rem !important;
-  padding: 6px 12px !important;
-  border-radius: 10px !important;
+
+.custom-modal .tooltip {
+  /* Your custom tooltip styles */
+  color: red !important;
 }
+

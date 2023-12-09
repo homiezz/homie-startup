@@ -58,7 +58,7 @@ export const navbarStyle = {
   };
 
 export const sendIconStyle = {
-    marginLeft: '10px', 
+    marginLefta: '10px', 
     cursor: 'pointer',
     color: '#E89E84', 
     fontSize: '24px', 
