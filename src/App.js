@@ -4,18 +4,7 @@ import { Button } from "react-bootstrap";
 import homieLogo from "./assets/logo-homie.png";
 import React, { useState } from "react";
 import EmailModal from "./components/dialog-component";
-import {
-  backgroundStyle,
-  overlayStyle,
-  textStyles,
-  subtitleStyles,
-  inputContainerStyle,
-  navbarStyle,
-  imageStyle,
-  buttonContainerStyle,
-  buttonLinkStyle,
-} from "./styles/styles";
-
+import Navbar from './components/Navbar';
 function App() {
   const [showModal, setShowModal] = useState(false);
 
@@ -28,14 +17,15 @@ function App() {
   };
 
   return (
-    <div style={backgroundStyle}>
-      <div style={overlayStyle}>
-        <div style={textStyles}>Homie</div>
-        <div style={subtitleStyles}>
+    <div className='backgroundStyle'>
+      <div className='cropContainter'>
+      <div className='overlayStyle'>
+        <div className='homieTitle'>Homie</div>
+        <div className='subtitleStyles'>
           Platformă de recenzii pentru proprietari și chiriași <br />
           Încrederea se câștigă prin transparență
         </div>
-        <div style={inputContainerStyle}>
+        <div className='inputContainerStyle'>
           <Button
             variant="primary"
             onClick={handleOpenModal}
@@ -48,23 +38,25 @@ function App() {
             showModal={showModal}
             handleCloseModal={handleCloseModal}
           />
+
+        </div>
         </div>
       </div>
-      <div style={navbarStyle}>
+      <div className='navbarStyle'>
         <div>
-          <img src={homieLogo} alt="House Icon" style={imageStyle} />
+          <img src={homieLogo} alt="House Icon" className='imageStyle' />
         </div>
-        <div style={buttonContainerStyle}>
-          <Button variant="link" style={buttonLinkStyle}>
+        <div className='buttonContainerStyle'>
+          <Button variant="link" className='buttonLinkStyle'>
             Vezi imobiliare disponibile
           </Button>
-          <Button variant="link" style={buttonLinkStyle}>
+          <Button variant="link" className='buttonLinkStyle'>
             Înregistrează-ți imobilul
           </Button>
-          <Button variant="link" style={buttonLinkStyle}>
+          <Button variant="link" className='buttonLinkStyle'>
             Contact
           </Button>
-          <Button variant="link" style={buttonLinkStyle}>
+          <Button variant="link" className='buttonLinkStyle'>
             Log in
           </Button>
         </div>

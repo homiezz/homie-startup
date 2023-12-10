@@ -2,50 +2,13 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-@media only screen and (max-width: 600px){
-  body .btn-send-email{
-    /* Override font color for mobile devices */
-    background-color: #E89E84!important;
-  }
-}
-
-@media only screen and (min-width: 601px) {
-  body .btn-send-email {
-    background-color: #E89E84 !important;
-    color: white !important;
-    font-size: 1.5rem !important;
-    padding: 6px 12px !important;
-    border: #E89E84;
-    border-radius: 10px !important;
-  }
-  
-}
-
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
+body .btn-send-email {
+  background-color: #E89E84 !important;
+  color: white !important;
+  font-size: 1.5rem !important;
+  padding: 6px 12px !important;
+  border: #E89E84;
+  border-radius: 10px !important;
 }
 
 .white-placeholder::placeholder {
@@ -53,18 +16,180 @@
   font-size: 15px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.backgroundStyle {
+  background-image: url('./assets/landing-bun.jpg');
+  background-size: cover;
+  background-position: center top; 
+  background-repeat: no-repeat;
+  height: 100vh;
+  position: relative;
+}
+
+.cropContainer {
+  position: absolute;
+  top: 0;
+  left: 200px; /* Adjust the starting position */
+  width: calc(100% - 200px); /* Adjust the width */
+  height: 100%;
+  overflow: hidden;
 }
 
 
-.custom-modal .tooltip {
-  /* Your custom tooltip styles */
-  color: red !important;
+
+.imageStyle {
+  width: 60px;
+  height: 60px;
+  margin-right: 10px;
 }
 
+@media only screen and (max-width: 650px){
+  .navbarStyle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: transparent;
+  }
+
+  .navbarOnTop {
+    margin-left: 90vw !important;
+  }
+
+  .overlayStyle {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .homieTitle {
+    font-size: 15vw;
+  }
+
+  .subtitleStyles {
+    font-size: 3vw;
+  }
+}
+
+@media only screen and (min-width: 651px){
+  .navbarStyle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: transparent;
+  }
+
+  .buttonLinkStyle {
+    color: transparent;
+  }
+
+  .overlayStyle {
+    position: absolute;
+    top: 0;
+    left: 50vw;
+    width: 50%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .homieTitle {
+    font-size: 10vw;
+  }
+
+  .subtitleStyles {
+    font-size: 20px;
+  }
+}
+
+.homieTitle {
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  margin: 0;
+  font-family: 'Yeseva One', serif;
+}
+
+.subtitleStyles {
+  color: white !important;
+  margin: 2px;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  white-space: pre-line;
+}
+
+
+.sendIconStyle {
+  margin-left: 10px;
+  cursor: pointer;
+  color: #e89e84;
+  font-size: 24px;
+}
+
+.buttonContainerStyle {
+  display: flex;
+}
+
+.buttonLinkStyle {
+  background-color: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 18px;
+  margin-left: 130px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.inputContainerStyle {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.inputStyle {
+  flex: 1;
+  background-color: transparent;
+  border: 2px solid #e89e84;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.buttonStyle {
+  border: 2px solid #e89e84;
+  font-family: 'Poppins', sans-serif;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 8px;
+}
+
+
+.btn-link {
+  color: white !important;
+  text-decoration: none !important;
+}
+
+.modal-content {
+  width: 10000px !important;
+}
