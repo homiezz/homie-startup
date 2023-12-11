@@ -48,7 +48,7 @@ function App() {
         </div>
         <div className='buttonContainerStyle'>
           <Button variant="link" className='buttonLinkStyle'>
-            Vezi imobiliare disponibile
+            Vezi imobile disponibile
           </Button>
           <Button variant="link" className='buttonLinkStyle'>
             Înregistrează-ți imobilul
@@ -57,7 +57,7 @@ function App() {
             Contact
           </Button>
           <Button variant="link" className='buttonLinkStyle'>
-            Log in
+            Loghează-te
           </Button>
         </div>
       </div>

@@ -26,7 +26,7 @@ const EmailModal = ({ showModal, handleCloseModal }) => {
   return (
     <Modal className='custom-modal' show={showModal} onHide={handleCloseModal} centered>
       <Modal.Header className="modal-header" closeButton>
-        <Modal.Title>Te anunțăm când ne lansăm</Modal.Title>
+        <Modal.Title>Te anunțăm când ne lansăm!</Modal.Title>
       </Modal.Header>
 
       <Modal.Body className='modal-body'>
@@ -44,7 +44,7 @@ const EmailModal = ({ showModal, handleCloseModal }) => {
             />
           </Form.Group>
           <Form.Group className="modal-field" controlId="formBasicName">
-            <Form.Label style={labelStyle}>Nume complet </Form.Label>
+            <Form.Label style={labelStyle}>Nume și prenume </Form.Label>
             <Form.Control style={textBox} type="text" placeholder="Popescu Ion" name="name" />
             <Form.Text className="text-muted">
               Asigură-te că se potrivește cu numele de pe actul tău de
