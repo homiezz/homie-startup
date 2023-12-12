@@ -66,13 +66,15 @@ const EmailModal = ({ showModal, handleCloseModal }) => {
               identitate.
             </Form.Text>
           </Form.Group>
-          <button
-            className="submit-form-button"
-            type="submit"
-            disabled={state.submitting}
-          >
-            Trimite
-          </button>
+          <div className="submit-form-button-container">
+            <button
+              className="submit-form-button"
+              type="submit"
+              disabled={state.submitting}
+            >
+              Trimite
+            </button>
+          </div>
         </Form>
       </Modal.Body>
     </Modal>
