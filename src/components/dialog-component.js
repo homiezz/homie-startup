@@ -4,14 +4,14 @@ import { useForm, ValidationError } from "@formspree/react";
 import "./EmailModal.css";
 
 const EmailModal = ({ showModal, handleCloseModal }) => {
-  const [state, handleSubmit] = useForm(
-    process.env.REACT_APP_FORMSPREE_FORM_ID
-  );
-
-  const customSubmit = () => {
-    handleSubmit();
-    handleCloseModal();
-  };
+  const formId = process.env.REACT_APP_FORMSPREE_FORM_ID;
+  const [state, handleSubmit] = useForm(formId, {
+    data: {
+      pageTitle: function () {
+        handleCloseModal();
+      },
+    },
+  });
 
   const labelStyle = {
     display: "block",
@@ -35,7 +35,7 @@ const EmailModal = ({ showModal, handleCloseModal }) => {
       </Modal.Header>
 
       <Modal.Body className="modal-body">
-        <Form onSubmit={customSubmit}>
+        <Form onSubmit={handleSubmit}>
           <Form.Group className="modal-field" controlId="formBasicEmail">
             <Form.Label style={labelStyle}>Email</Form.Label>
             <Form.Control
