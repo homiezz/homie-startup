@@ -1,0 +1,226 @@
+.App {
+  text-align: center;
+}
+
+body {
+  width: 100%;
+  height:100%;
+}
+
+body .btn-send-email {
+  background-color: #E89E84 !important;
+  color: white !important;
+  font-size: 1.5rem !important;
+  padding: 6px 12px !important;
+  border: #E89E84;
+  border-radius: 10px !important;
+}
+
+.white-placeholder::placeholder {
+  color: rgb(252, 250, 250) !important;
+  font-size: 15px;
+}
+
+.backgroundStyle {
+  background-image: url('./assets/landing-bun.jpg');
+  background-size: cover;
+  background-position: center top; 
+  background-repeat: no-repeat;
+  height: 100vh;
+  position: relative;
+}
+
+.cropContainer {
+  position: absolute;
+  top: 0;
+  left: 200px; /* Adjust the starting position */
+  width: calc(100% - 200px); /* Adjust the width */
+  height: 100%;
+  overflow: hidden;
+}
+
+
+
+.imageStyle {
+  width: 60px;
+  height: 60px;
+  margin-right: 10px;
+}
+
+@media only screen and (max-width: 650px){
+  .navbarStyle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: transparent;
+  }
+
+  .navbarOnTop {
+    margin-left: 90vw !important;
+  }
+
+  .overlayStyle {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .homieTitle {
+    font-size: 15vw;
+  }
+
+  .subtitleStyles {
+    font-size: 3vw;
+  }
+
+  .navbar-collapse {
+    background-color: rgb(0,0,0,0.5);
+  }
+}
+
+@media only screen and (min-width: 651px){
+  .navbarStyle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: transparent;
+  }
+
+  .buttonContainerStyle .nav-item {
+    margin-right: 1vw /* Adjust the margin as needed for your design */
+  }
+
+  .overlayStyle {
+    position: absolute;
+    top: 0;
+    left: 50vw;
+    width: 50%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .buttonContainerStyle {
+    display: flex;
+    margin-left: 200px; /* Adjust the gap as needed for your design */
+  }
+
+  .homieTitle {
+    font-size: 10vw;
+  }
+
+  .subtitleStyles {
+    font-size: 20px;
+  }
+  .navbar-collapse {
+    background-color: transparent;
+  }
+
+  .nav-item {
+    color: white;
+    margin-left:7vw;
+  }
+}
+
+.homieTitle {
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  margin: 0;
+  font-family: 'Yeseva One', serif;
+}
+
+.subtitleStyles {
+  color: white !important;
+  margin: 2px;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  white-space: pre-line;
+}
+
+
+.sendIconStyle {
+  margin-left: 10px;
+  cursor: pointer;
+  color: #e89e84;
+  font-size: 24px;
+}
+
+.buttonContainerStyle {
+  display: flex;
+}
+
+.inputContainerStyle {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.inputStyle {
+  flex: 1;
+  background-color: transparent;
+  border: 2px solid #e89e84;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.buttonStyle {
+  border: 2px solid #e89e84;
+  font-family: 'Poppins', sans-serif;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 8px;
+}
+
+
+.btn-link {
+  color: white !important;
+  text-decoration: none !important;
+}
+
+.modal-content {
+  width: 10000px !important;
+}
+
+.nav-item {
+  color: white;
+}
+
+.nav-link {
+  color: white !important;
+}
+
+.navbar-toggler-icon {
+  color: white !important;
+}
+
+.custom-toggler .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+.custom-toggler.navbar-toggler {
+  border-color: rgb(255,255,255);
+} 
