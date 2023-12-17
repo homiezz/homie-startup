@@ -2,6 +2,7 @@
   "name": "homie",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://homiezz.github.io/homie-startup",
   "dependencies": {
     "@formspree/react": "^2.5.1",
     "@testing-library/jest-dom": "^5.17.0",
