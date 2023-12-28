@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/homie-startup/static/css/main.91be0480.css",
+    "main.js": "/homie-startup/static/js/main.1912191f.js",
+    "static/js/787.16151682.chunk.js": "/homie-startup/static/js/787.16151682.chunk.js",
+    "static/media/landing-bun.jpg": "/homie-startup/static/media/landing-bun.de0bdefe485144ad58a9.jpg",
+    "static/media/logo-homie.png": "/homie-startup/static/media/logo-homie.4fa2f155a9b1c8a2682c.png",
+    "index.html": "/homie-startup/index.html",
+    "main.91be0480.css.map": "/homie-startup/static/css/main.91be0480.css.map",
+    "main.1912191f.js.map": "/homie-startup/static/js/main.1912191f.js.map",
+    "787.16151682.chunk.js.map": "/homie-startup/static/js/787.16151682.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.91be0480.css",
+    "static/js/main.1912191f.js"
+  ]
+}
