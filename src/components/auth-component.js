@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Modal, Form, Button } from "react-bootstrap";
+import { Modal, Form, Button, Tab, Tabs } from "react-bootstrap";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -9,10 +9,12 @@ import {
 } from "firebase/auth";
 import { googleProvider } from "../firebase";
 import "./AuthModal.css";
+import GoogleButton from 'react-google-button';
 
 const AuthModal = ({ showAuthModal, handleCloseAuthModal }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const auth = getAuth();
 
   const handleSignIn = async () => {
@@ -25,11 +27,13 @@ const AuthModal = ({ showAuthModal, handleCloseAuthModal }) => {
   };
 
   const handleSignUp = async () => {
-    try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      handleCloseAuthModal();
-    } catch (err) {
-      console.error(err);
+    if (passwordsMatch) {
+      try {
+        await createUserWithEmailAndPassword(auth, email, password);
+        handleCloseAuthModal();
+      } catch (err) {
+        console.error(err);
+      }
     }
   };
 
@@ -51,6 +55,8 @@ const AuthModal = ({ showAuthModal, handleCloseAuthModal }) => {
     }
   };
 
+  const passwordsMatch = password === confirmPassword;
+
   return (
     <Modal
       className="custom-modal"
@@ -58,59 +64,102 @@ const AuthModal = ({ showAuthModal, handleCloseAuthModal }) => {
       onHide={handleCloseAuthModal}
       centered
     >
-      <Modal.Header className="modal-header" closeButton>
-        <Modal.Title>Authentication</Modal.Title>
-      </Modal.Header>
 
       <Modal.Body className="modal-body">
-        <Form>
-          <Form.Group className="modal-field" controlId="formBasicEmail">
-            <Form.Label>Email</Form.Label>
-            <Form.Control
-              type="email"
-              placeholder="Enter email"
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </Form.Group>
-          <Form.Group className="modal-field" controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Enter password"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </Form.Group>
-          <div className="submit-form-button-container">
-            <Button
-              className="submit-form-button"
-              type="button"
-              onClick={handleSignIn}
-            >
-              Sign In
-            </Button>
-            <Button
-              className="submit-form-button"
-              type="button"
-              onClick={handleSignUp}
-            >
-              Sign Up
-            </Button>
-            <Button
-              className="submit-form-button"
-              type="button"
-              onClick={handleSignInWithGoogle}
-            >
-              Sign In with Google
-            </Button>
-            <Button
-              className="submit-form-button"
-              type="button"
-              onClick={handleLogOut}
-            >
-              Log Out
-            </Button>
-          </div>
-        </Form>
+        <Tabs className='custom-tabs' defaultActiveKey="signIn" id="auth-tabs">
+          <Tab className='subtab' eventKey="signIn" title={<span className="tab-title">Conectează-te</span>}>
+            <Form>
+              <Form.Group className="modal-field" controlId="formBasicEmail">
+                <Form.Label>Email</Form.Label>
+                <Form.Control
+                  type="email"
+                  placeholder="Introdu adresa de mail"
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="textbox"
+                />
+              </Form.Group>
+              <Form.Group
+                className="modal-field"
+                controlId="formBasicPassword"
+              >
+                <Form.Label>Parolă</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Introdu parola"
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="textbox"
+                />
+              </Form.Group>
+              <div className="submit-form-button-container">
+                <Button
+                  className="submit-form-button"
+                  type="button"
+                  onClick={handleSignIn}
+                >
+                  Conectează-te
+                </Button>
+                <GoogleButton
+                  className='google-sign-in-button'
+                  onClick={handleSignInWithGoogle}
+                  type="dark"
+                  label="Continuă cu Google"
+                />                 
+              </div>
+            </Form>
+          </Tab>
+
+          <Tab className='subtab' eventKey="signUp"  title={<span className="tab-title">Înscrie-te</span>}>
+          <Form>
+              <Form.Group className="modal-field" controlId="formBasicEmail">
+                <Form.Label>Email</Form.Label>
+                <Form.Control
+                  type="email"
+                  placeholder="Introdu adresa de mail"
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="textbox"
+                />
+              </Form.Group>
+              <Form.Group
+                className="modal-field"
+                controlId="formBasicPassword"
+              >
+                <Form.Label>Parolă</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Introdu parola"
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="textbox"
+                />
+              </Form.Group>
+              <Form.Group
+                className="modal-field"
+                controlId="formBasicConfirmPassword"
+              >
+                <Form.Label>Confirmarea Parolei</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Confirmă parola"
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  className="textbox"
+                />
+              </Form.Group>
+              {password !== "" && confirmPassword !== "" && !passwordsMatch && (
+                <p className="text-danger">Parolele nu se potrivesc</p>
+              )}
+              <div className="submit-form-button-container">
+              <Button
+                className="submit-form-button"
+                type="button"
+                onClick={handleSignUp}
+              >
+                Înscrie-te
+              </Button>
+              
+              </div>
+            </Form>
+          </Tab>
+          
+        </Tabs>
       </Modal.Body>
     </Modal>
   );

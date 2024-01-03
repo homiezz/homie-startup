@@ -17,11 +17,61 @@
   color: #ddc7bf;
   font-size: 1rem;
   border-radius: 5px;
+  border-color: #616161;
   margin-right: 10px;
+}
+
+.submit-form-button:hover {
+  color: #4b4b4a;
+  background-color: #ddc7bf;
+  border-color: #4b4b4a;
 }
 
 .submit-form-button-container {
   display: flex;
   justify-content: center;
   margin-top: 10px;
+}
+
+.nav-link {
+  justify-content: center;
+  color: #4b4b4a !important;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.textbox {
+  background-color: #C5AFA7;
+  border: 1px solid #C5AFA7;
+}
+
+.textbox:focus {
+  background-color: #C5AFA7; 
+  border-color: #C5AFA7; 
+  outline: none; 
+}
+
+.custom-tabs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; 
+}
+
+.subtab {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; 
+}
+
+.tab-title {
+  width: 100%;
+  text-align: center;
+}
+
+.google-sign-in-button:hover {
+    color: #4b4b4a !important;
+    background-color: #ddc7bf !important;
+    border-color: #4b4b4a !important;
 }
