@@ -9,7 +9,7 @@ import {
 } from "firebase/auth";
 import { googleProvider } from "../firebase";
 import "./AuthModal.css";
-import GoogleButton from 'react-google-button';
+import GoogleButton from "react-google-button";
 
 const AuthModal = ({ showAuthModal, handleCloseAuthModal }) => {
   const [email, setEmail] = useState("");
@@ -64,24 +64,24 @@ const AuthModal = ({ showAuthModal, handleCloseAuthModal }) => {
       onHide={handleCloseAuthModal}
       centered
     >
-
       <Modal.Body className="modal-body">
-        <Tabs className='custom-tabs' defaultActiveKey="signIn" id="auth-tabs">
-          <Tab className='subtab' eventKey="signIn" title={<span className="tab-title">Conectează-te</span>}>
+        <Tabs className="custom-tabs" defaultActiveKey="signIn" id="auth-tabs">
+          <Tab
+            className="subtab"
+            eventKey="signIn"
+            title={<span className="tab-title">Conectează-te</span>}
+          >
             <Form>
               <Form.Group className="modal-field" controlId="formBasicEmail">
                 <Form.Label>Email</Form.Label>
                 <Form.Control
                   type="email"
-                  placeholder="Introdu adresa de mail"
+                  placeholder="Introdu adresa de email"
                   onChange={(e) => setEmail(e.target.value)}
                   className="textbox"
                 />
               </Form.Group>
-              <Form.Group
-                className="modal-field"
-                controlId="formBasicPassword"
-              >
+              <Form.Group className="modal-field" controlId="formBasicPassword">
                 <Form.Label>Parolă</Form.Label>
                 <Form.Control
                   type="password"
@@ -99,17 +99,21 @@ const AuthModal = ({ showAuthModal, handleCloseAuthModal }) => {
                   Conectează-te
                 </Button>
                 <GoogleButton
-                  className='google-sign-in-button'
+                  className="google-sign-in-button"
                   onClick={handleSignInWithGoogle}
                   type="dark"
                   label="Continuă cu Google"
-                />                 
+                />
               </div>
             </Form>
           </Tab>
 
-          <Tab className='subtab' eventKey="signUp"  title={<span className="tab-title">Înscrie-te</span>}>
-          <Form>
+          <Tab
+            className="subtab"
+            eventKey="signUp"
+            title={<span className="tab-title">Înscrie-te</span>}
+          >
+            <Form>
               <Form.Group className="modal-field" controlId="formBasicEmail">
                 <Form.Label>Email</Form.Label>
                 <Form.Control
@@ -119,10 +123,7 @@ const AuthModal = ({ showAuthModal, handleCloseAuthModal }) => {
                   className="textbox"
                 />
               </Form.Group>
-              <Form.Group
-                className="modal-field"
-                controlId="formBasicPassword"
-              >
+              <Form.Group className="modal-field" controlId="formBasicPassword">
                 <Form.Label>Parolă</Form.Label>
                 <Form.Control
                   type="password"
@@ -135,30 +136,35 @@ const AuthModal = ({ showAuthModal, handleCloseAuthModal }) => {
                 className="modal-field"
                 controlId="formBasicConfirmPassword"
               >
-                <Form.Label>Confirmarea Parolei</Form.Label>
+                <Form.Label>Confirmă parola</Form.Label>
                 <Form.Control
                   type="password"
-                  placeholder="Confirmă parola"
+                  placeholder="Reintrodu parola"
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   className="textbox"
                 />
               </Form.Group>
               {password !== "" && confirmPassword !== "" && !passwordsMatch && (
-                <p className="text-danger">Parolele nu se potrivesc</p>
+                <div className="error-box">
+                  <p className="text-danger">Parolele nu sunt identice</p>
+                </div>
+              )}
+              {password !== "" && confirmPassword !== "" && passwordsMatch && (
+                <div className="success-box">
+                  <p className="text-success">Parolele sunt identice</p>
+                </div>
               )}
               <div className="submit-form-button-container">
-              <Button
-                className="submit-form-button"
-                type="button"
-                onClick={handleSignUp}
-              >
-                Înscrie-te
-              </Button>
-              
+                <Button
+                  className="submit-form-button"
+                  type="button"
+                  onClick={handleSignUp}
+                >
+                  Înscrie-te
+                </Button>
               </div>
             </Form>
           </Tab>
-          
         </Tabs>
       </Modal.Body>
     </Modal>

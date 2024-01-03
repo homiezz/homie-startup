@@ -41,28 +41,28 @@
 }
 
 .textbox {
-  background-color: #C5AFA7;
-  border: 1px solid #C5AFA7;
+  background-color: #c5afa7;
+  border: 1px solid #c5afa7;
 }
 
 .textbox:focus {
-  background-color: #C5AFA7; 
-  border-color: #C5AFA7; 
-  outline: none; 
+  background-color: #c5afa7;
+  border-color: #c5afa7;
+  outline: none;
 }
 
 .custom-tabs {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%; 
+  height: 100%;
 }
 
 .subtab {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%; 
+  height: 100%;
 }
 
 .tab-title {
@@ -71,7 +71,35 @@
 }
 
 .google-sign-in-button:hover {
-    color: #4b4b4a !important;
-    background-color: #ddc7bf !important;
-    border-color: #4b4b4a !important;
+  color: #4b4b4a !important;
+  background-color: #ddc7bf !important;
+  border-color: #4b4b4a !important;
+}
+
+.error-box {
+  display: inline-flex;
+  border: 1px solid #ff0000;
+  background-color: #ffecec;
+  padding: 5px;
+  border-radius: 5px;
+  margin-left: 8px;
+}
+
+.text-danger {
+  margin: 0;
+  color: #ff0000;
+}
+
+.success-box {
+  display: inline-flex;
+  border: 1px solid #00ff1a;
+  background-color: #e6ffe6;
+  padding: 5px;
+  border-radius: 5px;
+  margin-left: 8px;
+}
+
+.text-success {
+  margin: 0;
+  color: #00ff1a;
 }
