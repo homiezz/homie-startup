@@ -14,7 +14,7 @@ export default function App() {
       <Navbar />
       <div className="container">
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/homie-startup" element={<Home />} />
           <Route path="/addImob" element={<AddImob />} />
           <Route path="/about" element={<About />} />
         </Routes>

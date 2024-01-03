@@ -28,6 +28,7 @@ body .btn-send-email {
   background-repeat: no-repeat;
   height: 100vh;
   position: relative;
+  z-index: 1;
 }
 
 .cropContainer {
@@ -73,7 +74,7 @@ body .btn-send-email {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    z-index: 1;
+    z-index: 9998;
   }
 
   .homieTitle {
@@ -118,7 +119,7 @@ body .btn-send-email {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    z-index: 1;
+    z-index: 9998;
   }
 
   .buttonContainerStyle {

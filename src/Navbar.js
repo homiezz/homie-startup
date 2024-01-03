@@ -17,7 +17,7 @@ export default function Navbar() {
 
     const isAddImobRoute = useMatch("/addImob");
     const isAboutRoute = useMatch("/about");
-    const isHomeRoute = useMatch("/");
+    const isHomeRoute = useMatch("homie-startup");
 
     return (
         <div className="navbarStyle">
@@ -25,7 +25,7 @@ export default function Navbar() {
                 <nav className="navbar navbar-expand-lg navbar-light m-4 rounded 100vw">
                     <div className="container-fluid">
                         <div>
-                            <Link to="/" className="nav-item">
+                            <Link to="homie-startup" className="nav-item">
                                 <img src={homieLogo} alt="House Icon" className="imageStyle" />
                             </Link>
                         </div>
