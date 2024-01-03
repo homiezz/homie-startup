@@ -39,8 +39,6 @@ body .btn-send-email {
   overflow: hidden;
 }
 
-
-
 .imageStyle {
   width: 60px;
   height: 60px;
@@ -58,6 +56,7 @@ body .btn-send-email {
     left: 0;
     width: 100%;
     background-color: transparent;
+    z-index: 9999;
   }
 
   .navbarOnTop {
@@ -74,6 +73,7 @@ body .btn-send-email {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    z-index: 1;
   }
 
   .homieTitle {
@@ -100,6 +100,7 @@ body .btn-send-email {
     left: 0;
     width: 100%;
     background-color: transparent;
+    z-index: 9999;
   }
 
   .buttonContainerStyle .nav-item {
@@ -117,6 +118,7 @@ body .btn-send-email {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    z-index: 1;
   }
 
   .buttonContainerStyle {
