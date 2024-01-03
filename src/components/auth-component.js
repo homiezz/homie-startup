@@ -5,13 +5,15 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  getAuth,
 } from "firebase/auth";
-import { auth, googleProvider } from "../firebase";
+import { googleProvider } from "../firebase";
 import "./AuthModal.css";
 
 const AuthModal = ({ showAuthModal, handleCloseAuthModal }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const auth = getAuth();
 
   const handleSignIn = async () => {
     try {
