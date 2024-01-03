@@ -1,0 +1,29 @@
+/* AuthModal.css */
+
+.modal-body {
+  background-color: #ddc7bf;
+  color: #4b4b4a;
+}
+
+.modal-header {
+  background-color: #ddc7bf;
+  color: #4b4b4a;
+}
+
+.modal-field {
+  margin-bottom: 10px;
+}
+
+.submit-form-button {
+  background-color: #4b4b4a;
+  color: #ddc7bf;
+  font-size: 1rem;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.submit-form-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}

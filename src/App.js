@@ -4,28 +4,7 @@ import homieLogo from "./assets/logo-homie.png";
 import React, { useState } from "react";
 import EmailModal from "./components/dialog-component";
 import { Button } from "react-bootstrap";
-
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-  authDomain: "homie-12235.firebaseapp.com",
-  projectId: "homie-12235",
-  storageBucket: "homie-12235.appspot.com",
-  messagingSenderId: "739903230811",
-  appId: "1:739903230811:web:65e39cfafb88da9549807e",
-  measurementId: "G-T1E3L1LTCV",
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+import AuthModal from "./components/auth-component";
 
 function App() {
   const [showModal, setShowModal] = useState(false);
@@ -36,6 +15,16 @@ function App() {
 
   const handleCloseModal = () => {
     setShowModal(false);
+  };
+
+  const [showAuthModal, setShowAuthModal] = useState(false);
+
+  const handleOpenAuthModal = () => {
+    setShowAuthModal(true);
+  };
+
+  const handleCloseAuthModal = () => {
+    setShowAuthModal(false);
   };
 
   return (
@@ -55,7 +44,6 @@ function App() {
             >
               Arată-mi recenzii
             </Button>
-
             <EmailModal
               showModal={showModal}
               handleCloseModal={handleCloseModal}
@@ -70,11 +58,9 @@ function App() {
               <div>
                 <img src={homieLogo} alt="House Icon" className="imageStyle" />
               </div>
-
               <button
                 className="navbar-toggler ml-auto custom-toggler"
                 type="button"
-                color="white"
                 data-bs-toggle="collapse"
                 data-bs-target="#navbarNav"
                 aria-controls="navbarNav"
@@ -104,7 +90,7 @@ function App() {
                     </Button>
                   </li>
                   <li className="nav-item">
-                    <Button variant="link" onClick={handleOpenModal}>
+                    <Button variant="link" onClick={handleOpenAuthModal}>
                       Loghează-te
                     </Button>
                   </li>
@@ -114,6 +100,10 @@ function App() {
           </nav>
         </div>
       </div>
+      <AuthModal
+        showAuthModal={showAuthModal}
+        handleCloseAuthModal={handleCloseAuthModal}
+      />
     </div>
   );
 }
