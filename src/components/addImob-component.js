@@ -80,7 +80,7 @@ const AddImob = () => {
     >
       <form>
         <label className="nav-item">
-          Imob Title:
+          Titlu Imobil:
           <input
             type="text"
             name="imobTitle"
@@ -90,7 +90,7 @@ const AddImob = () => {
         </label>
         <br />
         <label className="nav-item">
-          Imob Description:
+          Deccriere Imobil:
           <textarea
             name="imobDescription"
             value={imobDescription}
@@ -99,7 +99,7 @@ const AddImob = () => {
         </label>
         <br />
         <label className="nav-item">
-          Room Number:
+          Camere:
           <input
             type="number"
             name="roomNumber"
@@ -109,7 +109,7 @@ const AddImob = () => {
         </label>
         <br />
         <label className="nav-item">
-          Bathroom Number:
+          Bai:
           <input
             type="number"
             name="bathroomNumber"
@@ -119,7 +119,7 @@ const AddImob = () => {
         </label>
         <br />
         <label className="nav-item">
-          Imob Facilities:
+          Facilitati:
           {imobFacilities.length > 0 ? (
             imobFacilities.map((facility, index) => (
               <div key={index}>
@@ -134,7 +134,7 @@ const AddImob = () => {
                     type="button"
                     onClick={() => handleRemoveFacility(index)}
                   >
-                    Remove
+                    Sterge
                   </Button>
                 )}
                 {index === imobFacilities.length - 1 && (
@@ -164,7 +164,7 @@ const AddImob = () => {
         </label>
         <br />
         <label className="nav-item">
-          Upload Images:
+          Adauga Imagini:
           <div>
             <input
               type="file"
@@ -181,7 +181,7 @@ const AddImob = () => {
                   style={{ maxWidth: "100px", maxHeight: "100px" }}
                 />
                 <Button type="button" onClick={() => handleRemoveImage(index)}>
-                  Remove
+                  Sterge
                 </Button>
                 <br />
               </div>
@@ -191,7 +191,7 @@ const AddImob = () => {
         <br />
         <div className="nav-item">
           <Button type="button" onClick={handleSubmit}>
-            Submit
+            Adauga
           </Button>
         </div>
       </form>
