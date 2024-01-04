@@ -91,7 +91,7 @@ function App() {
                   </li>
                   <li className="nav-item">
                     <Button variant="link" onClick={handleOpenAuthModal}>
-                      Loghează-te
+                      Conectează-te
                     </Button>
                   </li>
                 </ul>
