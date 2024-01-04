@@ -1,14 +1,13 @@
-import "./App.css"
+import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
-import { Route, Routes } from "react-router-dom"
+import { Route, Routes } from "react-router-dom";
 import AddImob from "./components/addImob-component";
 import Home from "./components/home-component";
 import About from "./components/about-component";
-import Navbar from "./Navbar"
+import Navbar from "./Navbar";
 
 export default function App() {
-
   return (
     <div className="backgroundStyle">
       <Navbar />

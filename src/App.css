@@ -4,15 +4,15 @@
 
 body {
   width: 100%;
-  height:100%;
+  height: 100%;
 }
 
 body .btn-send-email {
-  background-color: #E89E84 !important;
+  background-color: #e89e84 !important;
   color: white !important;
   font-size: 1.5rem !important;
   padding: 6px 12px !important;
-  border: #E89E84;
+  border: #e89e84;
   border-radius: 10px !important;
 }
 
@@ -22,9 +22,9 @@ body .btn-send-email {
 }
 
 .backgroundStyle {
-  background-image: url('./assets/landing-bun.jpg');
+  background-image: url("./assets/landing-bun.jpg");
   background-size: cover;
-  background-position: center top; 
+  background-position: center top;
   background-repeat: no-repeat;
   height: 100vh;
   position: relative;
@@ -46,7 +46,7 @@ body .btn-send-email {
   margin-right: 10px;
 }
 
-@media only screen and (max-width: 650px){
+@media only screen and (max-width: 650px) {
   .navbarStyle {
     display: flex;
     justify-content: space-between;
@@ -86,11 +86,11 @@ body .btn-send-email {
   }
 
   .navbar-collapse {
-    background-color: rgb(0,0,0,0.5);
+    background-color: rgb(0, 0, 0, 0.5);
   }
 }
 
-@media only screen and (min-width: 651px){
+@media only screen and (min-width: 651px) {
   .navbarStyle {
     display: flex;
     justify-content: space-between;
@@ -105,7 +105,7 @@ body .btn-send-email {
   }
 
   .buttonContainerStyle .nav-item {
-    margin-right: 1vw /* Adjust the margin as needed for your design */
+    margin-right: 1vw; /* Adjust the margin as needed for your design */
   }
 
   .overlayStyle {
@@ -140,7 +140,7 @@ body .btn-send-email {
 
   .nav-item {
     color: white;
-    margin-left:7vw;
+    margin-left: 7vw;
   }
 }
 
@@ -149,17 +149,16 @@ body .btn-send-email {
   font-weight: bold;
   text-align: center;
   margin: 0;
-  font-family: 'Yeseva One', serif;
+  font-family: "Yeseva One", serif;
 }
 
 .subtitleStyles {
   color: white !important;
   margin: 2px;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   text-align: center;
   white-space: pre-line;
 }
-
 
 .sendIconStyle {
   margin-left: 10px;
@@ -183,7 +182,7 @@ body .btn-send-email {
   background-color: transparent;
   border: 2px solid #e89e84;
   color: white;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 18px;
   padding: 10px;
   border-radius: 5px;
@@ -191,13 +190,12 @@ body .btn-send-email {
 
 .buttonStyle {
   border: 2px solid #e89e84;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   color: white;
   display: flex;
   align-items: center;
   padding: 8px;
 }
-
 
 .btn-link {
   color: white !important;
@@ -225,5 +223,5 @@ body .btn-send-email {
 }
 
 .custom-toggler.navbar-toggler {
-  border-color: rgb(255,255,255);
-} 
+  border-color: rgb(255, 255, 255);
+}
