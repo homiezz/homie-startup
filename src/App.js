@@ -4,6 +4,7 @@ import homieLogo from "./assets/logo-homie.png";
 import React, { useState } from "react";
 import EmailModal from "./components/dialog-component";
 import { Button } from "react-bootstrap";
+import ReviewModal from "./components/review-component";
 
 function App() {
   const [showModal, setShowModal] = useState(false);
@@ -14,6 +15,16 @@ function App() {
 
   const handleCloseModal = () => {
     setShowModal(false);
+  };
+
+  const [showReviewModal, setShowReviewModal] = useState(false);
+
+  const handleOpenReviewModal = () => {
+    setShowReviewModal(true);
+  };
+
+  const handleCloseReviewModal = () => {
+    setShowReviewModal(false);
   };
 
   return (
@@ -86,12 +97,22 @@ function App() {
                       Loghează-te
                     </Button>
                   </li>
+                  {/* TODO: remove below button, testing only purpose */}
+                  <li className="nav-item">
+                    <Button variant="link" onClick={handleOpenReviewModal}>
+                      Adaugă o recenzie
+                    </Button>
+                  </li>
                 </ul>
               </div>
             </div>
           </nav>
         </div>
       </div>
+      <ReviewModal
+        showReviewModal={showReviewModal}
+        handleCloseReviewModal={handleCloseReviewModal}
+      />
     </div>
   );
 }
