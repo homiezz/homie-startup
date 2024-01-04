@@ -15,7 +15,7 @@ export default function Home() {
   };
 
   return (
-    <div className="cropContainer">
+    <div className="homeBackground">
       <div className="overlayStyle">
         <div className="homieTitle">Homie</div>
         <div className="subtitleStyles">

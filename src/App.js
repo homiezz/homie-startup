@@ -11,13 +11,11 @@ export default function App() {
   return (
     <div className="backgroundStyle">
       <Navbar />
-      <div className="container">
-        <Routes>
-          <Route path="/homie-startup" element={<Home />} />
-          <Route path="/addImob" element={<AddImob />} />
-          <Route path="/about" element={<About />} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route path="/homie-startup" element={<Home />} />
+        <Route path="/addImob" element={<AddImob />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
     </div>
   );
 }

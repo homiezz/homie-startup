@@ -22,6 +22,16 @@ body .btn-send-email {
 }
 
 .backgroundStyle {
+  background: linear-gradient(to right, #ff8c42, #808080);
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+
+.homeBackground {
   background-image: url("./assets/landing-bun.jpg");
   background-size: cover;
   background-position: center top;
