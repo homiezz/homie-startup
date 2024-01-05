@@ -2,10 +2,12 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import homieLogo from "./assets/logo-homie.png";
 import React, { useState } from "react";
+import { Link, BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import EmailModal from "./components/dialog-component";
 import { Button } from "react-bootstrap";
+import ProfilePage from "./components/profile-page";
 
-function App() {
+function Home() {
   const [showModal, setShowModal] = useState(false);
 
   const handleOpenModal = () => {
@@ -46,7 +48,9 @@ function App() {
           <nav className="navbar navbar-expand-lg navbar-light m-4 rounded 100vw">
             <div className="container-fluid">
               <div>
-                <img src={homieLogo} alt="House Icon" className="imageStyle" />
+                <Link to="/profil">
+                  <img src={homieLogo} alt="House Icon" className="imageStyle" />
+                </Link>
               </div>
 
               <button
@@ -93,6 +97,17 @@ function App() {
         </div>
       </div>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/profil" element={<ProfilePage />} />
+      </Routes>
+    </Router>
   );
 }
 
