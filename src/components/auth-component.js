@@ -21,6 +21,12 @@ const AuthModal = ({ showAuthModal, handleCloseAuthModal }) => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       handleCloseAuthModal();
+      //TODO: add redirect to profile page
+      // <div>
+      //   <Link to="/profil">
+      //     <img src={homieLogo} alt="House Icon" className="imageStyle" />
+      //   </Link>
+      // </div>
     } catch (err) {
       console.error(err);
     }
