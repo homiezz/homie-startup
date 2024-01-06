@@ -1,9 +1,8 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { GoogleAuthProvider } from "firebase/auth";
-export const firebaseConfig = {
 
-const firebaseConfig = {
+export const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: "homie-12235.firebaseapp.com",
   projectId: "homie-12235",
