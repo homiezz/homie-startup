@@ -4,6 +4,7 @@ import homieLogo from "./assets/logo-homie.png";
 import React, { useState } from "react";
 import EmailModal from "./components/dialog-component";
 import { Button } from "react-bootstrap";
+import AuthModal from "./components/auth-component";
 
 function App() {
   const [showModal, setShowModal] = useState(false);
@@ -14,6 +15,16 @@ function App() {
 
   const handleCloseModal = () => {
     setShowModal(false);
+  };
+
+  const [showAuthModal, setShowAuthModal] = useState(false);
+
+  const handleOpenAuthModal = () => {
+    setShowAuthModal(true);
+  };
+
+  const handleCloseAuthModal = () => {
+    setShowAuthModal(false);
   };
 
   return (
@@ -33,7 +44,6 @@ function App() {
             >
               Arată-mi recenzii
             </Button>
-
             <EmailModal
               showModal={showModal}
               handleCloseModal={handleCloseModal}
@@ -48,11 +58,9 @@ function App() {
               <div>
                 <img src={homieLogo} alt="House Icon" className="imageStyle" />
               </div>
-
               <button
                 className="navbar-toggler ml-auto custom-toggler"
                 type="button"
-                color="white"
                 data-bs-toggle="collapse"
                 data-bs-target="#navbarNav"
                 aria-controls="navbarNav"
@@ -82,8 +90,8 @@ function App() {
                     </Button>
                   </li>
                   <li className="nav-item">
-                    <Button variant="link" onClick={handleOpenModal}>
-                      Loghează-te
+                    <Button variant="link" onClick={handleOpenAuthModal}>
+                      Conectează-te
                     </Button>
                   </li>
                 </ul>
@@ -92,6 +100,10 @@ function App() {
           </nav>
         </div>
       </div>
+      <AuthModal
+        showAuthModal={showAuthModal}
+        handleCloseAuthModal={handleCloseAuthModal}
+      />
     </div>
   );
 }
