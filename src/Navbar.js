@@ -3,6 +3,7 @@ import homieLogo from "./assets/logo-homie.png";
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import { Link, useResolvedPath, useMatch } from "react-router-dom";
+import AuthModal from "./components/auth-component";
 
 export default function Navbar() {
   const [showModal, setShowModal] = useState(false);
@@ -15,12 +16,26 @@ export default function Navbar() {
     setShowModal(false);
   };
 
+  const [showAuthModal, setShowAuthModal] = useState(false);
+
+  const handleOpenAuthModal = () => {
+    setShowAuthModal(true);
+  };
+
+  const handleCloseAuthModal = () => {
+    setShowAuthModal(false);
+  };
+
   const isAddImobRoute = useMatch("/addImob");
   const isAboutRoute = useMatch("/about");
   const isHomeRoute = useMatch("homie-startup");
 
   return (
     <div className="navbarStyle">
+      <AuthModal
+        showAuthModal={showAuthModal}
+        handleCloseAuthModal={handleCloseAuthModal}
+      />
       <div className="container-fluid">
         <nav className="navbar navbar-expand-lg navbar-light m-4 rounded 100vw">
           <div className="container-fluid">
@@ -29,13 +44,23 @@ export default function Navbar() {
                 <img src={homieLogo} alt="House Icon" className="imageStyle" />
               </Link>
             </div>
+            <button
+              className="navbar-toggler ml-auto custom-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNav"
+              aria-controls="navbarNav"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span className="navbar-toggler-icon"></span>
+            </button>
             <div
               className="collapse navbar-collapse buttonContainerStyle"
               id="navbarNav"
             >
               <ul className="navbar-nav ms-auto">
                 {isHomeRoute ? (
-                  // Render specific content for the /addImob route
                   <>
                     <li className="nav-item">
                       <Button variant="link" onClick={handleOpenModal}>
@@ -49,8 +74,8 @@ export default function Navbar() {
                       Despre noi
                     </Link>
                     <li className="nav-item">
-                      <Button variant="link" onClick={handleOpenModal}>
-                        Loghează-te
+                      <Button variant="link" onClick={handleOpenAuthModal}>
+                        Conectează-te
                       </Button>
                     </li>
                   </>

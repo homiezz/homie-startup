@@ -10,6 +10,7 @@ import {
 import { googleProvider } from "../firebase";
 import "./AuthModal.css";
 import GoogleButton from "react-google-button";
+import { Link, useResolvedPath, useMatch } from "react-router-dom";
 
 const AuthModal = ({ showAuthModal, handleCloseAuthModal }) => {
   const [email, setEmail] = useState("");
@@ -23,10 +24,8 @@ const AuthModal = ({ showAuthModal, handleCloseAuthModal }) => {
       handleCloseAuthModal();
       //TODO: add redirect to profile page
       // <div>
-      //   <Link to="/profil">
-      //     <img src={homieLogo} alt="House Icon" className="imageStyle" />
-      //   </Link>
-      // </div>
+      //   <Link to="profil" className="nav-item"></Link>
+      // </div>;
     } catch (err) {
       console.error(err);
     }
@@ -97,13 +96,15 @@ const AuthModal = ({ showAuthModal, handleCloseAuthModal }) => {
                 />
               </Form.Group>
               <div className="submit-form-button-container">
-                <Button
-                  className="submit-form-button"
-                  type="button"
-                  onClick={handleSignIn}
-                >
-                  Conectează-te
-                </Button>
+                <Link to="profile" className="nav-item">
+                  <Button
+                    className="submit-form-button"
+                    type="button"
+                    onClick={handleSignIn}
+                  >
+                    Conectează-te
+                  </Button>
+                </Link>
                 <GoogleButton
                   className="google-sign-in-button"
                   onClick={handleSignInWithGoogle}
