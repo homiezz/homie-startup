@@ -1,505 +1,505 @@
 .tenants-profile {
-    background-color: #f5f5f5;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    width: 100%;
+  background-color: #f5f5f5;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
 }
-  
+
 .tenants-profile .overlap-wrapper {
-    background-color: #f5f5f5;
-    height: 1024px;
-    overflow: hidden;
-    width: 100%;
+  background-color: #f5f5f5;
+  height: 1024px;
+  overflow: hidden;
+  width: 100%;
 }
-  
+
 .tenants-profile .overlap {
-    height: 1024px;
-    left: -4px;
-    position: relative;
-    width: 100%;
+  height: 1024px;
+  left: -4px;
+  position: relative;
+  width: 100%;
 }
-  
+
 .tenants-profile .background {
-    height: 1024px;
-    left: 5px;
-    object-fit: cover;
-    position: absolute;
-    top: 0;
-    width: 100%;
+  height: 1024px;
+  left: 5px;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  width: 100%;
 }
-  
+
 .tenants-profile .rectangle {
-    position: absolute;
-    top: 0;
-    width: 100%;
+  position: absolute;
+  top: 0;
+  width: 100%;
 }
-  
+
 .tenants-profile .div {
-    background-color: #131313b2;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: -20px;
-    width: 516px;
+  background-color: #131313b2;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: -20px;
+  width: 516px;
 }
-  
+
 .tenants-profile .group {
-    height: 346px;
-    left: 30px;
-    position: absolute;
-    top: 156px;
-    width: 456px;
+  height: 346px;
+  left: 30px;
+  position: absolute;
+  top: 156px;
+  width: 456px;
 }
-  
+
 .tenants-profile .img {
-    height: 258px;
-    left: 85px;
-    position: absolute;
-    top: 0;
-    width: 258px;
+  height: 258px;
+  left: 85px;
+  position: absolute;
+  top: 0;
+  width: 258px;
 }
-  
+
 .tenants-profile .group-2 {
-    height: 56px;
-    left: 0;
-    position: absolute;
-    top: 290px;
-    width: 462px;
+  height: 56px;
+  left: 0;
+  position: absolute;
+  top: 290px;
+  width: 462px;
 }
-  
+
 .tenants-profile .overlap-group {
-    height: 51px;
-    left: 65px;
-    position: absolute;
-    top: 4px;
-    width: 162px;
+  height: 51px;
+  left: 65px;
+  position: absolute;
+  top: 4px;
+  width: 162px;
 }
-  
+
 .tenants-profile .text-wrapper {
-    color: #ffffff;
-    font-family: "Poppins", Helvetica;
-    font-size: 24px;
-    font-weight: 300;
-    left: 99px;
-    letter-spacing: 0;
-    line-height: normal;
-    position: absolute;
-    top: 6px;
-    width: 63px;
+  color: #ffffff;
+  font-family: "Poppins", Helvetica;
+  font-size: 24px;
+  font-weight: 300;
+  left: 99px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 6px;
+  width: 63px;
 }
-  
+
 .tenants-profile .text-wrapper-2 {
-    color: #e79d83;
-    font-family: "Yeseva One", Helvetica;
-    font-size: 36px;
-    font-weight: 400;
-    left: 0;
-    letter-spacing: 0;
-    line-height: normal;
-    position: absolute;
-    text-decoration: underline;
-    top: 0;
-    width: 105px;
+  color: #e79d83;
+  font-family: "Yeseva One", Helvetica;
+  font-size: 36px;
+  font-weight: 400;
+  left: 0;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  text-decoration: underline;
+  top: 0;
+  width: 105px;
 }
-  
+
 .tenants-profile .text-wrapper-3 {
-    color: #ffffff;
-    font-family: "Yeseva One", Helvetica;
-    font-size: 36px;
-    font-weight: 400;
-    left: 245px;
-    letter-spacing: 0;
-    line-height: normal;
-    position: absolute;
-    top: 4px;
-    width: 211px;
+  color: #ffffff;
+  font-family: "Yeseva One", Helvetica;
+  font-size: 36px;
+  font-weight: 400;
+  left: 245px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 4px;
+  width: 211px;
 }
-  
+
 .tenants-profile .star {
-    height: 40px;
-    left: 4px;
-    position: absolute;
-    top: 2px;
-    width: 47px;
+  height: 40px;
+  left: 4px;
+  position: absolute;
+  top: 2px;
+  width: 47px;
 }
-  
+
 .tenants-profile .about-alex {
-    color: transparent;
-    font-family: "Yeseva One", Helvetica;
-    font-size: 71px;
-    font-weight: 400;
-    left: 560px;
-    letter-spacing: 0;
-    line-height: normal;
-    position: absolute;
-    top: 108px;
-    width: 588px;
+  color: transparent;
+  font-family: "Yeseva One", Helvetica;
+  font-size: 71px;
+  font-weight: 400;
+  left: 560px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 108px;
+  width: 588px;
 }
-  
+
 .tenants-profile .span {
-    color: #ffffff;
+  color: #ffffff;
 }
-  
+
 .tenants-profile .text-wrapper-4 {
-    color: #ffffff;
-    font-size: 72px;
+  color: #ffffff;
+  font-size: 72px;
 }
-  
+
 .tenants-profile .text-wrapper-5 {
-    color: #e79d83;
-    font-size: 94px;
+  color: #e79d83;
+  font-size: 94px;
 }
-  
+
 .tenants-profile .p {
-    color: #ffffff;
-    font-family: "Poppins", Helvetica;
-    font-size: 24px;
-    font-weight: 200;
-    left: 29px;
-    letter-spacing: 0;
-    line-height: normal;
-    position: absolute;
-    text-align: justify;
-    top: 610px;
-    width: 457px;
+  color: #ffffff;
+  font-family: "Poppins", Helvetica;
+  font-size: 24px;
+  font-weight: 200;
+  left: 29px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  text-align: justify;
+  top: 610px;
+  width: 457px;
 }
-  
+
 .tenants-profile .looking-for-a {
-    color: #ffffff;
-    font-family: "Poppins", Helvetica;
-    font-size: 24px;
-    font-weight: 200;
-    left: 560px;
-    letter-spacing: 0;
-    line-height: normal;
-    position: absolute;
-    text-align: justify;
-    top: 703px;
-    width: 813px;
+  color: #ffffff;
+  font-family: "Poppins", Helvetica;
+  font-size: 24px;
+  font-weight: 200;
+  left: 560px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  text-align: justify;
+  top: 703px;
+  width: 813px;
 }
-  
+
 .tenants-profile .member-for-years {
-    color: transparent;
-    font-family: "Poppins", Helvetica;
-    font-size: 24px;
-    font-weight: 400;
-    left: 122px;
-    letter-spacing: 0;
-    line-height: normal;
-    position: absolute;
-    top: 501px;
-    width: 280px;
+  color: transparent;
+  font-family: "Poppins", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  left: 122px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 501px;
+  width: 280px;
 }
-  
+
 .tenants-profile .text-wrapper-6 {
-    color: #e79d83;
-    font-size: 32px;
-    font-weight: 600;
+  color: #e79d83;
+  font-size: 32px;
+  font-weight: 600;
 }
-  
+
 .tenants-profile .line {
-    height: 1px;
-    left: 560px;
-    object-fit: cover;
-    position: absolute;
-    top: 232px;
-    width: 809px;
+  height: 1px;
+  left: 560px;
+  object-fit: cover;
+  position: absolute;
+  top: 232px;
+  width: 809px;
 }
-  
+
 .tenants-profile .line-2 {
-    height: 1px;
-    left: 30px;
-    object-fit: cover;
-    position: absolute;
-    top: 576px;
-    width: 456px;
+  height: 1px;
+  left: 30px;
+  object-fit: cover;
+  position: absolute;
+  top: 576px;
+  width: 456px;
 }
-  
+
 .tenants-profile .overlap-group-wrapper {
-    height: 30px;
-    left: 38px;
-    position: absolute;
-    top: 978px;
-    width: 442px;
+  height: 30px;
+  left: 38px;
+  position: absolute;
+  top: 978px;
+  width: 442px;
 }
-  
+
 .tenants-profile .overlap-2 {
-    height: 30px;
-    position: relative;
-    width: 440px;
+  height: 30px;
+  position: relative;
+  width: 440px;
 }
-  
+
 .tenants-profile .text-wrapper-7 {
-    color: #e79d83;
-    font-family: "Poppins", Helvetica;
-    font-size: 20px;
-    font-style: italic;
-    font-weight: 200;
-    left: 0;
-    letter-spacing: 0;
-    line-height: normal;
-    position: absolute;
-    text-align: center;
-    top: 0;
-    width: 440px;
+  color: #e79d83;
+  font-family: "Poppins", Helvetica;
+  font-size: 20px;
+  font-style: italic;
+  font-weight: 200;
+  left: 0;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 440px;
 }
-  
+
 .tenants-profile .vector {
-    height: 18px;
-    left: 135px;
-    position: absolute;
-    top: 6px;
-    width: 14px;
+  height: 18px;
+  left: 135px;
+  position: absolute;
+  top: 6px;
+  width: 14px;
 }
-  
+
 .tenants-profile .text-wrapper-8 {
-    color: #e79d83;
-    font-family: "Yeseva One", Helvetica;
-    font-size: 48px;
-    font-weight: 400;
-    left: 560px;
-    letter-spacing: 0;
-    line-height: normal;
-    position: absolute;
-    top: 252px;
-    width: 414px;
+  color: #e79d83;
+  font-family: "Yeseva One", Helvetica;
+  font-size: 48px;
+  font-weight: 400;
+  left: 560px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 252px;
+  width: 414px;
 }
-  
+
 .tenants-profile .line-3 {
-    height: 1px;
-    left: 560px;
-    object-fit: cover;
-    position: absolute;
-    top: 620px;
-    width: 809px;
+  height: 1px;
+  left: 560px;
+  object-fit: cover;
+  position: absolute;
+  top: 620px;
+  width: 809px;
 }
-  
+
 .tenants-profile .text-wrapper-9 {
-    color: #e79d83;
-    font-family: "Yeseva One", Helvetica;
-    font-size: 48px;
-    font-weight: 400;
-    left: 560px;
-    letter-spacing: 0;
-    line-height: normal;
-    position: absolute;
-    top: 640px;
-    width: 414px;
+  color: #e79d83;
+  font-family: "Yeseva One", Helvetica;
+  font-size: 48px;
+  font-weight: 400;
+  left: 560px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 640px;
+  width: 414px;
 }
-  
+
 .tenants-profile .div-wrapper {
-    height: 254px;
-    left: 560px;
-    position: absolute;
-    top: 323px;
-    width: 256px;
+  height: 254px;
+  left: 560px;
+  position: absolute;
+  top: 323px;
+  width: 256px;
 }
-  
-  .tenants-profile .overlap-3 {
-    background-color: #fbf3f354;
-    border-radius: 41px;
-    height: 254px;
-    position: relative;
-    width: 254px;
+
+.tenants-profile .overlap-3 {
+  background-color: #fbf3f354;
+  border-radius: 41px;
+  height: 254px;
+  position: relative;
+  width: 254px;
 }
-  
+
 .tenants-profile .group-3 {
-    height: 29px;
-    left: 92px;
-    position: absolute;
-    top: 214px;
-    width: 72px;
+  height: 29px;
+  left: 92px;
+  position: absolute;
+  top: 214px;
+  width: 72px;
 }
-  
+
 .tenants-profile .text-wrapper-10 {
-    color: #ffffff;
-    font-family: "Yeseva One", Helvetica;
-    font-size: 20px;
-    font-weight: 400;
-    left: 38px;
-    letter-spacing: 0;
-    line-height: normal;
-    position: absolute;
-    top: 5px;
-    white-space: nowrap;
-    width: 32px;
+  color: #ffffff;
+  font-family: "Yeseva One", Helvetica;
+  font-size: 20px;
+  font-weight: 400;
+  left: 38px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 5px;
+  white-space: nowrap;
+  width: 32px;
 }
-  
+
 .tenants-profile .star-2 {
-    height: 23px;
-    left: 3px;
-    position: absolute;
-    top: 2px;
-    width: 26px;
+  height: 23px;
+  left: 3px;
+  position: absolute;
+  top: 2px;
+  width: 26px;
 }
-  
+
 .tenants-profile .text-wrapper-11 {
-    color: #d5d5d5;
-    font-family: "Poppins", Helvetica;
-    font-size: 13px;
-    font-weight: 200;
-    left: 14px;
-    letter-spacing: 0;
-    line-height: normal;
-    position: absolute;
-    text-align: justify;
-    top: 28px;
-    width: 224px;
+  color: #d5d5d5;
+  font-family: "Poppins", Helvetica;
+  font-size: 13px;
+  font-weight: 200;
+  left: 14px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  text-align: justify;
+  top: 28px;
+  width: 224px;
 }
-  
+
 .tenants-profile .group-4 {
-    height: 254px;
-    left: 847px;
-    position: absolute;
-    top: 323px;
-    width: 544px;
+  height: 254px;
+  left: 847px;
+  position: absolute;
+  top: 323px;
+  width: 544px;
 }
-  
+
 .tenants-profile .overlap-4 {
-    background-color: #fbf3f354;
-    border-radius: 41px;
-    height: 254px;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 254px;
+  background-color: #fbf3f354;
+  border-radius: 41px;
+  height: 254px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 254px;
 }
-  
+
 .tenants-profile .group-5 {
-    height: 254px;
-    left: 288px;
-    position: absolute;
-    top: 0;
-    width: 256px;
+  height: 254px;
+  left: 288px;
+  position: absolute;
+  top: 0;
+  width: 256px;
 }
-  
+
 .tenants-profile .overlap-group-2 {
-    background-image: url(https://c.animaapp.com/3A91v25w/img/rectangle-21.png);
-    background-size: 100% 100%;
-    height: 254px;
-    position: relative;
-    width: 254px;
+  background-image: url(https://c.animaapp.com/3A91v25w/img/rectangle-21.png);
+  background-size: 100% 100%;
+  height: 254px;
+  position: relative;
+  width: 254px;
 }
-  
+
 .tenants-profile .ep-arrow-left {
-    height: 51px;
-    left: 1390px;
-    position: absolute;
-    top: 416px;
-    width: 51px;
+  height: 51px;
+  left: 1390px;
+  position: absolute;
+  top: 416px;
+  width: 51px;
 }
-  
+
 .tenants-profile .group-6 {
-    height: 63px;
-    left: 1119px;
-    position: absolute;
-    top: 126px;
-    width: 256px;
+  height: 63px;
+  left: 1119px;
+  position: absolute;
+  top: 200px;
+  width: 256px;
 }
-  
+
 .tenants-profile .overlap-5 {
-    height: 63px;
-    position: relative;
-    width: 254px;
+  height: 63px;
+  position: relative;
+  width: 254px;
 }
-  
+
 .tenants-profile .text-wrapper-12 {
-    color: #e79d83;
-    font-family: "Poppins", Helvetica;
-    font-size: 32px;
-    font-weight: 600;
-    left: 5px;
-    letter-spacing: 0;
-    line-height: normal;
-    position: absolute;
-    text-align: center;
-    top: 7px;
-    width: 238px;
+  color: #e79d83;
+  font-family: "Poppins", Helvetica;
+  font-size: 32px;
+  font-weight: 600;
+  left: 5px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  text-align: center;
+  top: 7px;
+  width: 238px;
 }
-  
+
 .tenants-profile .rectangle-2 {
-    border: 2px solid;
-    border-color: #e79d83;
-    height: 63px;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 254px;
+  border: 2px solid;
+  border-color: #e79d83;
+  height: 63px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 254px;
 }
-  
+
 .tenants-profile .navbar {
-    height: 89px;
-    left: 44px;
-    position: absolute;
-    top: 20px;
-    width: 1375px;
+  height: 89px;
+  left: 44px;
+  position: absolute;
+  top: 20px;
+  width: 1375px;
 }
-  
+
 .tenants-profile .text-wrapper-13 {
-    color: #ffffff;
-    font-family: "Poppins", Helvetica;
-    font-size: 24px;
-    font-weight: 300;
-    left: 524px;
-    letter-spacing: 0;
-    line-height: normal;
-    position: absolute;
-    top: 7px;
+  color: #ffffff;
+  font-family: "Poppins", Helvetica;
+  font-size: 24px;
+  font-weight: 300;
+  left: 524px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 7px;
 }
-  
+
 .tenants-profile .text-wrapper-14 {
-    color: #ffffff;
-    font-family: "Poppins", Helvetica;
-    font-size: 24px;
-    font-weight: 300;
-    left: 1067px;
-    letter-spacing: 0;
-    line-height: normal;
-    position: absolute;
-    top: 7px;
+  color: #ffffff;
+  font-family: "Poppins", Helvetica;
+  font-size: 24px;
+  font-weight: 300;
+  left: 1067px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 7px;
 }
-  
+
 .tenants-profile .text-wrapper-15 {
-    color: #ffffff;
-    font-family: "Poppins", Helvetica;
-    font-size: 24px;
-    font-weight: 300;
-    left: 1272px;
-    letter-spacing: 0;
-    line-height: normal;
-    position: absolute;
-    top: 7px;
+  color: #ffffff;
+  font-family: "Poppins", Helvetica;
+  font-size: 24px;
+  font-weight: 300;
+  left: 1272px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 7px;
 }
-  
+
 .tenants-profile .LOGO-HOMIE-wrapper {
-    background-image: url(https://c.animaapp.com/3A91v25w/img/logo-homie-1@2x.png);
-    background-position: 50% 50%;
-    background-size: cover;
-    height: 89px;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 78px;
+  background-image: url(https://c.animaapp.com/3A91v25w/img/logo-homie-1@2x.png);
+  background-position: 50% 50%;
+  background-size: cover;
+  height: 89px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 78px;
 }
-  
+
 .tenants-profile .LOGO-HOMIE {
-    height: 89px;
-    left: 0;
-    object-fit: cover;
-    position: absolute;
-    top: 0;
-    width: 78px;
+  height: 89px;
+  left: 0;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  width: 78px;
 }
-  
+
 .tenants-profile .text-wrapper-16 {
-    color: #ffffff;
-    font-family: "Poppins", Helvetica;
-    font-size: 24px;
-    font-weight: 300;
-    left: 762px;
-    letter-spacing: 0;
-    line-height: normal;
-    position: absolute;
-    top: 7px;
+  color: #ffffff;
+  font-family: "Poppins", Helvetica;
+  font-size: 24px;
+  font-weight: 300;
+  left: 762px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 7px;
 }

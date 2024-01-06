@@ -29,6 +29,7 @@ export default function Navbar() {
   const isAddImobRoute = useMatch("/addImob");
   const isAboutRoute = useMatch("/about");
   const isHomeRoute = useMatch("homie-startup");
+  const isProfileRoute = useMatch("/profile");
 
   return (
     <div className="navbarStyle">
@@ -81,7 +82,7 @@ export default function Navbar() {
                   </>
                 ) : null}
 
-                {isAddImobRoute || isAboutRoute ? (
+                {isAddImobRoute || isAboutRoute || isProfileRoute ? (
                   // Render specific content for the /addImob route
                   <>
                     <li className="nav-item">
@@ -93,7 +94,9 @@ export default function Navbar() {
                     <Link to="/about" className="nav-item">
                       Despre noi
                     </Link>
-                    <Link className="nav-item">Profil</Link>
+                    <Link to="/profile" className="nav-item">
+                      Profil
+                    </Link>
                   </>
                 ) : null}
               </ul>
