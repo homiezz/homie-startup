@@ -1,7 +1,8 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import { GoogleAuthProvider } from "firebase/auth";
 
-const firebaseConfig = {
+export const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: "homie-12235.firebaseapp.com",
   projectId: "homie-12235",
@@ -11,6 +12,6 @@ const firebaseConfig = {
   measurementId: "G-T1E3L1LTCV",
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+export const googleProvider = new GoogleAuthProvider();

@@ -2,12 +2,11 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import homieLogo from "./assets/logo-homie.png";
 import React, { useState } from "react";
-import { Link, BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import EmailModal from "./components/dialog-component";
 import { Button } from "react-bootstrap";
-import ProfilePage from "./components/profile-page";
+import AuthModal from "./components/auth-component";
 
-function Home() {
+function App() {
   const [showModal, setShowModal] = useState(false);
 
   const handleOpenModal = () => {
@@ -16,6 +15,16 @@ function Home() {
 
   const handleCloseModal = () => {
     setShowModal(false);
+  };
+
+  const [showAuthModal, setShowAuthModal] = useState(false);
+
+  const handleOpenAuthModal = () => {
+    setShowAuthModal(true);
+  };
+
+  const handleCloseAuthModal = () => {
+    setShowAuthModal(false);
   };
 
   return (
@@ -35,7 +44,6 @@ function Home() {
             >
               Arată-mi recenzii
             </Button>
-
             <EmailModal
               showModal={showModal}
               handleCloseModal={handleCloseModal}
@@ -48,15 +56,11 @@ function Home() {
           <nav className="navbar navbar-expand-lg navbar-light m-4 rounded 100vw">
             <div className="container-fluid">
               <div>
-                <Link to="/profil">
-                  <img src={homieLogo} alt="House Icon" className="imageStyle" />
-                </Link>
+                <img src={homieLogo} alt="House Icon" className="imageStyle" />
               </div>
-
               <button
                 className="navbar-toggler ml-auto custom-toggler"
                 type="button"
-                color="white"
                 data-bs-toggle="collapse"
                 data-bs-target="#navbarNav"
                 aria-controls="navbarNav"
@@ -86,8 +90,8 @@ function Home() {
                     </Button>
                   </li>
                   <li className="nav-item">
-                    <Button variant="link" onClick={handleOpenModal}>
-                      Loghează-te
+                    <Button variant="link" onClick={handleOpenAuthModal}>
+                      Conectează-te
                     </Button>
                   </li>
                 </ul>
@@ -96,18 +100,11 @@ function Home() {
           </nav>
         </div>
       </div>
+      <AuthModal
+        showAuthModal={showAuthModal}
+        handleCloseAuthModal={handleCloseAuthModal}
+      />
     </div>
-  );
-}
-
-function App() {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/profil" element={<ProfilePage />} />
-      </Routes>
-    </Router>
   );
 }
 

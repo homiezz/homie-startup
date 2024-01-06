@@ -41,11 +41,11 @@ const EmailModal = ({ showModal, handleCloseModal }) => {
             <Form.Control
               style={textBox}
               type="email"
-              placeholder="Scrie email"
+              placeholder="Introdu adresa de email"
               name="email"
             />
             <Form.Text className="text-muted">
-              Îți vom trimite prin e-mail confirmările și notificările.
+              Îți vom trimite prin email confirmările și notificările.
             </Form.Text>
             <ValidationError
               prefix="Email"
