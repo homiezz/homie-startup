@@ -10,22 +10,20 @@ import {
 import { googleProvider } from "../firebase";
 import "./AuthModal.css";
 import GoogleButton from "react-google-button";
-import { Link, useResolvedPath, useMatch } from "react-router-dom";
+import { Link, useResolvedPath, useMatch, useNavigate } from "react-router-dom";
 
 const AuthModal = ({ showAuthModal, handleCloseAuthModal }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const auth = getAuth();
+  const navigate = useNavigate();
 
   const handleSignIn = async () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       handleCloseAuthModal();
-      //TODO: add redirect to profile page
-      // <div>
-      //   <Link to="profil" className="nav-item"></Link>
-      // </div>;
+      navigate("/profile");
     } catch (err) {
       console.error(err);
     }
@@ -96,15 +94,13 @@ const AuthModal = ({ showAuthModal, handleCloseAuthModal }) => {
                 />
               </Form.Group>
               <div className="submit-form-button-container">
-                <Link to="profile" className="nav-item">
-                  <Button
-                    className="submit-form-button"
-                    type="button"
-                    onClick={handleSignIn}
-                  >
-                    Conectează-te
-                  </Button>
-                </Link>
+                <Button
+                  className="submit-form-button"
+                  type="button"
+                  onClick={handleSignIn}
+                >
+                  Conectează-te
+                </Button>
                 <GoogleButton
                   className="google-sign-in-button"
                   onClick={handleSignInWithGoogle}
