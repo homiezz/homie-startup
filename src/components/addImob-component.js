@@ -3,6 +3,7 @@ import "./addImob.css";
 import { Button } from "react-bootstrap";
 import TrashCan from "../assets/trashCan.png";
 import "bootstrap/dist/css/bootstrap.min.css";
+import LocationInputMap from "./LocationInputMap";
 
 const AddImob = () => {
   const [imobTitle, setImobTitle] = useState("");
@@ -11,8 +12,11 @@ const AddImob = () => {
   const [residentsNumber, setResidentsNumber] = useState(0);
   const [bathroomNumber, setBathroomNumber] = useState(0);
   const [imobFacilities, setImobFacilities] = useState([]);
+  const [currentFacility, setCurrentFacility] = useState("");
   const [rules, setRules] = useState([]);
+  const [currentRule, setCurrentRule] = useState("");
   const [images, setImages] = useState([]);
+  const [imobLocation, setImobLocation] = useState({ lat: 0, lng: 0 });
 
   const handleInputChange = (e, index) => {
     const { name, value } = e.target;
@@ -29,10 +33,22 @@ const AddImob = () => {
         setImobFacilities(updatedFacilities);
         break;
       case "imobTitle":
-        setImobTitle(value);
+        if (value && value.length <= 30) {
+          setImobTitle(value);
+        } else {
+          alert(
+            "Titlu este prea lung. Va rugam sa oferiti un tilu scurt si descriptiv de maximum 30 de caractere."
+          );
+        }
         break;
       case "imobDescription":
-        setImobDescription(value);
+        if (value && value.length <= 500) {
+          setImobDescription(value);
+        } else {
+          alert(
+            "Descrierea este prea lunga. Va rugam sa va incadrati in maximum 500 de caractere."
+          );
+        }
         break;
       case "roomNumber":
         setRoomNumber(Number(value));
@@ -43,13 +59,24 @@ const AddImob = () => {
       case "residentsNumber":
         setResidentsNumber(Number(value));
         break;
+      case "currentFacility":
+        setCurrentFacility(value);
+        break;
+      case "currentRule":
+        setCurrentRule(value);
+        break;
       default:
         break;
     }
   };
 
   const handleAddFacility = () => {
-    setImobFacilities([...imobFacilities, ""]);
+    if (currentFacility.trim() !== "") {
+      setImobFacilities([...imobFacilities, currentFacility]);
+      setCurrentFacility("");
+    } else {
+      alert("Va rugam sa adaugati o facilitate.");
+    }
   };
 
   const handleRemoveFacility = (index) => {
@@ -59,7 +86,12 @@ const AddImob = () => {
   };
 
   const handleAddRules = () => {
-    setRules([...rules, ""]);
+    if (currentRule.trim() !== "") {
+      setRules([...rules, currentRule]);
+      setCurrentRule("");
+    } else {
+      alert("Va rugam sa adaugati o regula.");
+    }
   };
 
   const handleRemoveRules = (index) => {
@@ -79,9 +111,22 @@ const AddImob = () => {
     setImages(updatedImages);
   };
 
+  const handleSaveLocation = (location) => {
+    setImobLocation(location);
+    console.log(location);
+  };
+
   const handleSubmit = () => {
-    if (!imobTitle || !imobDescription || !roomNumber || !bathroomNumber) {
-      alert("Please fill in all required fields");
+    if (
+      !imobTitle ||
+      !imobDescription ||
+      !roomNumber ||
+      !bathroomNumber ||
+      !images ||
+      imobLocation.lat === 0 ||
+      imobLocation.lng === 0
+    ) {
+      alert("Va rugam sa completati toate campurile obligatorii!");
       return;
     }
 
@@ -90,15 +135,19 @@ const AddImob = () => {
       imobDescription,
       roomNumber,
       bathroomNumber,
+      residentsNumber,
       imobFacilities,
+      rules,
       images,
+      imobLocation,
     });
   };
 
   return (
     <div className="pageView">
       <form>
-        <div className="formStyle">
+        <div className="titleStyle">
+          {" "}
           <label>
             <input
               type="text"
@@ -110,12 +159,48 @@ const AddImob = () => {
           </label>
         </div>
         <br />
-        <div className="formStyle">
+        <label className="formStyle">
+          Adauga Imagini:
+          <div className="imageList">
+            <input
+              type="file"
+              accept="image/*"
+              multiple
+              onChange={handleImageChange}
+            />
+            <br />
+            {images.map((image, index) => (
+              <div key={index} className="imageItem">
+                <img
+                  src={URL.createObjectURL(image)}
+                  alt={""}
+                  className="imageStyle"
+                />
+                <Button
+                  type="button"
+                  className="buttonStyle deleteButton"
+                  onClick={() => handleRemoveImage(index)}
+                >
+                  <img
+                    src={TrashCan}
+                    alt="Trash Icon"
+                    className="trashIconStyle"
+                  />
+                </Button>
+                <br />
+              </div>
+            ))}
+          </div>
+        </label>
+        <br />
+        <div className="titleStyle">
+          {" "}
           <label>
             <textarea
+              type="text"
               name="imobDescription"
               value={imobDescription}
-              placeholder="Descriere imobil"
+              placeholder="Descrierea imobilului..."
               onChange={handleInputChange}
             />
           </label>
@@ -198,12 +283,13 @@ const AddImob = () => {
         <br />
         <label className="formStyle">
           Facilitati:
-          <div>
+          <div className="facilityInputContainer">
+            {" "}
             <input
               type="text"
-              name="imobFacilities"
+              name="currentFacility"
               placeholder="Adauga facilitati..."
-              value={imobFacilities[0] || ""}
+              value={currentFacility}
               onChange={(e) => handleInputChange(e, 0)}
             />
             <Button
@@ -215,23 +301,23 @@ const AddImob = () => {
             </Button>
           </div>
           {imobFacilities.length > 0 && (
-            <div>
+            <div className="facilitiesList">
+              {" "}
               {imobFacilities.map((facility, index) => (
-                <div key={index}>
+                <div key={index} className="facilityItem">
+                  {" "}
+                  <Button
+                    type="button"
+                    className="buttonStyle"
+                    onClick={() => handleRemoveFacility(index)}
+                  >
+                    <img
+                      src={TrashCan}
+                      alt="Trash Icon"
+                      className="trashIconStyle"
+                    />
+                  </Button>
                   <span>{facility}</span>
-                  {index === imobFacilities.length - 1 && (
-                    <Button
-                      type="button"
-                      className="buttonStyle"
-                      onClick={() => handleRemoveFacility(index)}
-                    >
-                      <img
-                        src={TrashCan}
-                        alt="Trash Icon"
-                        className="imageStyle"
-                      />
-                    </Button>
-                  )}
                 </div>
               ))}
             </div>
@@ -240,16 +326,27 @@ const AddImob = () => {
         <br />
         <label className="formStyle">
           Reguli:
-          {rules.length > 0 ? (
-            rules.map((rule, index) => (
-              <div key={index}>
-                <input
-                  type="text"
-                  name="rules"
-                  value={rule}
-                  onChange={(e) => handleInputChange(e, index)}
-                />
-                {rules.length > 1 && (
+          <div className="facilityInputContainer">
+            {" "}
+            <input
+              type="text"
+              name="currentRule"
+              placeholder="Adauga reguli..."
+              value={currentRule}
+              onChange={(e) => handleInputChange(e, 0)}
+            />
+            <Button
+              type="button"
+              className="buttonStyle"
+              onClick={handleAddRules}
+            >
+              +
+            </Button>
+          </div>
+          {rules.length > 0 && (
+            <div className="facilitiesList">
+              {rules.map((rule, index) => (
+                <div key={index} className="facilityItem">
                   <Button
                     type="button"
                     className="buttonStyle"
@@ -258,73 +355,20 @@ const AddImob = () => {
                     <img
                       src={TrashCan}
                       alt="Trash Icon"
-                      className="imageStyle"
+                      className="trashIconStyle"
                     />
                   </Button>
-                )}
-                {index === rules.length - 1 && (
-                  <Button
-                    type="button"
-                    className="buttonStyle"
-                    onClick={handleAddRules}
-                  >
-                    +
-                  </Button>
-                )}
-                <br />
-              </div>
-            ))
-          ) : (
-            <div>
-              <input
-                type="text"
-                name="rules"
-                value={rules[0] || ""} // Use the first element if available, otherwise an empty string
-                onChange={(e) => handleInputChange(e, 0)}
-              />
-              {rules.length === 0 && (
-                <Button
-                  type="button"
-                  className="buttonStyle"
-                  onClick={handleAddRules}
-                >
-                  +
-                </Button>
-              )}
-              <br />
+                  <span>{rule}</span>
+                </div>
+              ))}
             </div>
           )}
         </label>
         <br />
-        <label className="formStyle">
-          Adauga Imagini:
-          <div>
-            <input
-              type="file"
-              accept="image/*"
-              multiple
-              onChange={handleImageChange}
-            />
-            <br />
-            {images.map((image, index) => (
-              <div key={index}>
-                <img
-                  src={URL.createObjectURL(image)}
-                  alt={""}
-                  style={{ maxWidth: "100px", maxHeight: "100px" }}
-                />
-                <Button
-                  type="button"
-                  className="buttonStyle"
-                  onClick={() => handleRemoveImage(index)}
-                >
-                  <img src={TrashCan} alt="Trash Icon" className="imageStyle" />
-                </Button>
-                <br />
-              </div>
-            ))}
-          </div>
-        </label>
+        <div>
+          Location
+          <LocationInputMap onSaveLocation={handleSaveLocation} />
+        </div>
         <br />
         <div className="nav-item">
           <Button type="button" className="buttonStyle" onClick={handleSubmit}>
