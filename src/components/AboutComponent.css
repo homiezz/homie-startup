@@ -1,0 +1,47 @@
+.container {
+  min-height: 100vh; /* Minimum height of the viewport */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background: linear-gradient(
+    to right,
+    #ff8c42,
+    #808080
+  ); /* Set the background color */
+}
+.pageTitle {
+  font-size: 3.5rem;
+  text-align: center;
+  margin-top: 300px; /* Reduced margin for better alignment */
+  color: white;
+}
+
+.pageSubtitle {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 20px; /* Reduced margin for better alignment */
+  color: white;
+}
+
+.flexContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.pageContent {
+  max-width: 800px;
+  font-size: 1rem;
+  line-height: 1.5;
+  text-align: justify;
+  margin-bottom: 30px;
+  color: white;
+}
+
+.warmImageStyle {
+  width: 85%; /* Adjust the width as needed */
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}

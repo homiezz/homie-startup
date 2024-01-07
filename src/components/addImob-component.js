@@ -145,10 +145,10 @@ const AddImob = () => {
 
   return (
     <div className="pageView">
-      <form>
-        <div className="titleStyle">
-          {" "}
-          <label>
+      <div className="formContainer">
+        <form className="formStyle">
+          {/* Title Input */}
+          <label className="formStyle">
             <input
               type="text"
               name="imobTitle"
@@ -157,45 +157,42 @@ const AddImob = () => {
               onChange={handleInputChange}
             />
           </label>
-        </div>
-        <br />
-        <label className="formStyle">
-          Adauga Imagini:
-          <div className="imageList">
-            <input
-              type="file"
-              accept="image/*"
-              multiple
-              onChange={handleImageChange}
-            />
-            <br />
-            {images.map((image, index) => (
-              <div key={index} className="imageItem">
-                <img
-                  src={URL.createObjectURL(image)}
-                  alt={""}
-                  className="imageStyle"
-                />
-                <Button
-                  type="button"
-                  className="buttonStyle deleteButton"
-                  onClick={() => handleRemoveImage(index)}
-                >
+
+          {/* Image Upload */}
+          <label className="formStyle">
+            Adauga Imagini:
+            <div className="imageList">
+              <input
+                type="file"
+                accept="image/*"
+                multiple
+                onChange={handleImageChange}
+              />
+              {images.map((image, index) => (
+                <div key={index} className="imageItem">
                   <img
-                    src={TrashCan}
-                    alt="Trash Icon"
-                    className="trashIconStyle"
+                    src={URL.createObjectURL(image)}
+                    alt=""
+                    className="imageStyleImob"
                   />
-                </Button>
-                <br />
-              </div>
-            ))}
-          </div>
-        </label>
-        <br />
-        <div className="titleStyle">
-          {" "}
-          <label>
+                  <Button
+                    type="button"
+                    className="buttonStyle deleteButton"
+                    onClick={() => handleRemoveImage(index)}
+                  >
+                    <img
+                      src={TrashCan}
+                      alt="Trash Icon"
+                      className="trashIconStyle"
+                    />
+                  </Button>
+                </div>
+              ))}
+            </div>
+          </label>
+
+          {/* Description Textarea */}
+          <label className="formStyle">
             <textarea
               type="text"
               name="imobDescription"
@@ -204,178 +201,187 @@ const AddImob = () => {
               onChange={handleInputChange}
             />
           </label>
-        </div>
-        <br />
-        <div className="formStyle">
-          <div className="incrementalItem">
-            <Button
-              type="button"
-              className="buttonStyle"
-              onClick={() => {
-                if (roomNumber > 0) {
-                  setRoomNumber(roomNumber - 1);
-                }
-              }}
-            >
-              -
-            </Button>
-            <span> {roomNumber} </span>
-            <Button
-              type="button"
-              className="buttonStyle"
-              onClick={() => {
-                setRoomNumber(roomNumber + 1);
-              }}
-            >
-              +
-            </Button>
-            Camere
-          </div>
-          <div className="incrementalItem">
-            <Button
-              type="button"
-              className="buttonStyle"
-              onClick={() => {
-                if (bathroomNumber > 0) {
-                  setBathroomNumber(bathroomNumber - 1);
-                }
-              }}
-            >
-              <div className="incrementalItem">-</div>
-            </Button>
-            <span> {bathroomNumber} </span>
-            <Button
-              type="button"
-              className="buttonStyle"
-              onClick={() => {
-                setBathroomNumber(bathroomNumber + 1);
-              }}
-            >
-              +
-            </Button>
-            Bai
-          </div>
-          <div className="incrementalItem">
-            <Button
-              type="button"
-              className="buttonStyle"
-              onClick={() => {
-                if (residentsNumber > 0) {
-                  setResidentsNumber(residentsNumber - 1);
-                }
-              }}
-            >
-              -
-            </Button>
-            <span> {residentsNumber} </span>
-            <Button
-              type="button"
-              className="buttonStyle"
-              onClick={() => {
-                setResidentsNumber(residentsNumber + 1);
-              }}
-            >
-              +
-            </Button>
-            Rezidenti
-          </div>
-        </div>
-        <br />
-        <label className="formStyle">
-          Facilitati:
-          <div className="facilityInputContainer">
-            {" "}
-            <input
-              type="text"
-              name="currentFacility"
-              placeholder="Adauga facilitati..."
-              value={currentFacility}
-              onChange={(e) => handleInputChange(e, 0)}
-            />
-            <Button
-              type="button"
-              className="buttonStyle"
-              onClick={handleAddFacility}
-            >
-              +
-            </Button>
-          </div>
-          {imobFacilities.length > 0 && (
-            <div className="facilitiesList">
-              {" "}
-              {imobFacilities.map((facility, index) => (
-                <div key={index} className="facilityItem">
-                  {" "}
-                  <Button
-                    type="button"
-                    className="buttonStyle"
-                    onClick={() => handleRemoveFacility(index)}
-                  >
-                    <img
-                      src={TrashCan}
-                      alt="Trash Icon"
-                      className="trashIconStyle"
-                    />
-                  </Button>
-                  <span>{facility}</span>
-                </div>
-              ))}
+
+          {/* Room, Bathroom, Residents Incremental Items */}
+          <div className="formStyle">
+            <div className="incrementalWrapper">
+              <div className="incrementalItem">
+                <Button
+                  type="button"
+                  className="buttonStyle"
+                  onClick={() => {
+                    if (roomNumber > 0) {
+                      setRoomNumber(roomNumber - 1);
+                    }
+                  }}
+                >
+                  -
+                </Button>
+                <span> {roomNumber} </span>
+                <Button
+                  type="button"
+                  className="buttonStyle"
+                  onClick={() => {
+                    setRoomNumber(roomNumber + 1);
+                  }}
+                >
+                  +
+                </Button>
+                Camere
+              </div>
+              <div className="incrementalItem">
+                <Button
+                  type="button"
+                  className="buttonStyle"
+                  onClick={() => {
+                    if (bathroomNumber > 0) {
+                      setBathroomNumber(bathroomNumber - 1);
+                    }
+                  }}
+                >
+                  <div className="incrementalItem">-</div>
+                </Button>
+                <span> {bathroomNumber} </span>
+                <Button
+                  type="button"
+                  className="buttonStyle"
+                  onClick={() => {
+                    setBathroomNumber(bathroomNumber + 1);
+                  }}
+                >
+                  +
+                </Button>
+                Bai
+              </div>
+              <div className="incrementalItem">
+                <Button
+                  type="button"
+                  className="buttonStyle"
+                  onClick={() => {
+                    if (residentsNumber > 0) {
+                      setResidentsNumber(residentsNumber - 1);
+                    }
+                  }}
+                >
+                  -
+                </Button>
+                <span> {residentsNumber} </span>
+                <Button
+                  type="button"
+                  className="buttonStyle"
+                  onClick={() => {
+                    setResidentsNumber(residentsNumber + 1);
+                  }}
+                >
+                  +
+                </Button>
+                Rezidenti
+              </div>
             </div>
-          )}
-        </label>
-        <br />
-        <label className="formStyle">
-          Reguli:
-          <div className="facilityInputContainer">
-            {" "}
-            <input
-              type="text"
-              name="currentRule"
-              placeholder="Adauga reguli..."
-              value={currentRule}
-              onChange={(e) => handleInputChange(e, 0)}
-            />
+          </div>
+
+          {/* Facilities Input and List */}
+          <label className="formStyle">
+            Facilitati:
+            <div className="facilityInputContainer">
+              <input
+                type="text"
+                name="currentFacility"
+                placeholder="Adauga facilitati..."
+                value={currentFacility}
+                onChange={(e) => handleInputChange(e, 0)}
+              />
+              <Button
+                type="button"
+                className="buttonStyle"
+                onClick={handleAddFacility}
+              >
+                +
+              </Button>
+            </div>
+            {imobFacilities.length > 0 && (
+              <div className="facilitiesList">
+                {" "}
+                {imobFacilities.map((facility, index) => (
+                  <div key={index} className="facilityItem">
+                    {" "}
+                    <Button
+                      type="button"
+                      className="buttonStyle"
+                      onClick={() => handleRemoveFacility(index)}
+                    >
+                      <img
+                        src={TrashCan}
+                        alt="Trash Icon"
+                        className="trashIconStyle"
+                      />
+                    </Button>
+                    <span>{facility}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+          </label>
+
+          {/* Rules Input and List */}
+          <label className="formStyle">
+            Reguli:
+            <div className="facilityInputContainer">
+              <input
+                type="text"
+                name="currentRule"
+                placeholder="Adauga reguli..."
+                value={currentRule}
+                onChange={(e) => handleInputChange(e, 0)}
+              />
+              <Button
+                type="button"
+                className="buttonStyle"
+                onClick={handleAddRules}
+              >
+                +
+              </Button>
+            </div>
+            {rules.length > 0 && (
+              <div className="facilitiesList">
+                {rules.map((rule, index) => (
+                  <div key={index} className="facilityItem">
+                    <Button
+                      type="button"
+                      className="buttonStyle"
+                      onClick={() => handleRemoveRules(index)}
+                    >
+                      <img
+                        src={TrashCan}
+                        alt="Trash Icon"
+                        className="trashIconStyle"
+                      />
+                    </Button>
+                    <span>{rule}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+          </label>
+
+          {/* Location Input */}
+          <div>
+            Locatie
+            <LocationInputMap onSaveLocation={handleSaveLocation} />
+          </div>
+
+          {/* Submit Button */}
+          <div className="submitDiv">
             <Button
               type="button"
               className="buttonStyle"
-              onClick={handleAddRules}
+              onClick={handleSubmit}
             >
-              +
+              Adauga
             </Button>
           </div>
-          {rules.length > 0 && (
-            <div className="facilitiesList">
-              {rules.map((rule, index) => (
-                <div key={index} className="facilityItem">
-                  <Button
-                    type="button"
-                    className="buttonStyle"
-                    onClick={() => handleRemoveRules(index)}
-                  >
-                    <img
-                      src={TrashCan}
-                      alt="Trash Icon"
-                      className="trashIconStyle"
-                    />
-                  </Button>
-                  <span>{rule}</span>
-                </div>
-              ))}
-            </div>
-          )}
-        </label>
-        <br />
-        <div>
-          Location
-          <LocationInputMap onSaveLocation={handleSaveLocation} />
-        </div>
-        <br />
-        <div className="nav-item">
-          <Button type="button" className="buttonStyle" onClick={handleSubmit}>
-            Adauga
-          </Button>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   );
 };
