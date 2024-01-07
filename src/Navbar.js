@@ -2,20 +2,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import homieLogo from "./assets/logo-homie.png";
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
-import { Link, useResolvedPath, useMatch } from "react-router-dom";
+import { Link, useMatch } from "react-router-dom";
 import AuthModal from "./components/auth-component";
 
 export default function Navbar() {
-  const [showModal, setShowModal] = useState(false);
-
-  const handleOpenModal = () => {
-    setShowModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setShowModal(false);
-  };
-
   const [showAuthModal, setShowAuthModal] = useState(false);
 
   const handleOpenAuthModal = () => {
@@ -40,11 +30,9 @@ export default function Navbar() {
       <div className="container-fluid">
         <nav className="navbar navbar-expand-lg navbar-light m-4 rounded 100vw">
           <div className="container-fluid">
-            <div>
-              <Link to="homie-startup" className="nav-item">
-                <img src={homieLogo} alt="House Icon" className="imageStyle" />
-              </Link>
-            </div>
+            <Link to="homie-startup" className="nav-item no-underline">
+              <img src={homieLogo} alt="House Icon" className="imageStyle" />
+            </Link>
             <button
               className="navbar-toggler ml-auto custom-toggler"
               type="button"
@@ -62,19 +50,18 @@ export default function Navbar() {
             >
               <ul className="navbar-nav ms-auto">
                 {isHomeRoute ? (
+                  // Render specific content for home page
                   <>
-                    <li className="nav-item">
-                      <Button variant="link" onClick={handleOpenModal}>
-                        Vezi imobile disponibile
-                      </Button>
-                    </li>
-                    <Link to="/addImob" className="nav-item">
+                    <Link to="" className="nav-item no-underline">
+                      Vezi imobile disponibile
+                    </Link>
+                    <Link to="/addImob" className="nav-item no-underline">
                       Înregistrează-ți imobilul
                     </Link>
-                    <Link to="/about" className="nav-item">
+                    <Link to="/about" className="nav-item no-underline">
                       Despre noi
                     </Link>
-                    <li className="nav-item">
+                    <li className="nav-item no-underline">
                       <Button variant="link" onClick={handleOpenAuthModal}>
                         Conectează-te
                       </Button>
@@ -83,18 +70,18 @@ export default function Navbar() {
                 ) : null}
 
                 {isAddImobRoute || isAboutRoute || isProfileRoute ? (
-                  // Render specific content for the /addImob route
+                  // Render specific content for certain pages
                   <>
-                    <li className="nav-item">
-                      <Button variant="link" onClick={handleOpenModal}>
-                        Setari
-                      </Button>
-                    </li>
-                    <Link className="nav-item">Exploreaza imobile</Link>
-                    <Link to="/about" className="nav-item">
+                    <Link to="" className="nav-item no-underline">
+                      Setari
+                    </Link>
+                    <Link to="" className="nav-item no-underline">
+                      Exploreaza imobile
+                    </Link>
+                    <Link to="/about" className="nav-item no-underline">
                       Despre noi
                     </Link>
-                    <Link to="/profile" className="nav-item">
+                    <Link to="/profile" className="nav-item no-underline">
                       Profil
                     </Link>
                   </>

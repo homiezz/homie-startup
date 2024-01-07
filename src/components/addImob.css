@@ -1,56 +1,116 @@
 .pageView {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  height: 100vh;
-  padding-top: 60px;
+  justify-content: center;
+  padding-top: 160px;
+}
+
+.formContainer {
+  max-width: 600px;
+  width: 100%;
 }
 
 .formStyle {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  gap: 20px;
   background-color: rgba(169, 169, 169, 0.5);
   padding: 20px;
-  height: 120px;
-  border: 1px solid white;
   border-radius: 20px;
 }
 
 .formStyle label {
-  flex-grow: 1;
-}
-
-.formStyle textarea {
-  width: 100%;
-  height: 100%;
-  background: transparent;
-  border: none;
+  font-size: 1rem;
   color: black;
-  resize: none;
-  font-size: 24px;
 }
 
+.formStyle textarea,
 .formStyle input {
   width: 100%;
-  height: 100%;
+  padding: 10px;
   background: transparent;
   border: none;
   color: black;
-  resize: none;
-  font-size: 24px;
+  border-radius: 5px;
+  font-size: 1rem;
 }
 
 .buttonStyle {
-  border: 1px white;
+  border: 1px solid white;
   background: transparent;
   color: white;
-  font-size: 24px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+
+.imageList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.imageItem {
+  position: relative;
+}
+
+.imageStyleImob {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.deleteButton {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: rgba(255, 255, 255, 0.7);
+  border: none;
+  border-radius: 50%;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.facilityInputContainer {
+  display: flex;
+  gap: 10px;
+}
+
+.facilitiesList {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.facilityItem {
+  flex: 0 0 48%; /* Adjust the width of each column as needed */
+  margin: 5px;
+  position: relative;
 }
 
 .trashIconStyle {
-  width: 1em;
-  height: 1em;
-  margin-left: 0.5em;
-  vertical-align: middle;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.incrementalWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.incrementalItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.submitDiv {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }

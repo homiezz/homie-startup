@@ -7,6 +7,18 @@ body {
   height: 100%;
 }
 
+/* Add this style to your existing CSS */
+.no-underline {
+  text-decoration: none; /* Remove underline */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  color: inherit; /* Inherit the color from the parent (default or specified color) */
+}
+
+/* Additional style to make it less obviously clickable */
+.no-underline:hover {
+  opacity: 0.8; /* Reduce opacity on hover to indicate interactivity */
+}
+
 body .btn-send-email {
   background-color: #e89e84 !important;
   color: white !important;
