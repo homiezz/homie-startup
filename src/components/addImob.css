@@ -7,8 +7,11 @@
 }
 
 .formContainer {
-  max-width: 600px;
+  max-width: 70vw;
   width: 100%;
+  background-color: rgba(40, 39, 40, 0.5);
+  border-radius: 20px;
+
 }
 
 .formStyle {
@@ -16,14 +19,12 @@
   flex-direction: column;
   justify-content: space-between;
   gap: 20px;
-  background-color: rgba(169, 169, 169, 0.5);
   padding: 20px;
   border-radius: 20px;
 }
 
 .formStyle label {
   font-size: 1rem;
-  color: black;
 }
 
 .formStyle textarea,
@@ -32,9 +33,11 @@
   padding: 10px;
   background: transparent;
   border: none;
-  color: black;
+  color: white;
   border-radius: 5px;
   font-size: 1rem;
+  background-color: rgba(133,108,99, 0.91);
+
 }
 
 .buttonStyle {
@@ -86,9 +89,11 @@
 }
 
 .facilityItem {
-  flex: 0 0 48%; /* Adjust the width of each column as needed */
+  flex: 0 0 48%;
   margin: 5px;
   position: relative;
+  color: white;
+  margin-left: 3px;
 }
 
 .trashIconStyle {
@@ -113,4 +118,37 @@
   display: flex;
   justify-content: center;
   margin-top: 20px;
+}
+
+.formFieldTitle {
+  color: #E89E84;
+  font-family: "Yeseva One, serif";
+  font-size: 2rem;
+}
+
+input::placeholder {
+  color: #ffffff; 
+  font-family: 'Poppins';
+}
+
+.titleField {
+  color: #E89E84;
+  font-family: "Yeseva One, serif";
+  font-size: 2rem;
+}
+
+.imobDescription::placeholder {
+  color: #ffffff; 
+  font-family: 'Poppins'; 
+}
+
+.roomNo {
+  margin-left: 5px;
+  color: white; 
+}
+
+.number {
+  margin-left: 5px;
+  margin-right: 5px;
+  color: white;
 }

@@ -9,8 +9,8 @@ body {
 
 .no-underline {
   text-decoration: none; 
-  cursor: pointer; /* Change cursor to pointer on hover */
-  color: inherit; /* Inherit the color from the parent (default or specified color) */
+  cursor: pointer; 
+  color: inherit; 
 }
 
 .overlayContainer {
@@ -27,7 +27,7 @@ body {
 }
 
 .no-underline:hover {
-  opacity: 0.8; /* Reduce opacity on hover to indicate interactivity */
+  opacity: 0.8; 
 }
 
 body .btn-send-email {
@@ -137,7 +137,7 @@ body .btn-send-email {
   }
 
   .buttonContainerStyle .nav-item {
-    margin-right: 1vw; /* Adjust the margin as needed for your design */
+    margin-right: 1vw; 
   }
 
   .overlayStyle {
@@ -156,7 +156,7 @@ body .btn-send-email {
 
   .buttonContainerStyle {
     display: flex;
-    margin-left: 200px; /* Adjust the gap as needed for your design */
+    margin-left: 200px;
   }
 
   .homieTitle {
@@ -256,4 +256,17 @@ body .btn-send-email {
 
 .custom-toggler.navbar-toggler {
   border-color: rgb(255, 255, 255);
+}
+
+.overlayContainer {
+  position: absolute;
+  top: 0;
+  left: 700;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
