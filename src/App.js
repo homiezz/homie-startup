@@ -7,6 +7,7 @@ import Home from "./components/home-component";
 import About from "./components/about-component";
 import Navbar from "./Navbar";
 import ProfilePage from "./components/profile-page";
+import Settings from "./components/settings-component";
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
         <Route path="/addImob" element={<AddImob />} />
         <Route path="/about" element={<About />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/settings" element={<Settings />} />
       </Routes>
     </div>
   );

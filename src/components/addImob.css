@@ -11,7 +11,6 @@
   width: 100%;
   background-color: rgba(40, 39, 40, 0.5);
   border-radius: 20px;
-
 }
 
 .formStyle {
@@ -36,8 +35,7 @@
   color: white;
   border-radius: 5px;
   font-size: 1rem;
-  background-color: rgba(133,108,99, 0.91);
-
+  background-color: rgba(133, 108, 99, 0.91);
 }
 
 .buttonStyle {
@@ -121,30 +119,30 @@
 }
 
 .formFieldTitle {
-  color: #E89E84;
+  color: #e89e84;
   font-family: "Yeseva One, serif";
   font-size: 2rem;
 }
 
 input::placeholder {
-  color: #ffffff; 
-  font-family: 'Poppins';
+  color: #ffffff;
+  font-family: "Poppins";
 }
 
 .titleField {
-  color: #E89E84;
+  color: #e89e84;
   font-family: "Yeseva One, serif";
   font-size: 2rem;
 }
 
 .imobDescription::placeholder {
-  color: #ffffff; 
-  font-family: 'Poppins'; 
+  color: #ffffff;
+  font-family: "Poppins";
 }
 
 .roomNo {
   margin-left: 5px;
-  color: white; 
+  color: white;
 }
 
 .number {

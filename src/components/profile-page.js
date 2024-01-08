@@ -1,6 +1,7 @@
 import "./ProfilePage.css";
 import React, { useState } from "react";
 import ReviewModal from "./review-component";
+import AddImageModal from "./addImage-component";
 import { Button } from "react-bootstrap";
 import { getAuth } from "firebase/auth";
 import { useEffect } from "react";
@@ -9,8 +10,15 @@ import config from "../config";
 
 export const ProfilePage = () => {
   const [showReviewModal, setShowReviewModal] = useState(false);
+
   const [userName, setUserName] = useState("You");
   const [userData, setUserData] = useState([]);
+
+  const [profilePic, setProfilePic] = useState(
+    "https://c.animaapp.com/3A91v25w/img/group@2x.png"
+  );
+  const [showAddImageModal, setShowAddImageModal] = useState(false);
+
 
   const handleOpenReviewModal = () => {
     setShowReviewModal(true);
@@ -19,6 +27,7 @@ export const ProfilePage = () => {
   const handleCloseReviewModal = () => {
     setShowReviewModal(false);
   };
+
 
   const fetchUserData = async () => {
     try {
@@ -56,11 +65,32 @@ export const ProfilePage = () => {
     }
   }, [userData]);
 
+  const handlePenClick = () => {
+    setShowAddImageModal(true);
+  };
+
+  const handleCloseAddImageModal = () => {
+    setShowAddImageModal(false);
+  };
+
+  const handleSaveProfilePic = (selectedImage) => {
+    // Logic to fetch the updated profile pic URL from your data source
+    if (selectedImage) {
+      console.log(selectedImage);
+      setProfilePic(selectedImage);
+    }
+  };
+
   return (
     <div className="tenants-profile">
       <ReviewModal
         showReviewModal={showReviewModal}
         handleCloseReviewModal={handleCloseReviewModal}
+      />
+      <AddImageModal
+        showAddImageModal={showAddImageModal}
+        handleCloseAddImageModal={handleCloseAddImageModal}
+        onSaveProfilePic={handleSaveProfilePic}
       />
       <div className="overlap-wrapper">
         <div className="overlap">
@@ -76,11 +106,12 @@ export const ProfilePage = () => {
           />
           <div className="div" />
           <div className="group">
-            <img
-              className="img"
-              alt="Group"
-              src="https://c.animaapp.com/3A91v25w/img/group@2x.png"
-            />
+            <label htmlFor="profilePicInput" className="img-container">
+              <img className="img" alt="Group" src={profilePic} />
+              <Button className="buttonStyle" onClick={handlePenClick}>
+                🖊️
+              </Button>
+            </label>
             <div className="group-2">
               <div className="overlap-group">
                 <div className="text-wrapper">from</div>
