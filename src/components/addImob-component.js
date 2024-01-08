@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./addImob.css";
 import { Button } from "react-bootstrap";
-import TrashCan from "../assets/trashCan.png";
+import TrashCan from "../assets/white-bin.png";
 import "bootstrap/dist/css/bootstrap.min.css";
 import LocationInputMap from "./LocationInputMap";
 
@@ -144,23 +144,24 @@ const AddImob = () => {
   };
 
   return (
-    <div className="pageView">
+      <div className="pageView">  
       <div className="formContainer">
         <form className="formStyle">
-          {/* Title Input */}
+
           <label className="formStyle">
+          <div className="formFieldTitle"> Titlu: </div>
             <input
               type="text"
               name="imobTitle"
               value={imobTitle}
               placeholder="Titlul imobilului"
               onChange={handleInputChange}
+              className="titleField"
             />
           </label>
 
-          {/* Image Upload */}
           <label className="formStyle">
-            Adauga Imagini:
+          <div className="formFieldTitle"> Imagini: </div>
             <div className="imageList">
               <input
                 type="file"
@@ -192,7 +193,10 @@ const AddImob = () => {
           </label>
 
           {/* Description Textarea */}
+          
           <label className="formStyle">
+          <div className="formFieldTitle"> Descriere: </div>
+
             <textarea
               type="text"
               name="imobDescription"
@@ -202,7 +206,6 @@ const AddImob = () => {
             />
           </label>
 
-          {/* Room, Bathroom, Residents Incremental Items */}
           <div className="formStyle">
             <div className="incrementalWrapper">
               <div className="incrementalItem">
@@ -217,7 +220,7 @@ const AddImob = () => {
                 >
                   -
                 </Button>
-                <span> {roomNumber} </span>
+                <div className='number'> {roomNumber} </div>
                 <Button
                   type="button"
                   className="buttonStyle"
@@ -227,7 +230,7 @@ const AddImob = () => {
                 >
                   +
                 </Button>
-                Camere
+                <div className='roomNo'> Camere </div> 
               </div>
               <div className="incrementalItem">
                 <Button
@@ -241,7 +244,7 @@ const AddImob = () => {
                 >
                   <div className="incrementalItem">-</div>
                 </Button>
-                <span> {bathroomNumber} </span>
+                <div className='number'> {bathroomNumber} </div>
                 <Button
                   type="button"
                   className="buttonStyle"
@@ -251,7 +254,7 @@ const AddImob = () => {
                 >
                   +
                 </Button>
-                Bai
+                <div className='roomNo'> Bai </div>
               </div>
               <div className="incrementalItem">
                 <Button
@@ -265,7 +268,7 @@ const AddImob = () => {
                 >
                   -
                 </Button>
-                <span> {residentsNumber} </span>
+                <div className='number'> {residentsNumber} </div>
                 <Button
                   type="button"
                   className="buttonStyle"
@@ -275,18 +278,18 @@ const AddImob = () => {
                 >
                   +
                 </Button>
-                Rezidenti
+                <div className="roomNo"> Rezidenti </div>
               </div>
             </div>
           </div>
 
-          {/* Facilities Input and List */}
+
           <label className="formStyle">
-            Facilitati:
+            <div className="formFieldTitle"> Facilitati: </div> 
             <div className="facilityInputContainer">
               <input
                 type="text"
-                name="currentFacility"
+                name="currentFacility"f
                 placeholder="Adauga facilitati..."
                 value={currentFacility}
                 onChange={(e) => handleInputChange(e, 0)}
@@ -325,7 +328,7 @@ const AddImob = () => {
 
           {/* Rules Input and List */}
           <label className="formStyle">
-            Reguli:
+            <div className="formFieldTitle">Reguli:</div>
             <div className="facilityInputContainer">
               <input
                 type="text"
@@ -365,7 +368,8 @@ const AddImob = () => {
           </label>
 
           {/* Location Input */}
-          <div>
+          <div className="formFieldTitle"> 
+
             Locatie
             <LocationInputMap onSaveLocation={handleSaveLocation} />
           </div>
@@ -382,7 +386,7 @@ const AddImob = () => {
           </div>
         </form>
       </div>
-    </div>
+      </div>
   );
 };
 

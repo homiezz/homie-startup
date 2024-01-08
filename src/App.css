@@ -7,16 +7,27 @@ body {
   height: 100%;
 }
 
-/* Add this style to your existing CSS */
 .no-underline {
-  text-decoration: none; /* Remove underline */
-  cursor: pointer; /* Change cursor to pointer on hover */
-  color: inherit; /* Inherit the color from the parent (default or specified color) */
+  text-decoration: none; 
+  cursor: pointer; 
+  color: inherit; 
 }
 
-/* Additional style to make it less obviously clickable */
+.overlayContainer {
+  position: absolute;
+  top: 0;
+  left: 700;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
 .no-underline:hover {
-  opacity: 0.8; /* Reduce opacity on hover to indicate interactivity */
+  opacity: 0.8; 
 }
 
 body .btn-send-email {
@@ -34,7 +45,7 @@ body .btn-send-email {
 }
 
 .backgroundStyle {
-  background: linear-gradient(to right, #ff8c42, #808080);
+  background-image: url("./assets/background-gradient.png");
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;
@@ -43,7 +54,7 @@ body .btn-send-email {
 }
 
 .homeBackground {
-  background-image: url("./assets/landing-bun.jpg");
+  background-image: url("./assets/background-landing.jpg");
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;
@@ -55,8 +66,8 @@ body .btn-send-email {
 .cropContainer {
   position: absolute;
   top: 0;
-  left: 200px; /* Adjust the starting position */
-  width: calc(100% - 200px); /* Adjust the width */
+  left: 200px; 
+  width: calc(100% - 200px); 
   height: 100%;
   overflow: hidden;
 }
@@ -126,7 +137,7 @@ body .btn-send-email {
   }
 
   .buttonContainerStyle .nav-item {
-    margin-right: 1vw; /* Adjust the margin as needed for your design */
+    margin-right: 1vw; 
   }
 
   .overlayStyle {
@@ -145,7 +156,7 @@ body .btn-send-email {
 
   .buttonContainerStyle {
     display: flex;
-    margin-left: 200px; /* Adjust the gap as needed for your design */
+    margin-left: 200px;
   }
 
   .homieTitle {
@@ -245,4 +256,17 @@ body .btn-send-email {
 
 .custom-toggler.navbar-toggler {
   border-color: rgb(255, 255, 255);
+}
+
+.overlayContainer {
+  position: absolute;
+  top: 0;
+  left: 700;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }

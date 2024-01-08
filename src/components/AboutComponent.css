@@ -1,27 +1,27 @@
 .container {
-  min-height: 100vh; /* Minimum height of the viewport */
+  min-height: 100vh; 
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  background: linear-gradient(
-    to right,
-    #ff8c42,
-    #808080
-  ); /* Set the background color */
 }
+
 .pageTitle {
-  font-size: 3.5rem;
+  font-size: 5rem;
   text-align: center;
-  margin-top: 300px; /* Reduced margin for better alignment */
-  color: white;
+  margin-top: 3vh;
+  color: #E89E84;
+  font-family: "Yeseva One, serif" !important;
+  font-weight: bold;
 }
 
 .pageSubtitle {
-  font-size: 2.5rem;
+  font-size: 2rem;
   text-align: center;
-  margin-bottom: 20px; /* Reduced margin for better alignment */
+  max-width: 27vw;
+  margin-bottom: 20px;
   color: white;
+  font-family: "Poppins", Helvetica;
 }
 
 .flexContainer {
@@ -32,7 +32,7 @@
 }
 
 .pageContent {
-  max-width: 800px;
+  margin-top: 3vh;
   font-size: 1rem;
   line-height: 1.5;
   text-align: justify;
@@ -40,8 +40,12 @@
   color: white;
 }
 
-.warmImageStyle {
-  width: 85%; /* Adjust the width as needed */
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.description {
+  font-family: "Poppins", Helvetica;
+  max-width: 28vw;
+}
+
+.flexContainer {
+  display: flex;
+  flex-direction: row; /* Default direction: row for larger screens */
 }
