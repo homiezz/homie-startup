@@ -2,18 +2,60 @@ import "./ProfilePage.css";
 import React, { useState } from "react";
 import ReviewModal from "./review-component";
 import { Button } from "react-bootstrap";
+import { getAuth } from "firebase/auth";
+import { useEffect } from "react";
+import axios from "axios";
+import config from "../config";
 
 export const ProfilePage = () => {
   const [showReviewModal, setShowReviewModal] = useState(false);
+  const [userName, setUserName] = useState("You");
+  const [userData, setUserData] = useState([]);
 
   const handleOpenReviewModal = () => {
     setShowReviewModal(true);
-    console.log("open review modal");
   };
 
   const handleCloseReviewModal = () => {
     setShowReviewModal(false);
   };
+
+  const fetchUserData = async () => {
+    try {
+      const user = getAuth().currentUser;
+      const idToken = await user.getIdToken();
+
+      if (!idToken) {
+        console.error("ID token not found");
+        return;
+      }
+
+      const response = await axios.get(
+        `${config.backendApiUrl}/api/user-data`,
+        {
+          headers: {
+            Authorization: `Bearer ${idToken}`,
+          },
+        }
+      );
+      setUserData(response.data);
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchUserData();
+  }, []);
+
+  useEffect(() => {
+    if (userData && userData.name !== undefined) {
+      setUserName(userData.name || "You");
+    } else {
+      setUserName("You");
+    }
+  }, [userData]);
+
   return (
     <div className="tenants-profile">
       <ReviewModal
@@ -52,10 +94,10 @@ export const ProfilePage = () => {
               />
             </div>
           </div>
-          <p className="about-alex">
+          <p className="about-you">
             <span className="span">About</span>
             <span className="text-wrapper-4">&nbsp;</span>
-            <span className="text-wrapper-5">Alex</span>
+            <p className="text-wrapper-5">{userName}</p>
           </p>
           <p className="p">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do

@@ -18,6 +18,6 @@ export default function App() {
         <Route path="/about" element={<About />} />
         <Route path="/profile" element={<ProfilePage />} />
       </Routes>
-      </div>
+    </div>
   );
 }
