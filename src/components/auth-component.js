@@ -11,6 +11,8 @@ import { googleProvider } from "../firebase";
 import "./AuthModal.css";
 import GoogleButton from "react-google-button";
 import { Link, useResolvedPath, useMatch, useNavigate } from "react-router-dom";
+import axios from "axios";
+import config from "../config";
 
 const AuthModal = ({ showAuthModal, handleCloseAuthModal }) => {
   const [email, setEmail] = useState("");
@@ -32,8 +34,34 @@ const AuthModal = ({ showAuthModal, handleCloseAuthModal }) => {
   const handleSignUp = async () => {
     if (passwordsMatch) {
       try {
-        await createUserWithEmailAndPassword(auth, email, password);
-        handleCloseAuthModal();
+        const userCredential = await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+
+        const user = userCredential.user;
+        const idToken = await user.getIdToken();
+
+        const response = await axios.post(
+          `${config.backendApiUrl}/api/signup`,
+          {
+            email: user.email,
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${idToken}`,
+            },
+          }
+        );
+
+        if (response.status === 200) {
+          navigate("/profile");
+          handleCloseAuthModal();
+        } else {
+          console.error(response.data.message);
+        }
       } catch (err) {
         console.error(err);
       }
@@ -43,20 +71,23 @@ const AuthModal = ({ showAuthModal, handleCloseAuthModal }) => {
   const handleSignInWithGoogle = async () => {
     try {
       await signInWithPopup(auth, googleProvider);
+      navigate("/profile");
       handleCloseAuthModal();
     } catch (err) {
       console.error(err);
     }
   };
 
-  const handleLogOut = async () => {
-    try {
-      await signOut(auth);
-      handleCloseAuthModal();
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  // NOT USED YET
+  // const handleLogOut = async () => {
+  //   try {
+  //     await signOut(auth);
+  //     navigate("/homie-startup");
+  //     handleCloseAuthModal();
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // };
 
   const passwordsMatch = password === confirmPassword;
 
