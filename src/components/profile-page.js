@@ -1,24 +1,32 @@
 import "./ProfilePage.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReviewModal from "./review-component";
 import AddImageModal from "./addImage-component";
 import { Button } from "react-bootstrap";
 import { getAuth } from "firebase/auth";
-import { useEffect } from "react";
 import axios from "axios";
 import config from "../config";
 
 export const ProfilePage = () => {
   const [showReviewModal, setShowReviewModal] = useState(false);
+  const [showAddImageModal, setShowAddImageModal] = useState(false);
+  const [isEditingDescription, setIsEditingDescription] = useState(false);
+  const [isEditingInterests, setIsEditingInterests] = useState(false);
 
   const [userName, setUserName] = useState("You");
-  const [userData, setUserData] = useState([]);
-
+  const [interests, setInterests] = useState("Ce interese ai?");
+  const [description, setDescription] = useState(
+    "Zi-ne cate ceva despre tine."
+  );
   const [profilePic, setProfilePic] = useState(
     "https://c.animaapp.com/3A91v25w/img/group@2x.png"
   );
-  const [showAddImageModal, setShowAddImageModal] = useState(false);
-
+  const [userData, setUserData] = useState({
+    userName: "You",
+    interests: "Ce interese ai?",
+    description: "Zi-ne cate ceva despre tine.",
+    profilePic: "https://c.animaapp.com/3A91v25w/img/group@2x.png",
+  });
 
   const handleOpenReviewModal = () => {
     setShowReviewModal(true);
@@ -27,7 +35,6 @@ export const ProfilePage = () => {
   const handleCloseReviewModal = () => {
     setShowReviewModal(false);
   };
-
 
   const fetchUserData = async () => {
     try {
@@ -48,8 +55,36 @@ export const ProfilePage = () => {
         }
       );
       setUserData(response.data);
+      console.log("Received:", userData);
     } catch (error) {
       console.error("Error fetching user data:", error);
+    }
+  };
+
+  const updateUser = async (updatedData) => {
+    try {
+      const user = getAuth().currentUser;
+      const idToken = await user.getIdToken();
+
+      if (!idToken) {
+        console.error("ID token not found");
+        return;
+      }
+
+      await axios.put(
+        `${config.backendApiUrl}/api/update-user-data`,
+        updatedData,
+        {
+          headers: {
+            Authorization: `Bearer ${idToken}`,
+          },
+        }
+      );
+
+      // After updating, fetch the user data again
+      // fetchUserData();
+    } catch (error) {
+      console.error("Error updating user data:", error);
     }
   };
 
@@ -58,10 +93,11 @@ export const ProfilePage = () => {
   }, []);
 
   useEffect(() => {
-    if (userData && userData.name !== undefined) {
-      setUserName(userData.name || "You");
-    } else {
-      setUserName("You");
+    if (userData) {
+      setUserName(userData.userName || userName);
+      setInterests(userData.interests || interests);
+      setDescription(userData.description || description);
+      setProfilePic(userData.profilePic || profilePic);
     }
   }, [userData]);
 
@@ -69,15 +105,61 @@ export const ProfilePage = () => {
     setShowAddImageModal(true);
   };
 
+  const handleEditDescription = () => {
+    setIsEditingDescription(true);
+  };
+
+  const handleSaveDescription = () => {
+    setIsEditingDescription(false);
+    // Use a function argument in setUserData to ensure the correct order of updates
+    setUserData(
+      (prevUserData) => ({
+        ...prevUserData,
+        description: description,
+      }),
+      () => {
+        // Now, updateUser can be called after the state has been updated
+        updateUser(userData);
+      }
+    );
+  };
+
+  const handleEditInterests = () => {
+    setIsEditingInterests(true);
+  };
+
+  const handleSaveInterests = () => {
+    setIsEditingInterests(false);
+    // Use a function argument in setUserData to ensure the correct order of updates
+    setUserData(
+      (prevUserData) => ({
+        ...prevUserData,
+        interests: interests,
+      }),
+      () => {
+        // Now, updateUser can be called after the state has been updated
+        updateUser(userData);
+      }
+    );
+  };
+
   const handleCloseAddImageModal = () => {
     setShowAddImageModal(false);
   };
 
   const handleSaveProfilePic = (selectedImage) => {
-    // Logic to fetch the updated profile pic URL from your data source
     if (selectedImage) {
-      console.log(selectedImage);
       setProfilePic(selectedImage);
+      setUserData(
+        (prevUserData) => ({
+          ...prevUserData,
+          profilePic: selectedImage,
+        }),
+        () => {
+          // Now, updateUser can be called after the state has been updated
+          updateUser(userData);
+        }
+      );
     }
   };
 
@@ -107,7 +189,7 @@ export const ProfilePage = () => {
           <div className="div" />
           <div className="group">
             <label htmlFor="profilePicInput" className="img-container">
-              <img className="img" alt="Group" src={profilePic} />
+              <img className="img" alt="Group" src={userData.profilePic} />
               <Button className="buttonStyle" onClick={handlePenClick}>
                 🖊️
               </Button>
@@ -128,21 +210,69 @@ export const ProfilePage = () => {
           <p className="about-you">
             <span className="span">About</span>
             <span className="text-wrapper-4">&nbsp;</span>
-            <p className="text-wrapper-5">{userName}</p>
+            <span className="text-wrapper-5">{userData.userName}</span>
           </p>
-          <p className="p">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet
-            volutpat consequat mauris nunc congue nisi vitae suscipit. Non
-            curabitur gravida arcu ac tortor dignissim. Mattis vulputate enim
-            nulla aliquet porttitor lacus.
-          </p>
-          <p className="looking-for-a">
-            Looking for a 2 rooms apartment, in the center of Bucharest, to
-            share with my girlfriend
-            <br />
-            Owns a cat, so needs a pet-friendly rental
-          </p>
+          {/* <p className="p">{description}</p> */}
+          <div className="p">
+            {isEditingDescription ? (
+              <>
+                <input
+                  type="text"
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                />
+                <Button
+                  type="button"
+                  className="buttonStyle"
+                  onClick={handleSaveDescription}
+                >
+                  Salveaza
+                </Button>
+              </>
+            ) : (
+              <>
+                <p className="p">{userData.description}</p>
+                <Button
+                  type="button"
+                  className="buttonStyle"
+                  onClick={handleEditDescription}
+                >
+                  🖊️
+                </Button>
+              </>
+            )}
+          </div>
+          <div className="profileDescriptionContainer">
+            {isEditingInterests ? (
+              <>
+                <input
+                  type="text"
+                  value={interests}
+                  onChange={(e) => setInterests(e.target.value)}
+                />
+                <Button
+                  type="button"
+                  className="buttonStyle"
+                  onClick={handleSaveInterests}
+                >
+                  Salveaza
+                </Button>
+              </>
+            ) : (
+              <>
+                {""}
+                <p className="looking-for-a">{userData.interests}</p>
+                <Button
+                  type="button"
+                  className="buttonStyle"
+                  onClick={handleEditInterests}
+                >
+                  🖊️
+                </Button>
+              </>
+            )}
+          </div>
+          {/* <p className="looking-for-a">{interests}</p> */}
           <p className="member-for-years">
             <span className="span">member for </span>
             <span className="text-wrapper-6">2 years</span>
