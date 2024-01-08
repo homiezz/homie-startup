@@ -288,7 +288,6 @@ const AddImob = () => {
               <input
                 type="text"
                 name="currentFacility"
-                f
                 placeholder="Adauga facilitati..."
                 value={currentFacility}
                 onChange={(e) => handleInputChange(e, 0)}

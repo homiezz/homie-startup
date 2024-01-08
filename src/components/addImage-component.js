@@ -23,6 +23,7 @@ const AddImageModal = ({
     if (selectedImage) {
       // Include logic to handle the new profile picture (selectedImage)
       console.log("New profile picture:", selectedImage);
+      onSaveProfilePic(URL.createObjectURL(selectedImage));
     }
 
     setSelectedImage(null);
