@@ -8,6 +8,7 @@ import About from "./components/about-component";
 import Navbar from "./Navbar";
 import ProfilePage from "./components/profile-page";
 import Settings from "./components/settings-component";
+import RentalDetails from "./components/rental-details";
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
         <Route path="/about" element={<About />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/settings" element={<Settings />} />
+        <Route path="/rental-details" element={<RentalDetails />} />
       </Routes>
     </div>
   );
