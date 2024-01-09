@@ -3,9 +3,11 @@ import React, { useState, useEffect } from "react";
 import ReviewModal from "./review-component";
 import AddImageModal from "./addImage-component";
 import { Button } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 import { getAuth } from "firebase/auth";
 import axios from "axios";
 import config from "../config";
+
 
 export const ProfilePage = () => {
   const [showReviewModal, setShowReviewModal] = useState(false);
@@ -216,7 +218,7 @@ export const ProfilePage = () => {
               </>
             ) : (
               <>
-                <p className="p">{userData.description}</p>
+                <p className="description">{userData.description}</p>
                 <Button
                   type="button"
                   className="buttonStyle"
@@ -227,6 +229,7 @@ export const ProfilePage = () => {
               </>
             )}
           </div>
+
           <div className="profileDescriptionContainer">
             {isEditingInterests ? (
               <>
@@ -257,7 +260,6 @@ export const ProfilePage = () => {
               </>
             )}
           </div>
-          {/* <p className="looking-for-a">{interests}</p> */}
           <p className="member-for-years">
             <span className="span">member for </span>
             <span className="text-wrapper-6">2 years</span>
