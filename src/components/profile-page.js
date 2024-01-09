@@ -199,7 +199,6 @@ export const ProfilePage = () => {
             <span className="text-wrapper-4">&nbsp;</span>
             <span className="text-wrapper-5">{userData.userName}</span>
           </p>
-          {/* <p className="p">{description}</p> */}
           <div className="p">
             {isEditingDescription ? (
               <>
@@ -230,7 +229,7 @@ export const ProfilePage = () => {
             )}
           </div>
 
-          <div className="profileDescriptionContainer">
+          <div className="looking-for-a">
             {isEditingInterests ? (
               <>
                 <input
@@ -248,8 +247,7 @@ export const ProfilePage = () => {
               </>
             ) : (
               <>
-                {""}
-                <p className="looking-for-a">{userData.interests}</p>
+                <p className="description">{userData.interests}</p>
                 <Button
                   type="button"
                   className="buttonStyle"
@@ -290,7 +288,7 @@ export const ProfilePage = () => {
             alt="Line"
             src="https://c.animaapp.com/3A91v25w/img/line-1.svg"
           />
-          <div className="text-wrapper-9">Interest</div>
+          <div className="text-wrapper-9">Interese</div>
           <div className="div-wrapper">
             <div className="overlap-3">
               <div className="group-3">
@@ -353,10 +351,14 @@ export const ProfilePage = () => {
             alt="Ep arrow left"
             src="https://c.animaapp.com/3A91v25w/img/ep-arrow-left.svg"
           />
-          <div className="group-6">
-            <Button variant="link" onClick={handleOpenReviewModal}>
+          <div className="group-6" onClick={handleOpenReviewModal}>
+            <div className="overlap-5">
+              <div className="text-wrapper-12" >Adaugă o recenzie</div>
+              <div className="rectangle-2" />
+            </div>
+            {/* <Button variant="link" onClick={handleOpenReviewModal}>
               Adaugă o recenzie
-            </Button>
+            </Button> */}
           </div>
         </div>
       </div>
