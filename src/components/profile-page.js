@@ -3,9 +3,11 @@ import React, { useState, useEffect } from "react";
 import ReviewModal from "./review-component";
 import AddImageModal from "./addImage-component";
 import { Button } from "react-bootstrap";
-import { getAuth } from "firebase/auth";
 import axios from "axios";
 import config from "../config";
+import { getAuth, signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 export const ProfilePage = () => {
   const [showReviewModal, setShowReviewModal] = useState(false);
@@ -27,6 +29,8 @@ export const ProfilePage = () => {
     description: "Zi-ne cate ceva despre tine.",
     profilePic: "https://c.animaapp.com/3A91v25w/img/group@2x.png",
   });
+
+  const navigate = useNavigate();
 
   const handleOpenReviewModal = () => {
     setShowReviewModal(true);
@@ -94,9 +98,12 @@ export const ProfilePage = () => {
     }
   };
 
-
   useEffect(() => {
-    fetchUserData();
+    if (Cookies.get("idToken") === undefined) {
+      navigate("/homie-startup");
+    } else {
+      fetchUserData();
+    }
   }, []);
 
   useEffect(() => {
@@ -145,6 +152,17 @@ export const ProfilePage = () => {
       const updatedData = { ...userData, profilePic: selectedImage };
       console.log("Updated data:", updatedData);
       updateUser(updatedData);
+    }
+  };
+
+  const handleLogout = async () => {
+    try {
+      const auth = getAuth();
+      Cookies.remove("idToken");
+      await signOut(auth);
+      navigate("/homie-startup");
+    } catch (error) {
+      console.error("Error signing out:", error);
     }
   };
 
@@ -354,6 +372,9 @@ export const ProfilePage = () => {
           <div className="group-6">
             <Button variant="link" onClick={handleOpenReviewModal}>
               Adaugă o recenzie
+            </Button>
+            <Button variant="link" onClick={handleLogout}>
+              Deconectare
             </Button>
           </div>
         </div>

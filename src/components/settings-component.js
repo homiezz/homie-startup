@@ -8,6 +8,14 @@ const Settings = () => {
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
   const [username, setUsername] = useState("");
 
+  useEffect(() => {
+    if (Cookies.get("idToken") === undefined) {
+      navigate("/homie-startup");
+    } else {
+      //
+    }
+  }, []);
+
   const handlePasswordSubmit = () => {
     // Add logic to handle password submission
     if (currentPassword && newPassword && confirmNewPassword) {

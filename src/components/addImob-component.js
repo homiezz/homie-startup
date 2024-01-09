@@ -23,6 +23,14 @@ const AddImob = () => {
     const updatedFacilities = [...imobFacilities];
     const updatedRules = [...rules];
 
+    useEffect(() => {
+      if (Cookies.get("idToken") === undefined) {
+        navigate("/homie-startup");
+      } else {
+        //
+      }
+    }, []);
+
     switch (name) {
       case "setRules":
         updatedRules[index] = value;

@@ -10,9 +10,10 @@ import {
 import { googleProvider } from "../firebase";
 import "./AuthModal.css";
 import GoogleButton from "react-google-button";
-import { Link, useResolvedPath, useMatch, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import config from "../config";
+import Cookies from "js-cookie";
 
 const AuthModal = ({ showAuthModal, handleCloseAuthModal }) => {
   const [email, setEmail] = useState("");
@@ -23,7 +24,12 @@ const AuthModal = ({ showAuthModal, handleCloseAuthModal }) => {
 
   const handleSignIn = async () => {
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      var userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      Cookies.set("idToken", await userCredential.user.getIdToken());
       handleCloseAuthModal();
       navigate("/profile");
     } catch (err) {
@@ -77,17 +83,6 @@ const AuthModal = ({ showAuthModal, handleCloseAuthModal }) => {
       console.error(err);
     }
   };
-
-  // NOT USED YET
-  // const handleLogOut = async () => {
-  //   try {
-  //     await signOut(auth);
-  //     navigate("/homie-startup");
-  //     handleCloseAuthModal();
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // };
 
   const passwordsMatch = password === confirmPassword;
 
