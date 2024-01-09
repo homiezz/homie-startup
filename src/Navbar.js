@@ -22,6 +22,7 @@ export default function Navbar() {
   const isProfileRoute = useMatch("/profile");
   const isSettings = useMatch("/settings");
   const isRentalDetails = useMatch("/rental-details");
+  const isPostsRoute = useMatch("/posts");
 
   return (
     <div className="navbarStyle">
@@ -54,7 +55,7 @@ export default function Navbar() {
                 {isHomeRoute ? (
                   // Render specific content for home page
                   <>
-                    <Link to="homie-startup" className="nav-item no-underline">
+                    <Link to="/posts" className="nav-item no-underline">
                       Vezi imobile disponibile
                     </Link>
                     <Link to="/addImob" className="nav-item no-underline">
@@ -74,7 +75,8 @@ export default function Navbar() {
                 {isAddImobRoute ||
                 isAboutRoute ||
                 isProfileRoute ||
-                isSettings ||
+                isSettings || 
+                isPostsRoute ||
                 isRentalDetails ? (
                   // Render specific content for certain pages
                   <>
