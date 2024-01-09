@@ -11,6 +11,7 @@ import axios from "axios";
 import config from "../config";
 
 export const RentalDetails = () => {
+  var user = getAuth.currentUser;
   const [isHeartFilled, setIsHeartFilled] = useState(false);
 
   // ... rest of the component
