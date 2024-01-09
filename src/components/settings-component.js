@@ -12,13 +12,13 @@ const Settings = () => {
   const [username, setUsername] = useState("");
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (Cookies.get("idToken") === undefined) {
-      navigate("/homie-startup");
-    } else {
-      //
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (Cookies.get("idToken") === undefined) {
+  //     navigate("/homie-startup");
+  //   } else {
+  //     //
+  //   }
+  // }, []);
 
   const handlePasswordSubmit = () => {
     // Add logic to handle password submission
