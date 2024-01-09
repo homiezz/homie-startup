@@ -7,13 +7,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { getAuth } from "firebase/auth";
 import axios from "axios";
 import config from "../config";
-
+import { useLocation } from "react-router-dom";
 
 export const ProfilePage = () => {
   const [showReviewModal, setShowReviewModal] = useState(false);
   const [showAddImageModal, setShowAddImageModal] = useState(false);
   const [isEditingDescription, setIsEditingDescription] = useState(false);
   const [isEditingInterests, setIsEditingInterests] = useState(false);
+  const location = useLocation();
 
   const [userName, setUserName] = useState("You");
   const [interests, setInterests] = useState("Ce interese ai?");
@@ -96,10 +97,32 @@ export const ProfilePage = () => {
     }
   };
 
-
   useEffect(() => {
     fetchUserData();
   }, []);
+
+  // TO DO: Am schimbat in settings sa putem face updateUser, prblema e mai jos
+  //        Se face update inainte sa se faca fetch
+  // const fetchData = async () => {
+  //   await fetchUserData();
+
+  //   if (location.state && location.state.updatedUsername) {
+  //     // Handle the updated username from the Settings page
+  //     const updatedUsername = location.state.updatedUsername;
+  //     const updatedData = { ...userData, userName: updatedUsername };
+  //     console.log("Updated data:", updatedData);
+  //     updateUser(updatedData);
+  //     console.log("Intra in if.");
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   if (location.state && location.state.updatedUsername) {
+  //     fetchData();
+  //   } else {
+  //     fetchUserData();
+  //   }
+  // }, []);
 
   useEffect(() => {
     if (userData) {
