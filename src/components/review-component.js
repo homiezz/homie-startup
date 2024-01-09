@@ -20,17 +20,27 @@ const CustomRating = ({ value, onChange }) => {
 };
 
 const ReviewModal = ({ showReviewModal, handleCloseReviewModal }) => {
-  const [rating, setRating] = useState(0);
+  const [ownerRating, setOwnerRating] = useState(0);
+  const [apRating, setApRating] = useState(0);
   const [reviewText, setReviewText] = useState("");
   const [uploadedPhotos, setUploadedPhotos] = useState([]);
 
-  const handleRatingChange = (newValue) => {
-    setRating(newValue);
+  const handleOwnerRatingChange = (newValue) => {
+    setOwnerRating(newValue);
+  };
+
+  const handleApRatingChange = (newValue) => {
+    setApRating(newValue);
   };
 
   const handleReviewTextChange = (event) => {
     setReviewText(event.target.value);
   };
+
+  const calculateRating = () => {
+    const rating = (ownerRating + apRating) / 2;
+    return rating;
+  }
 
   const handlePhotoUpload = (event) => {
     //TODO: logic to handle the uploaded photos
@@ -39,6 +49,9 @@ const ReviewModal = ({ showReviewModal, handleCloseReviewModal }) => {
 
   const handleSaveReview = () => {
     // TODO: logic to save the review, including the rating, reviewText, and uploadedPhotos
+    console.log(`Rating owner: ${ownerRating}`);
+    console.log(`Rating imobil: ${apRating}`);
+    console.log(`Review text provided by the user: ${reviewText}`);
     handleCloseReviewModal();
   };
 
@@ -51,9 +64,13 @@ const ReviewModal = ({ showReviewModal, handleCloseReviewModal }) => {
     >
       <Modal.Body className="modal-body">
         <Form>
-          <Form.Group className="modal-field" controlId="formRating">
-            <Form.Label>Notă:</Form.Label>
-            <CustomRating value={rating} onChange={handleRatingChange} />
+          <Form.Group className="modal-field" controlId="formRatingP">
+            <Form.Label>Notă proprietar:</Form.Label>
+            <CustomRating value={ownerRating} onChange={handleOwnerRatingChange} />
+          </Form.Group>
+          <Form.Group className="modal-field" controlId="formRatingI">
+            <Form.Label>Notă imobil:</Form.Label>
+            <CustomRating value={apRating} onChange={handleApRatingChange} />
           </Form.Group>
           <Form.Group className="modal-field" controlId="formReviewText">
             <Form.Label>Lasă-ne detalii despre experiența ta:</Form.Label>
