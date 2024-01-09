@@ -21,6 +21,7 @@ export default function Navbar() {
   const isHomeRoute = useMatch("/homie-startup");
   const isProfileRoute = useMatch("/profile");
   const isSettings = useMatch("/settings");
+  const isRentalDetails = useMatch("/rental-details");
 
   return (
     <div className="navbarStyle">
@@ -73,7 +74,8 @@ export default function Navbar() {
                 {isAddImobRoute ||
                 isAboutRoute ||
                 isProfileRoute ||
-                isSettings ? (
+                isSettings ||
+                isRentalDetails ? (
                   // Render specific content for certain pages
                   <>
                     <Link to="settings" className="nav-item no-underline">

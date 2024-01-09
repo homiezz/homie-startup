@@ -63,7 +63,9 @@ export const ProfilePage = () => {
 
   const updateUser = async (updatedData) => {
     try {
+      console.log("Inside updateUser function");
       const user = getAuth().currentUser;
+      console.log("USER:", user);
       const idToken = await user.getIdToken();
 
       if (!idToken) {
@@ -71,7 +73,9 @@ export const ProfilePage = () => {
         return;
       }
 
-      await axios.put(
+      console.log("Updating user data with:", updatedData);
+
+      const response = await axios.put(
         `${config.backendApiUrl}/api/update-user-data`,
         updatedData,
         {
@@ -81,12 +85,15 @@ export const ProfilePage = () => {
         }
       );
 
+      console.log("Update response:", response.data);
+
       // After updating, fetch the user data again
-      // fetchUserData();
+      fetchUserData();
     } catch (error) {
       console.error("Error updating user data:", error);
     }
   };
+
 
   useEffect(() => {
     fetchUserData();
@@ -111,17 +118,9 @@ export const ProfilePage = () => {
 
   const handleSaveDescription = () => {
     setIsEditingDescription(false);
-    // Use a function argument in setUserData to ensure the correct order of updates
-    setUserData(
-      (prevUserData) => ({
-        ...prevUserData,
-        description: description,
-      }),
-      () => {
-        // Now, updateUser can be called after the state has been updated
-        updateUser(userData);
-      }
-    );
+    const updatedData = { ...userData, description: description };
+    console.log("Updated data:", updatedData);
+    updateUser(updatedData);
   };
 
   const handleEditInterests = () => {
@@ -131,16 +130,9 @@ export const ProfilePage = () => {
   const handleSaveInterests = () => {
     setIsEditingInterests(false);
     // Use a function argument in setUserData to ensure the correct order of updates
-    setUserData(
-      (prevUserData) => ({
-        ...prevUserData,
-        interests: interests,
-      }),
-      () => {
-        // Now, updateUser can be called after the state has been updated
-        updateUser(userData);
-      }
-    );
+    const updatedData = { ...userData, interests: interests };
+    console.log("Updated data:", updatedData);
+    updateUser(updatedData);
   };
 
   const handleCloseAddImageModal = () => {
@@ -150,16 +142,9 @@ export const ProfilePage = () => {
   const handleSaveProfilePic = (selectedImage) => {
     if (selectedImage) {
       setProfilePic(selectedImage);
-      setUserData(
-        (prevUserData) => ({
-          ...prevUserData,
-          profilePic: selectedImage,
-        }),
-        () => {
-          // Now, updateUser can be called after the state has been updated
-          updateUser(userData);
-        }
-      );
+      const updatedData = { ...userData, profilePic: selectedImage };
+      console.log("Updated data:", updatedData);
+      updateUser(updatedData);
     }
   };
 
@@ -208,7 +193,7 @@ export const ProfilePage = () => {
             </div>
           </div>
           <p className="about-you">
-            <span className="span">About</span>
+            <span className="span">Despre</span>
             <span className="text-wrapper-4">&nbsp;</span>
             <span className="text-wrapper-5">{userData.userName}</span>
           </p>
