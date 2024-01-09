@@ -47,7 +47,7 @@ const AuthModal = ({ showAuthModal, handleCloseAuthModal }) => {
         );
 
         const user = userCredential.user;
-        const idToken = await user.getIdToken();
+        Cookies.set("idToken", await userCredential.user.getIdToken());
 
         const response = await axios.post(
           `${config.backendApiUrl}/api/signup`,
@@ -55,10 +55,7 @@ const AuthModal = ({ showAuthModal, handleCloseAuthModal }) => {
             email: user.email,
           },
           {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${idToken}`,
-            },
+            withCredentials: true,
           }
         );
 
@@ -76,7 +73,10 @@ const AuthModal = ({ showAuthModal, handleCloseAuthModal }) => {
 
   const handleSignInWithGoogle = async () => {
     try {
-      await signInWithPopup(auth, googleProvider);
+      const userCredential = await signInWithPopup(auth, googleProvider);
+      const credential = googleProvider.credentialFromResult(userCredential);
+      const token = credential.accessToken;
+      Cookies.set("idToken", token);
       navigate("/profile");
       handleCloseAuthModal();
     } catch (err) {

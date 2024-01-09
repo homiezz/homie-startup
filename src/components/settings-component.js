@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import "./Settings.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import useEffect from "react";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 const Settings = () => {
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
   const [username, setUsername] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (Cookies.get("idToken") === undefined) {

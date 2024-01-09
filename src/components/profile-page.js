@@ -42,20 +42,10 @@ export const ProfilePage = () => {
 
   const fetchUserData = async () => {
     try {
-      const user = getAuth().currentUser;
-      const idToken = await user.getIdToken();
-
-      if (!idToken) {
-        console.error("ID token not found");
-        return;
-      }
-
       const response = await axios.get(
         `${config.backendApiUrl}/api/user-data`,
         {
-          headers: {
-            Authorization: `Bearer ${idToken}`,
-          },
+          withCredentials: true,
         }
       );
       setUserData(response.data);
