@@ -234,7 +234,7 @@ export const ProfilePage = () => {
               <>
                 <input
                   type="text"
-                  value={description}
+                  value={interests}
                   onChange={(e) => setInterests(e.target.value)}
                 />
                 <Button
