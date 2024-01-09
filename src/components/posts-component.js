@@ -31,10 +31,7 @@ const PostCard = ({title, address}) => {
               </Box>
           </CardContent>
           <CardActions>
-            <Button size="small"   sx={{
-    color: 'black',
-    fontFamily: '"Yeseva One", serif'
-  }}>Vezi detalii</Button>
+            <Button size="small" sx={{color: 'black', fontFamily: '"Yeseva One", serif'}}>Vezi detalii</Button>
             </CardActions>
         </Box>
       </Card>
