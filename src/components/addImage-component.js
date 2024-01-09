@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Modal, Form, Button } from "react-bootstrap";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage"; // Import Firebase storage functions
 import "./ReviewModal.css";
+import storage from "../firebase.js"
 
 const AddImageModal = ({
   showAddImageModal,
@@ -9,6 +11,7 @@ const AddImageModal = ({
   onSaveProfilePic,
 }) => {
   const [selectedImage, setSelectedImage] = useState(null);
+  const [uploadPercent, setUploadPercent] = useState(0);
 
   const handlePhotoUpload = (event) => {
     const files = event.target.files;
@@ -18,16 +21,39 @@ const AddImageModal = ({
     }
   };
 
-  const handleSaveProfilePic = () => {
-    // TODO: logic to save the new profile picture
+  const handleSaveProfilePic = async () => {
     if (selectedImage) {
-      // Include logic to handle the new profile picture (selectedImage)
-      console.log("New profile picture:", selectedImage);
-      onSaveProfilePic(URL.createObjectURL(selectedImage));
-    }
+      const storageRef = ref(storage, `/files/${selectedImage.name}`);
+      const uploadTask = uploadBytesResumable(storageRef, selectedImage);
 
-    setSelectedImage(null);
-    handleCloseAddImageModal();
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const percent = Math.round(
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          );
+          setUploadPercent(percent);
+        },
+        (error) => {
+          console.error("Error uploading image:", error);
+        },
+        async () => {
+          // Image uploaded successfully, get download URL
+          const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+          console.log("Download URL:", downloadURL);
+
+          // Pass the download URL to the onSaveProfilePic callback
+          onSaveProfilePic(downloadURL);
+
+          // Reset state
+          setSelectedImage(null);
+          setUploadPercent(0);
+
+          // Close the modal
+          handleCloseAddImageModal();
+        }
+      );
+    }
   };
 
   return (
@@ -64,7 +90,7 @@ const AddImageModal = ({
               type="button"
               onClick={handleSaveProfilePic}
             >
-              Salvează
+              {uploadPercent > 0 ? `Uploading: ${uploadPercent}%` : "Salvează"}
             </Button>
           </div>
         </Form>
