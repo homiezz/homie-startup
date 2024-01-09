@@ -4,9 +4,11 @@ import ReviewModal from "./review-component";
 import AddImageModal from "./addImage-component";
 import { Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { getAuth } from "firebase/auth";
 import axios from "axios";
 import config from "../config";
+import { getAuth, signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 
 export const ProfilePage = () => {
@@ -30,6 +32,8 @@ export const ProfilePage = () => {
     profilePic: "https://c.animaapp.com/3A91v25w/img/group@2x.png",
   });
 
+  const navigate = useNavigate();
+
   const handleOpenReviewModal = () => {
     setShowReviewModal(true);
   };
@@ -40,20 +44,10 @@ export const ProfilePage = () => {
 
   const fetchUserData = async () => {
     try {
-      const user = getAuth().currentUser;
-      const idToken = await user.getIdToken();
-
-      if (!idToken) {
-        console.error("ID token not found");
-        return;
-      }
-
       const response = await axios.get(
         `${config.backendApiUrl}/api/user-data`,
         {
-          headers: {
-            Authorization: `Bearer ${idToken}`,
-          },
+          withCredentials: true,
         }
       );
       setUserData(response.data);
@@ -96,9 +90,12 @@ export const ProfilePage = () => {
     }
   };
 
-
   useEffect(() => {
-    fetchUserData();
+    if (Cookies.get("idToken") === undefined) {
+      navigate("/homie-startup");
+    } else {
+      fetchUserData();
+    }
   }, []);
 
   useEffect(() => {
@@ -147,6 +144,17 @@ export const ProfilePage = () => {
       const updatedData = { ...userData, profilePic: selectedImage };
       console.log("Updated data:", updatedData);
       updateUser(updatedData);
+    }
+  };
+
+  const handleLogout = async () => {
+    try {
+      const auth = getAuth();
+      Cookies.remove("idToken");
+      await signOut(auth);
+      navigate("/homie-startup");
+    } catch (error) {
+      console.error("Error signing out:", error);
     }
   };
 
@@ -356,9 +364,10 @@ export const ProfilePage = () => {
               <div className="text-wrapper-12" >Adaugă o recenzie</div>
               <div className="rectangle-2" />
             </div>
-            {/* <Button variant="link" onClick={handleOpenReviewModal}>
-              Adaugă o recenzie
-            </Button> */}
+            </Button>
+            <Button variant="link" onClick={handleLogout}>
+              Deconectare
+            </Button>
           </div>
         </div>
       </div>

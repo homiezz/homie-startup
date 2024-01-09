@@ -4,6 +4,9 @@ import { Button } from "react-bootstrap";
 import TrashCan from "../assets/white-bin.png";
 import "bootstrap/dist/css/bootstrap.min.css";
 import LocationInputMap from "./LocationInputMap";
+import useEffect from "react";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 const AddImob = () => {
   const [imobTitle, setImobTitle] = useState("");
@@ -17,6 +20,15 @@ const AddImob = () => {
   const [currentRule, setCurrentRule] = useState("");
   const [images, setImages] = useState([]);
   const [imobLocation, setImobLocation] = useState({ lat: 0, lng: 0 });
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (Cookies.get("idToken") === undefined) {
+      navigate("/homie-startup");
+    } else {
+      //
+    }
+  }, []);
 
   const handleInputChange = (e, index) => {
     const { name, value } = e.target;

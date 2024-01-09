@@ -10,9 +10,10 @@ import {
 import { googleProvider } from "../firebase";
 import "./AuthModal.css";
 import GoogleButton from "react-google-button";
-import { Link, useResolvedPath, useMatch, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import config from "../config";
+import Cookies from "js-cookie";
 
 const AuthModal = ({ showAuthModal, handleCloseAuthModal }) => {
   const [email, setEmail] = useState("");
@@ -23,7 +24,12 @@ const AuthModal = ({ showAuthModal, handleCloseAuthModal }) => {
 
   const handleSignIn = async () => {
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      var userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      Cookies.set("idToken", await userCredential.user.getIdToken());
       handleCloseAuthModal();
       navigate("/profile");
     } catch (err) {
@@ -41,7 +47,7 @@ const AuthModal = ({ showAuthModal, handleCloseAuthModal }) => {
         );
 
         const user = userCredential.user;
-        const idToken = await user.getIdToken();
+        Cookies.set("idToken", await userCredential.user.getIdToken());
 
         const response = await axios.post(
           `${config.backendApiUrl}/api/signup`,
@@ -49,10 +55,7 @@ const AuthModal = ({ showAuthModal, handleCloseAuthModal }) => {
             email: user.email,
           },
           {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${idToken}`,
-            },
+            withCredentials: true,
           }
         );
 
@@ -70,24 +73,16 @@ const AuthModal = ({ showAuthModal, handleCloseAuthModal }) => {
 
   const handleSignInWithGoogle = async () => {
     try {
-      await signInWithPopup(auth, googleProvider);
+      const userCredential = await signInWithPopup(auth, googleProvider);
+      const credential = googleProvider.credentialFromResult(userCredential);
+      const token = credential.accessToken;
+      Cookies.set("idToken", token);
       navigate("/profile");
       handleCloseAuthModal();
     } catch (err) {
       console.error(err);
     }
   };
-
-  // NOT USED YET
-  // const handleLogOut = async () => {
-  //   try {
-  //     await signOut(auth);
-  //     navigate("/homie-startup");
-  //     handleCloseAuthModal();
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // };
 
   const passwordsMatch = password === confirmPassword;
 
