@@ -8,8 +8,10 @@ import { Box } from '@mui/material';
 import { MdLocationOn } from 'react-icons/md';
 import Button from '@mui/material/Button';
 import CardActions from '@mui/material/CardActions';
+import { useNavigate } from "react-router-dom";
 
 const PostCard = ({title, address}) => {
+    const navigate = useNavigate();
     return (
         <Card sx={{ display: 'flex', maxWidth: '130%', height: 'auto', my: 2 }}>
         <CardMedia
@@ -31,7 +33,7 @@ const PostCard = ({title, address}) => {
               </Box>
           </CardContent>
           <CardActions>
-            <Button size="small" sx={{color: 'black', fontFamily: '"Yeseva One", serif'}}>Vezi detalii</Button>
+            <Button size="small" sx={{color: 'black', fontFamily: '"Yeseva One", serif'}} onClick={() => navigate("/rental-details")}>Vezi detalii</Button>
             </CardActions>
         </Box>
       </Card>
