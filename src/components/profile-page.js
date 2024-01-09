@@ -3,11 +3,13 @@ import React, { useState, useEffect } from "react";
 import ReviewModal from "./review-component";
 import AddImageModal from "./addImage-component";
 import { Button } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import config from "../config";
 import { getAuth, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+
 
 export const ProfilePage = () => {
   const [showReviewModal, setShowReviewModal] = useState(false);
@@ -205,7 +207,6 @@ export const ProfilePage = () => {
             <span className="text-wrapper-4">&nbsp;</span>
             <span className="text-wrapper-5">{userData.userName}</span>
           </p>
-          {/* <p className="p">{description}</p> */}
           <div className="p">
             {isEditingDescription ? (
               <>
@@ -224,7 +225,7 @@ export const ProfilePage = () => {
               </>
             ) : (
               <>
-                <p className="p">{userData.description}</p>
+                <p className="description">{userData.description}</p>
                 <Button
                   type="button"
                   className="buttonStyle"
@@ -235,7 +236,8 @@ export const ProfilePage = () => {
               </>
             )}
           </div>
-          <div className="profileDescriptionContainer">
+
+          <div className="looking-for-a">
             {isEditingInterests ? (
               <>
                 <input
@@ -253,8 +255,7 @@ export const ProfilePage = () => {
               </>
             ) : (
               <>
-                {""}
-                <p className="looking-for-a">{userData.interests}</p>
+                <p className="description">{userData.interests}</p>
                 <Button
                   type="button"
                   className="buttonStyle"
@@ -265,7 +266,6 @@ export const ProfilePage = () => {
               </>
             )}
           </div>
-          {/* <p className="looking-for-a">{interests}</p> */}
           <p className="member-for-years">
             <span className="span">member for </span>
             <span className="text-wrapper-6">2 years</span>
@@ -296,7 +296,7 @@ export const ProfilePage = () => {
             alt="Line"
             src="https://c.animaapp.com/3A91v25w/img/line-1.svg"
           />
-          <div className="text-wrapper-9">Interest</div>
+          <div className="text-wrapper-9">Interese</div>
           <div className="div-wrapper">
             <div className="overlap-3">
               <div className="group-3">
@@ -359,9 +359,11 @@ export const ProfilePage = () => {
             alt="Ep arrow left"
             src="https://c.animaapp.com/3A91v25w/img/ep-arrow-left.svg"
           />
-          <div className="group-6">
-            <Button variant="link" onClick={handleOpenReviewModal}>
-              Adaugă o recenzie
+          <div className="group-6" onClick={handleOpenReviewModal}>
+            <div className="overlap-5">
+              <div className="text-wrapper-12" >Adaugă o recenzie</div>
+              <div className="rectangle-2" />
+            </div>
             </Button>
             <Button variant="link" onClick={handleLogout}>
               Deconectare
