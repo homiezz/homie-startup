@@ -196,7 +196,7 @@ const AddImob = () => {
           <label className="formStyle">
             <div className="formFieldTitle"> Descriere: </div>
 
-            <textarea
+            <input
               type="text"
               name="imobDescription"
               value={imobDescription}

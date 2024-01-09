@@ -140,13 +140,38 @@ input::placeholder {
   font-family: "Poppins";
 }
 
+.incrementalWrapper {
+  font-size: 25px;
+}
 .roomNo {
   margin-left: 5px;
   color: white;
+  font-family: "Poppins";
 }
 
 .number {
-  margin-left: 5px;
-  margin-right: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
   color: white;
+  font-weight: bolder;
+  font-family: "Poppins";
+  font-size: 25px;
+}
+
+@media (max-width: 1300px) {
+  .formContainer {
+    margin-top: 5vh;
+  }
+
+  .number {
+    font-size: 1rem;
+  }
+
+  .incrementalWrapper {
+    flex-direction: column; /* Change to column direction for smaller screens */
+    align-items: center; /* Center items on smaller screens */
+  }
+  .incrementalItem {
+    margin-top:10px;
+  }
 }

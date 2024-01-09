@@ -78,12 +78,12 @@ export default function Navbar() {
                 isSettings || 
                 isPostsRoute ||
                 isRentalDetails ? (
-                  // Render specific content for certain pages
+
                   <>
                     <Link to="settings" className="nav-item no-underline">
                       Setari
                     </Link>
-                    <Link to="homie-startup" className="nav-item no-underline">
+                    <Link to="/posts" className="nav-item no-underline">
                       Exploreaza imobile
                     </Link>
                     <Link to="/about" className="nav-item no-underline">

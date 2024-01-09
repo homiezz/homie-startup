@@ -13,10 +13,10 @@ import { useNavigate } from "react-router-dom";
 const PostCard = ({title, address}) => {
     const navigate = useNavigate();
     return (
-        <Card sx={{ display: 'flex', maxWidth: '130%', height: 'auto', my: 2 }}>
+        <Card sx={{ display: 'flex', maxWidth: '80%', height: 'auto',  maxHeight: '30%' ,my: 2 }}>
         <CardMedia
           component="img"
-          sx={{ width: 350, height: 180, objectFit: 'cover' }}
+          sx={{ maxWidth: '40%', objectFit: 'cover' }}
           image={require('../assets/background-landing.jpg')} 
           alt="apt"
         />
@@ -42,7 +42,8 @@ const PostCard = ({title, address}) => {
 
 const Posts = () => {
     return (
-      <div className="pageView">
+      <div className="backgroundStyle">
+      <div className="pageViewPosts">
         <PostCard
             title="Apartament Militari 2 camere"
             address="Drumul Osiei 18-28">
@@ -55,6 +56,7 @@ const Posts = () => {
             title="Apartament Militari 2 camere"
             address="Drumul Osiei 18-28">
         </PostCard>
+      </div>
       </div>
     );
 }
