@@ -6,6 +6,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import LocationInputMap from "./LocationInputMap";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
+import storage from "../firebase.js";
+import { getAuth } from "firebase/auth";
+import axios from "axios";
+import config from "../config";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 const AddImob = () => {
   const [title, setImobTitle] = useState("");
@@ -20,6 +25,9 @@ const AddImob = () => {
   const [images, setImages] = useState([]);
   const [imobLocation, setImobLocation] = useState({ lat: 0, lng: 0 });
   const navigate = useNavigate();
+  const [userData, setUserData] = useState({});
+  const [token, setToken] = useState("");
+  // const [address, setAddress] = useState({ lat: 0, lng: 0 });
 
   useEffect(() => {
     if (Cookies.get("idToken") === undefined) {
@@ -28,6 +36,30 @@ const AddImob = () => {
       //
     }
   }, []);
+
+  const getDate = () => {
+    const now = new Date();
+
+    const formatter = new Intl.DateTimeFormat("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "numeric",
+      minute: "2-digit",
+      second: "2-digit",
+      timeZoneName: "short",
+      hour12: true,
+    });
+
+    const formattedDate = formatter.format(now);
+    return formattedDate;
+  };
+
+  const generateId = () => {
+    const timestamp = Date.now().toString(36);
+    const randomString = Math.random().toString(36).substring(2, 8);
+    return timestamp + randomString;
+  };
 
   const handleInputChange = (e, index) => {
     const { name, value } = e.target;
@@ -44,7 +76,7 @@ const AddImob = () => {
         setImobFacilities(updatedFacilities);
         break;
       case "title":
-        if (value && value.length <= 30) {
+        if (value && value.length <= 1) {
           setImobTitle(value);
         } else {
           alert(
@@ -53,7 +85,7 @@ const AddImob = () => {
         }
         break;
       case "description":
-        if (value && value.length <= 500) {
+        if (value && value.length <= 1) {
           setImobDescription(value);
         } else {
           alert(
@@ -165,17 +197,56 @@ const AddImob = () => {
       !rooms ||
       !bathrooms ||
       !images ||
-      address.lat === 0 ||
-      address.lng === 0
+      imobLocation.lat === 0 ||
+      imobLocation.lng === 0
     ) {
       alert("Va rugam sa completati toate campurile obligatorii!");
       return;
     }
 
-    try {
-      const author_uid = userData.uid;
-      console.log("uid", author_uid);
+    const author_uid = userData.uid;
+    console.log("uid", author_uid);
 
+    const uploadedPhotoUrls = [];
+    for (const file of images) {
+      // Create a reference to the storage bucket location
+      const fileRef = ref(storage, `user_uploads/${author_uid}/${file.name}`);
+
+      // Start the upload
+      const uploadTask = uploadBytesResumable(fileRef, file);
+
+      // Wait for the upload to complete
+      await new Promise((resolve, reject) => {
+        uploadTask.on(
+          "state_changed",
+          (snapshot) => {
+            // Handle progress updates if you wish
+          },
+          (error) => {
+            // Handle unsuccessful uploads
+            console.error(error);
+            reject(error);
+          },
+          async () => {
+            // Handle successful uploads on complete
+            try {
+              const downloadUrl = await getDownloadURL(uploadTask.snapshot.ref);
+              uploadedPhotoUrls.push(downloadUrl);
+              resolve(downloadUrl);
+            } catch (error) {
+              console.error(error);
+              reject(error);
+            }
+          }
+        );
+      });
+    }
+
+    for (const url of uploadedPhotoUrls) {
+      console.log(url);
+    }
+
+    try {
       const postData = {
         title,
         description,
@@ -184,19 +255,17 @@ const AddImob = () => {
         residents,
         facilities,
         rules,
-        images,
-        address,
+        images: uploadedPhotoUrls,
+        address: imobLocation,
         author_uid,
+        id: generateId(),
+        date: getDate(),
       };
 
       const response = await axios.post(
         `${config.backendApiUrl}/api/posts`,
         postData,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+        { useCredentials: true }
       );
 
       console.log("Post submitted successfully:", response.data);

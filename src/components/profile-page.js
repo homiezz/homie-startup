@@ -6,6 +6,11 @@ import { Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import config from "../config";
+import "./ProfilePage.css";
+import { getAuth, signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
+import { useLocation } from "react-router-dom";
 
 export const ProfilePage = () => {
   const [showReviewModal, setShowReviewModal] = useState(false);
@@ -70,47 +75,7 @@ export const ProfilePage = () => {
       const response = await axios.get(
         `${config.backendApiUrl}/api/user-posts/${userId}`,
         {
-        {
           withCredentials: true,
-        }
-        }
-      );
-
-      const userPosts = response.data;
-      console.log(`Posts for User ${userId}:`, userPosts);
-    } catch (error) {
-      console.error(`Error fetching posts for User ${userId}:`, error);
-    }
-  };
-
-  const fetchAllPosts = async () => {
-    try {
-      const response = await axios.get(`${config.backendApiUrl}/api/posts`);
-
-      const allPosts = response.data;
-      console.log("All Posts:", allPosts);
-    } catch (error) {
-      console.error("Error fetching all posts:", error);
-    }
-  };
-
-  const fetchUserPosts = async (userId) => {
-    try {
-      const user = getAuth().currentUser;
-      const idToken = await user.getIdToken();
-
-      if (!idToken) {
-        console.error("ID token not found");
-        return;
-      }
-
-      const response = await axios.get(
-        `${config.backendApiUrl}/api/user-posts/${userId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${idToken}`,
-            "Cache-Control": "no-cache", // Add this header to disable caching
-          },
         }
       );
 
