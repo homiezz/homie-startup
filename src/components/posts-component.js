@@ -1,5 +1,5 @@
 import "./posts.css";
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 import CardContent from '@mui/material/CardContent';
@@ -9,15 +9,19 @@ import { MdLocationOn } from 'react-icons/md';
 import Button from '@mui/material/Button';
 import CardActions from '@mui/material/CardActions';
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import config from "../config";
 
-const PostCard = ({title, address}) => {
+const PostCard = ({title, address, images}) => {   
     const navigate = useNavigate();
+    const imageUrl = images && images.length > 0 ? images[0] : '../assets/background-landing.jpg';
+
     return (
         <Card sx={{ display: 'flex', maxWidth: '130%', height: 'auto', my: 2 }}>
         <CardMedia
           component="img"
           sx={{ width: 350, height: 180, objectFit: 'cover' }}
-          image={require('../assets/background-landing.jpg')} 
+          image={imageUrl} 
           alt="apt"
         />
         <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1, m: 2, width: 600 }}>
@@ -41,22 +45,34 @@ const PostCard = ({title, address}) => {
 }
 
 const Posts = () => {
-    return (
-      <div className="pageView">
+  const [posts, setPosts] = useState([]); // State to hold the posts
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const response = await axios.get(`${config.backendApiUrl}/api/posts`);
+        setPosts(response.data); // Assuming response.data is an array of posts
+      } catch (error) {
+        console.error("Error fetching posts:", error);
+      }
+    };
+
+    fetchPosts();
+  }, []); // Empty dependency array means this effect runs once on mount
+
+  return (
+    <div className="pageView">
+      {posts.map((post, index) => (
         <PostCard
-            title="Apartament Militari 2 camere"
-            address="Drumul Osiei 18-28">
+          key={index} // Ideally, use a unique id from the post instead of index
+          title={post.title}
+          address={post.address.formattedAddress}
+          images={post.images}>
         </PostCard>
-        <PostCard
-            title="Apartament Militari 2 camere"
-            address="Drumul Osiei 18-28">
-        </PostCard>
-        <PostCard
-            title="Apartament Militari 2 camere"
-            address="Drumul Osiei 18-28">
-        </PostCard>
-      </div>
-    );
+      ))}
+    </div>
+  );
 }
+
 
 export default Posts;
