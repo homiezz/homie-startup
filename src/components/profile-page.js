@@ -53,7 +53,7 @@ export const ProfilePage = () => {
         }
       );
       setUserData(response.data);
-      console.log("Received:", userData);
+      console.log("User data:", response.data);
     } catch (error) {
       console.error("Error fetching user data:", error);
     }
@@ -88,26 +88,10 @@ export const ProfilePage = () => {
 
   const updateUser = async (updatedData) => {
     try {
-      console.log("Inside updateUser function");
-      const user = getAuth().currentUser;
-      console.log("USER:", user);
-      const idToken = await user.getIdToken();
-
-      if (!idToken) {
-        console.error("ID token not found");
-        return;
-      }
-
-      console.log("Updating user data with:", updatedData);
-
       const response = await axios.put(
         `${config.backendApiUrl}/api/update-user-data`,
         updatedData,
-        {
-          headers: {
-            Authorization: `Bearer ${idToken}`,
-          },
-        }
+        { withCredentials: true }
       );
 
       console.log("Update response:", response.data);
@@ -203,17 +187,6 @@ export const ProfilePage = () => {
       const updatedData = { ...userData, profilePic: selectedImage };
       console.log("Updated data:", updatedData);
       updateUser(updatedData);
-    }
-  };
-
-  const handleLogout = async () => {
-    try {
-      const auth = getAuth();
-      Cookies.remove("idToken");
-      await signOut(auth);
-      navigate("/homie-startup");
-    } catch (error) {
-      console.error("Error signing out:", error);
     }
   };
 
@@ -423,9 +396,6 @@ export const ProfilePage = () => {
               <div className="text-wrapper-12">Adaugă o recenzie</div>
               <div className="rectangle-2" />
             </div>
-            <Button variant="link" onClick={handleLogout}>
-              Deconectare
-            </Button>
           </div>
         </div>
       </div>
