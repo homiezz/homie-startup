@@ -10,7 +10,6 @@ import { getAuth, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
-
 export const ProfilePage = () => {
   const [showReviewModal, setShowReviewModal] = useState(false);
   const [showAddImageModal, setShowAddImageModal] = useState(false);
@@ -361,10 +360,9 @@ export const ProfilePage = () => {
           />
           <div className="group-6" onClick={handleOpenReviewModal}>
             <div className="overlap-5">
-              <div className="text-wrapper-12" >Adaugă o recenzie</div>
+              <div className="text-wrapper-12">Adaugă o recenzie</div>
               <div className="rectangle-2" />
             </div>
-            </Button>
             <Button variant="link" onClick={handleLogout}>
               Deconectare
             </Button>
