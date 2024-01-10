@@ -517,3 +517,13 @@
   border: 1px solid #ccc;
   border-radius: 5px;
 }
+
+@media (max-width: 600px) {
+  /* Mobile-specific styles go here */
+  .grup{
+    width: 100%;
+    height: 20%;
+  }
+
+  /* Adjust other styles as needed */
+}

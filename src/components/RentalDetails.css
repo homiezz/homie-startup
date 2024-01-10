@@ -1,640 +1,204 @@
-.rental-details {
-  background-color: #ffffff;
+.overlayContainerRentalDetails{
+    position: absolute;
+    top: 0;
+    left: 700;
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+    background: rgba(0, 0, 0, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+.pageContentRentalDetails {
+  margin-left: 6vw;
+  margin-top: 25vh;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.title {
+  color: #e79d83;
+  font-family: "Yeseva One", Helvetica;
+  font-size: 4vw;
+  font-weight: 400;
+  left: 6vw;
+}
+
+.image-gallery {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
+  max-width: 95%;
 }
 
-.rental-details .overlap-wrapper {
-  background-color: #ffffff;
-  height: 3200px;
-  width: 100%;
-  /* Full viewport width */
-  position: relative;
-  overflow: hidden;
-  /* Hide overflow content */
+.column {
+  flex: 1;
+  display: flex;
+  padding: 10px;
+  flex-direction: column;
 }
 
-.rental-details .overlap {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-  width: 100%;
+.column:first-child {
+  flex: 2;
 }
 
-.rental-details .background,
-.rental-details .rectangle {
-  height: 3200px;
+img {
   width: 100%;
+  height: auto;
+  max-height: 100%;
   object-fit: cover;
-  position: absolute;
-  top: 0;
-  left: 0;
 }
-
-.rental-details .text-wrapper {
-  color: #ffffff;
-  font-family: "Poppins", Helvetica;
-  font-size: 36px;
-  font-weight: 400;
-  left: 90px;
-  letter-spacing: 0;
-  line-height: normal;
-  position: absolute;
-  top: 906px;
-  white-space: nowrap;
-  width: 588px;
-}
-
-.rental-details .mask-group {
-  height: 524px;
-  left: 90px;
-  position: absolute;
-  top: 333px;
-  width: 524px;
-}
-
-.rental-details .img {
-  height: 246px;
-  left: 650px;
-  position: absolute;
-  top: 611px;
-  width: 310px;
-}
-
-.rental-details .mask-group-2 {
-  height: 246px;
-  left: 650px;
-  position: absolute;
-  top: 333px;
-  width: 310px;
-}
-
-.rental-details .mask-group-3 {
-  height: 246px;
-  left: 996px;
-  position: absolute;
-  top: 611px;
-  width: 310px;
-}
-
-.rental-details .mask-group-4 {
-  height: 246px;
-  left: 996px;
-  position: absolute;
-  top: 333px;
-  width: 310px;
-}
-
-.rental-details .div {
-  color: #e79d83;
-  font-family: "Yeseva One", Helvetica;
-  font-size: 72px;
-  font-weight: 400;
-  left: 90px;
-  letter-spacing: 0;
-  line-height: normal;
-  position: absolute;
-  top: 185px;
-  white-space: nowrap;
-  width: 1003px;
-}
-
-.rental-details .ep-arrow-left {
-  height: 93px;
-  left: 1306px;
-  position: absolute;
-  top: 549px;
-  width: 93px;
-}
-
-.rental-details .line {
+.separator {
+  width: 100%;
   height: 1px;
-  left: 86px;
-  position: absolute;
-  top: 984px;
-  width: 1214px;
+  background-color: #E89E84;
+  max-width: 95%;
+  margin-top: 30px;
 }
 
-.rental-details .line-2 {
-  height: 1px;
-  left: 86px;
-  position: absolute;
-  top: 1320px;
-  width: 1214px;
+@media (max-width: 900px) {
+  .title {
+    font-size: 2rem;
+    margin-left: 10vw;
+    white-space: normal; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    padding-right: 10vw;
+  }
+
+  .pageContent {
+    margin-left: 10vw;
+    margin-top: 1vh;
+  }
 }
 
-.rental-details .line-3 {
-  height: 1px;
-  left: 86px;
-  position: absolute;
-  top: 2208px;
-  width: 1214px;
-}
-
-.rental-details .line-4 {
-  height: 1px;
-  left: 91px;
-  position: absolute;
-  top: 2792px;
-  width: 1214px;
-}
-
-.rental-details .group {
-  height: 821px;
-  left: 86px;
-  position: absolute;
-  top: 1355px;
-  width: 1222px;
-}
-
-.rental-details .text-wrapper-2 {
-  color: #e79d83;
-  font-family: "Yeseva One", Helvetica;
-  font-size: 80px;
-  font-weight: 400;
-  left: 15px;
-  letter-spacing: 0;
-  line-height: normal;
-  position: absolute;
-  top: 0;
-  white-space: nowrap;
-  width: 414px;
-}
-
-.rental-details .p {
+.rooms {
   color: #ffffff;
   font-family: "Poppins", Helvetica;
-  font-size: 36px;
-  font-weight: 400;
-  left: 0;
-  letter-spacing: 0;
-  line-height: normal;
-  position: absolute;
-  text-align: justify;
-  top: 101px;
-  width: 1204px;
+
 }
 
-.rental-details .refrigerator-oven {
-  color: #ffffff;
+.ruleStyle {
+  color:#ffffff;
   font-family: "Poppins", Helvetica;
-  font-size: 36px;
-  font-weight: 400;
-  left: 0;
-  letter-spacing: 0;
-  line-height: normal;
-  position: absolute;
-  top: 492px;
-  width: 497px;
+  font-size: 2vh;
 }
 
-.rental-details .refrigerator-oven-2 {
-  color: #ffffff;
+.streamline-location {
+  height: 2vh;
+  width: 2vh;
+  position: absolute;
+}
+
+.address-text {
+  color:#ffffff;
   font-family: "Poppins", Helvetica;
-  font-size: 36px;
-  font-weight: 400;
-  left: 717px;
-  letter-spacing: 0;
-  line-height: normal;
-  position: absolute;
-  top: 492px;
-  width: 497px;
+  font-size: 2vh;
+  padding-left: 25px;
 }
 
-.rental-details .group-2 {
-  height: 499px;
-  left: 91px;
-  position: absolute;
-  top: 2247px;
-  width: 1213px;
-}
-
-.rental-details .text-wrapper-3 {
-  color: #ffffff;
+.description {
+  color:#ffffff;
   font-family: "Poppins", Helvetica;
-  font-size: 36px;
-  font-weight: 400;
-  left: 94px;
-  letter-spacing: 0;
-  line-height: normal;
-  position: absolute;
-  text-align: justify;
-  top: 111px;
-  width: 629px;
+  font-size: 2vh;
+  max-width: 95%;
 }
 
-.rental-details .text-wrapper-4 {
-  color: #e79d83;
-  font-family: "Yeseva One", Helvetica;
-  font-size: 80px;
-  font-weight: 400;
-  left: 11px;
-  letter-spacing: 0;
-  line-height: normal;
-  position: absolute;
-  top: 0;
-  white-space: nowrap;
-  width: 386px;
-}
-
-.rental-details .streamline-location {
-  height: 55px;
-  left: 5px;
-  position: absolute;
-  top: 111px;
-  width: 55px;
-}
-
-.rental-details .overlap-group-wrapper {
-  height: 301px;
-  left: 0;
-  position: absolute;
-  top: 198px;
-  width: 1211px;
-}
-
-.rental-details .overlap-group {
-  background-color: #d9d9d9;
-  height: 301px;
-  position: relative;
-  width: 1209px;
-}
-
-.rental-details .text-wrapper-5 {
-  color: #000000;
+.bullet-list {
+  columns: 2; /* Set the number of columns */
+  margin-top: 2vh;
+  color:#ffffff;
   font-family: "Poppins", Helvetica;
-  font-size: 36px;
-  font-weight: 400;
-  left: 548px;
-  letter-spacing: 0;
-  line-height: normal;
-  position: absolute;
-  text-align: justify;
-  top: 101px;
-  width: 163px;
+  font-size: 2vh;
+  max-width: 95%;
+  margin-left: 2vw;
 }
 
-.rental-details .div-wrapper {
-  height: 693px;
-  left: 1163px;
-  position: absolute;
-  top: 269px;
-  width: 156px;
+ul {
+  list-style-type: disc; /* Use disc bullets, adjust as needed */
+  margin: 0;
+  padding: 0;
 }
 
-.rental-details .overlap-2 {
-  height: 693px;
-  position: relative;
-  width: 158px;
+li {
+  margin-bottom: 8px; /* Optional: Add spacing between list items */
 }
 
-.rental-details .text-wrapper-6 {
-  color: #ffffff;
+.profile-pic {
+  width: 9vh;
+  height: 9vh;
+}
+
+.profile-container {
+  display: flex;
+  align-items: center; /* Align items vertically in the center */
+}
+
+.profile-left {
+  margin-right: 20px; /* Adjust the margin as needed */
+}
+
+.profile-right {
+  flex: 1; /* Take remaining space */
+}
+
+.profile-pic {
+  width: 9vh;
+  height: 9vh;
+  border-radius: 50%;
+}
+
+.profile-details {
+  color:#ffffff;
   font-family: "Poppins", Helvetica;
-  font-size: 26px;
-  font-weight: 400;
-  left: 10px;
-  letter-spacing: 0;
-  line-height: normal;
-  position: absolute;
-  text-decoration: underline;
-  top: 653px;
-  width: 122px;
+  font-size: 2vh;
+  max-width: 95%;
 }
 
-.rental-details .group-3 {
-  height: 668px;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 158px;
-}
-
-.rental-details .text-wrapper-7 {
-  color: #e79d83;
-  font-family: "Yeseva One", Helvetica;
-  font-size: 36px;
-  font-weight: 400;
-  left: 59px;
-  letter-spacing: 0;
-  line-height: normal;
-  position: absolute;
-  top: 609px;
-  width: 95px;
-}
-
-.rental-details .text-wrapper-8 {
-  color: #e79d83;
-  font-family: "Yeseva One", Helvetica;
-  font-size: 36px;
-  font-weight: 400;
-  left: 20px;
-  letter-spacing: 0;
-  line-height: normal;
-  position: absolute;
-  text-decoration: underline;
-  top: 0;
-  width: 400px;
-}
-
-.rental-details .star {
-  height: 41px;
-  left: 3px;
-  position: absolute;
-  top: 606px;
-  width: 43px;
-}
-
-.rental-details .group-4 {
-  height: 171px;
-  left: 71px;
-  position: absolute;
-  top: 2820px;
-  width: 1228px;
-}
-
-.rental-details .text-wrapper-9 {
-  color: #e79d83;
-  font-family: "Yeseva One", Helvetica;
-  font-size: 80px;
-  font-weight: 400;
-  left: 80px;
-  letter-spacing: 0;
-  line-height: normal;
-  position: absolute;
-  top: 0;
-  white-space: nowrap;
-  width: 386px;
-}
-
-.rental-details .rules {
-  color: #ffffff;
+.link-profile {
+  color:#ffffff;
   font-family: "Poppins", Helvetica;
-  font-size: 36px;
-  font-weight: 400;
-  left: 20px;
-  letter-spacing: 0;
-  line-height: normal;
-  position: absolute;
-  text-align: justify;
-  top: 92px;
-  width: 1224px;
+  font-size: 2vh;
+  max-width: 95%;
 }
 
-.rental-details .group-5 {
-  height: 276px;
-  left: 86px;
-  position: absolute;
-  top: 1003px;
-  width: 1215px;
+
+.reviews-pic {
+  width: 15vh;
+  height: 15vh;
 }
 
-.rental-details .overlap-3 {
-  height: 276px;
-  position: relative;
-  width: 1211px;
+.reviews-container {
+  display: flex;
+  align-items: center; /* Align items vertically in the center */
 }
 
-.rental-details .overlap-4 {
-  height: 276px;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 1153px;
+.reviews-left {
+  margin-right: 20px; /* Adjust the margin as needed */
 }
 
-.rental-details .hosted-by-george {
-  color: #ffffff;
+.reviews-right {
+  flex: 1; /* Take remaining space */
+}
+
+.reviews-pic {
+  width: 4vh;
+  height: 4vh;
+  border-radius: 50%;
+}
+
+.reviews-grade {
+  color: #E89E84;
   font-family: "Poppins", Helvetica;
-  font-size: 36px;
-  font-weight: 400;
-  left: 171px;
-  letter-spacing: 0;
-  line-height: normal;
-  position: absolute;
-  top: 119px;
-  width: 339px;
+  font-size: 3vh;
+  font-weight: 900;
 }
 
-.rental-details .span {
-  font-weight: 500;
-}
-
-.rental-details .text-wrapper-10 {
-  font-weight: 700;
-}
-
-.rental-details .text-wrapper-11 {
-  color: #ffffff;
+.link-reviews {
+  color:#ffffff;
   font-family: "Poppins", Helvetica;
-  font-size: 36px;
-  font-weight: 400;
-  left: 171px;
-  letter-spacing: 0;
-  line-height: normal;
-  position: absolute;
-  top: 171px;
-  width: 982px;
+  font-size: 2vh;
+  max-width: 95%;
 }
 
-.rental-details .text-wrapper-12 {
-  color: #ffffff;
-  font-family: "Poppins", Helvetica;
-  font-size: 32px;
-  font-style: italic;
-  font-weight: 300;
-  left: 171px;
-  letter-spacing: 0;
-  line-height: normal;
-  position: absolute;
-  text-decoration: underline;
-  top: 232px;
-  width: 447px;
-}
-
-.rental-details .gg-profile {
-  height: 117px;
-  left: 0;
-  position: absolute;
-  top: 114px;
-  width: 117px;
-}
-
-.rental-details .group-6 {
-  height: 276px;
-  left: 8px;
-  position: absolute;
-  top: 0;
-  width: 303px;
-}
-
-.rental-details .text-wrapper-13 {
-  color: #e79d83;
-  font-family: "Yeseva One", Helvetica;
-  font-size: 80px;
-  font-weight: 400;
-  left: 8px;
-  letter-spacing: 0;
-  line-height: normal;
-  position: absolute;
-  top: 0;
-  white-space: nowrap;
-  width: 293px;
-}
-
-.rental-details .group-7 {
-  height: 44px;
-  left: 0;
-  position: absolute;
-  top: 232px;
-  width: 117px;
-}
-
-.rental-details .text-wrapper-14 {
-  color: #ffffff;
-  font-family: "Yeseva One", Helvetica;
-  font-size: 32px;
-  font-weight: 400;
-  left: 44px;
-  letter-spacing: 0;
-  line-height: normal;
-  position: absolute;
-  top: 0;
-  width: 71px;
-}
-
-.rental-details .star-2 {
-  height: 30px;
-  left: 3px;
-  position: absolute;
-  top: 2px;
-  width: 31px;
-}
-
-.rental-details .group-8 {
-  height: 85px;
-  left: 910px;
-  position: absolute;
-  top: 17px;
-  width: 301px;
-}
-
-.rental-details .overlap-group-2 {
-  height: 85px;
-  position: relative;
-  width: 299px;
-}
-
-.rental-details .text-wrapper-15 {
-  color: #e79d83;
-  font-family: "Poppins", Helvetica;
-  font-size: 40px;
-  font-weight: 700;
-  left: 48px;
-  letter-spacing: 0;
-  line-height: normal;
-  position: absolute;
-  text-align: center;
-  top: 12px;
-  width: 203px;
-}
-
-.rental-details .rectangle-2 {
-  border: 2px solid;
-  border-color: #e79d83;
-  height: 85px;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 299px;
-}
-
-.rental-details .mdi-heart {
-  height: 57px;
-  left: 1131px;
-  position: absolute;
-  top: 262px;
-  width: 57px;
-}
-
-.rental-details .navbar {
-  height: 89px;
-  left: 40px;
-  position: absolute;
-  top: 20px;
-  width: 1375px;
-}
-
-.rental-details .text-wrapper-16 {
-  color: #ffffff;
-  font-family: "Poppins", Helvetica;
-  font-size: 24px;
-  font-weight: 300;
-  left: 524px;
-  letter-spacing: 0;
-  line-height: normal;
-  position: absolute;
-  top: 7px;
-}
-
-.rental-details .text-wrapper-17 {
-  color: #ffffff;
-  font-family: "Poppins", Helvetica;
-  font-size: 24px;
-  font-weight: 300;
-  left: 762px;
-  letter-spacing: 0;
-  line-height: normal;
-  position: absolute;
-  top: 7px;
-}
-
-.rental-details .text-wrapper-18 {
-  color: #ffffff;
-  font-family: "Poppins", Helvetica;
-  font-size: 24px;
-  font-weight: 300;
-  left: 1067px;
-  letter-spacing: 0;
-  line-height: normal;
-  position: absolute;
-  top: 7px;
-}
-
-.rental-details .text-wrapper-19 {
-  color: #ffffff;
-  font-family: "Poppins", Helvetica;
-  font-size: 24px;
-  font-weight: 300;
-  left: 1272px;
-  letter-spacing: 0;
-  line-height: normal;
-  position: absolute;
-  top: 7px;
-}
-
-.rental-details .LOGO-HOMIE {
-  height: 89px;
-  left: 0;
-  object-fit: cover;
-  position: absolute;
-  top: 0;
-  width: 78px;
-}
-
-.rental-details .label {
-  color: #ffffff;
-  font-family: "Poppins-Regular", Helvetica;
-  font-size: 26px;
-  font-weight: 400;
-  height: 41px;
-  left: 3px;
-  position: absolute;
-  top: 650px;
-  width: 43px;
-  text-decoration: underline;
-}
