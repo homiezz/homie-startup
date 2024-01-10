@@ -130,17 +130,6 @@ export const ProfilePage = () => {
     }
   };
 
-  const handleLogout = async () => {
-    try {
-      const auth = getAuth();
-      Cookies.remove("idToken");
-      await signOut(auth);
-      navigate("/homie-startup");
-    } catch (error) {
-      console.error("Error signing out:", error);
-    }
-  };
-
   return (
     <div className="tenants-profile">
       <ReviewModal
@@ -347,9 +336,6 @@ export const ProfilePage = () => {
               <div className="text-wrapper-12">Adaugă o recenzie</div>
               <div className="rectangle-2" />
             </div>
-            <Button variant="link" onClick={handleLogout}>
-              Deconectare
-            </Button>
           </div>
         </div>
       </div>
