@@ -392,16 +392,17 @@
 
 .tenants-profile .group-6 {
   height: 63px;
-  left: 1119px;
+  left: 1010px;
   position: absolute;
-  top: 200px;
-  width: 256px;
+  top: 240px;
+  width: 356px;
+  cursor: pointer;
 }
 
 .tenants-profile .overlap-5 {
   height: 63px;
   position: relative;
-  width: 254px;
+  width: 354px;
 }
 
 .tenants-profile .text-wrapper-12 {
@@ -415,7 +416,7 @@
   position: absolute;
   text-align: center;
   top: 7px;
-  width: 238px;
+  width: 338px;
 }
 
 .tenants-profile .rectangle-2 {
@@ -425,7 +426,7 @@
   left: 0;
   position: absolute;
   top: 0;
-  width: 254px;
+  width: 354px;
 }
 
 .tenants-profile .navbar {
@@ -502,18 +503,4 @@
   line-height: normal;
   position: absolute;
   top: 7px;
-}
-
-/* Adaugat de Petrea */
-.profileDescriptionContainer {
-  display: flex;
-  align-items: center; /* Align items vertically in the center */
-}
-
-/* Adjust the styling for the input field if needed */
-.profileDescriptionContainer input {
-  margin-right: 10px; /* Add some space between the input and the button */
-  padding: 5px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
 }

@@ -4,10 +4,8 @@ import ReviewModal from "./review-component";
 import AddImageModal from "./addImage-component";
 import { Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { getAuth } from "firebase/auth";
 import axios from "axios";
 import config from "../config";
-import { useLocation } from "react-router-dom";
 
 export const ProfilePage = () => {
   const [showReviewModal, setShowReviewModal] = useState(false);
@@ -31,6 +29,8 @@ export const ProfilePage = () => {
     profilePic: "https://c.animaapp.com/3A91v25w/img/group@2x.png",
   });
 
+  const navigate = useNavigate();
+
   const handleOpenReviewModal = () => {
     setShowReviewModal(true);
   };
@@ -41,20 +41,10 @@ export const ProfilePage = () => {
 
   const fetchUserData = async () => {
     try {
-      const user = getAuth().currentUser;
-      const idToken = await user.getIdToken();
-
-      if (!idToken) {
-        console.error("ID token not found");
-        return;
-      }
-
       const response = await axios.get(
         `${config.backendApiUrl}/api/user-data`,
         {
-          headers: {
-            Authorization: `Bearer ${idToken}`,
-          },
+          withCredentials: true,
         }
       );
       setUserData(response.data);
@@ -98,7 +88,11 @@ export const ProfilePage = () => {
   };
 
   useEffect(() => {
-    fetchUserData();
+    if (Cookies.get("idToken") === undefined) {
+      navigate("/homie-startup");
+    } else {
+      fetchUserData();
+    }
   }, []);
 
   // TO DO: Am schimbat in settings sa putem face updateUser, prblema e mai jos
@@ -173,6 +167,17 @@ export const ProfilePage = () => {
     }
   };
 
+  const handleLogout = async () => {
+    try {
+      const auth = getAuth();
+      Cookies.remove("idToken");
+      await signOut(auth);
+      navigate("/homie-startup");
+    } catch (error) {
+      console.error("Error signing out:", error);
+    }
+  };
+
   return (
     <div className="tenants-profile">
       <ReviewModal
@@ -222,7 +227,6 @@ export const ProfilePage = () => {
             <span className="text-wrapper-4">&nbsp;</span>
             <span className="text-wrapper-5">{userData.userName}</span>
           </p>
-          {/* <p className="p">{description}</p> */}
           <div className="p">
             {isEditingDescription ? (
               <>
@@ -253,7 +257,7 @@ export const ProfilePage = () => {
             )}
           </div>
 
-          <div className="profileDescriptionContainer">
+          <div className="looking-for-a">
             {isEditingInterests ? (
               <>
                 <input
@@ -271,8 +275,7 @@ export const ProfilePage = () => {
               </>
             ) : (
               <>
-                {""}
-                <p className="looking-for-a">{userData.interests}</p>
+                <p className="description">{userData.interests}</p>
                 <Button
                   type="button"
                   className="buttonStyle"
@@ -313,7 +316,7 @@ export const ProfilePage = () => {
             alt="Line"
             src="https://c.animaapp.com/3A91v25w/img/line-1.svg"
           />
-          <div className="text-wrapper-9">Interest</div>
+          <div className="text-wrapper-9">Interese</div>
           <div className="div-wrapper">
             <div className="overlap-3">
               <div className="group-3">
@@ -376,9 +379,13 @@ export const ProfilePage = () => {
             alt="Ep arrow left"
             src="https://c.animaapp.com/3A91v25w/img/ep-arrow-left.svg"
           />
-          <div className="group-6">
-            <Button variant="link" onClick={handleOpenReviewModal}>
-              Adaugă o recenzie
+          <div className="group-6" onClick={handleOpenReviewModal}>
+            <div className="overlap-5">
+              <div className="text-wrapper-12">Adaugă o recenzie</div>
+              <div className="rectangle-2" />
+            </div>
+            <Button variant="link" onClick={handleLogout}>
+              Deconectare
             </Button>
           </div>
         </div>

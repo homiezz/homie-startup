@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import "./Settings.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useNavigate } from "react-router-dom";
 
 const Settings = () => {
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
   const [username, setUsername] = useState("");
-  const navigate = useNavigate();
 
   const handlePasswordSubmit = () => {
     // Add logic to handle password submission
