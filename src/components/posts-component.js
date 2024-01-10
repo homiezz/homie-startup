@@ -12,32 +12,68 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import config from "../config";
 
-const PostCard = ({title, address, images}) => {   
+const PostCard = ({id, title, address, images}) => {   
     const navigate = useNavigate();
     const imageUrl = images && images.length > 0 ? images[0] : '../assets/background-landing.jpg';
 
     return (
-        <Card sx={{ display: 'flex', maxWidth: '130%', height: 'auto', my: 2 }}>
+      <Card
+        sx={{ 
+          display: 'flex', 
+          maxWidth: '130%', 
+          height: 'auto', 
+          my: 2 
+        }}>
         <CardMedia
           component="img"
           sx={{ width: 350, height: 180, objectFit: 'cover' }}
           image={imageUrl} 
           alt="apt"
         />
-        <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1, m: 2, width: 600 }}>
+        <Box 
+          sx={{ 
+            display: 'flex', 
+            flexDirection: 'column', 
+            flexGrow: 1, 
+            m: 2, 
+            width: 600 
+          }}>
           <CardContent>
-            <Typography gutterBottom variant="h5" component="div" style={{fontFamily: "Yeseva One, serif"}}>
+            <Typography
+              gutterBottom 
+              variant="h5" 
+              component="div" 
+              style={{fontFamily: "Yeseva One, serif"}}
+              >
               {title}
             </Typography>
-            <Box sx={{ display: 'flex', alignItems: 'center' }}> {/* Added this Box to align the icon with the text */}
-              <MdLocationOn /> {/* Icon component */}
-              <Typography variant="body2" color="text.secondary" sx={{ ml: 1, fontFamily: "Yeseva One, serif"}} > {/* Added margin left */}
-                  {address}
+            <Box 
+              sx={{ 
+                display: 'flex', 
+                alignItems: 'center' 
+              }}> 
+              <MdLocationOn /> 
+              <Typography 
+                variant="body2" 
+                color="text.secondary" 
+                sx={{ 
+                  ml: 1, 
+                  fontFamily: "Yeseva One, serif"
+                }}>   
+                {address}
               </Typography>
               </Box>
           </CardContent>
           <CardActions>
-            <Button size="small" sx={{color: 'black', fontFamily: '"Yeseva One", serif'}} onClick={() => navigate("/rental-details")}>Vezi detalii</Button>
+            <Button 
+              size="small" 
+              sx={{
+                color: 'black', 
+                fontFamily: '"Yeseva One", serif'
+              }} 
+              onClick={() => navigate(`/posts/${id}`)}>
+              Vezi detalii
+            </Button>
             </CardActions>
         </Box>
       </Card>
@@ -62,10 +98,11 @@ const Posts = () => {
 
   return (
     <div className="pageView">
-      {posts.map((post, index) => (
+      {posts.map((post) => (
         <PostCard
-          key={index} // Ideally, use a unique id from the post instead of index
+          key={post.id} // Ideally, use a unique id from the post instead of index
           title={post.title}
+          id={post.id}
           address={post.address.formattedAddress}
           images={post.images}>
         </PostCard>
