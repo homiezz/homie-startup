@@ -6,15 +6,18 @@ import { Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import config from "../config";
+import "./ProfilePage.css";
 import { getAuth, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import { useLocation } from "react-router-dom";
 
 export const ProfilePage = () => {
   const [showReviewModal, setShowReviewModal] = useState(false);
   const [showAddImageModal, setShowAddImageModal] = useState(false);
   const [isEditingDescription, setIsEditingDescription] = useState(false);
   const [isEditingInterests, setIsEditingInterests] = useState(false);
+  const location = useLocation();
 
   const [userName, setUserName] = useState("You");
   const [interests, setInterests] = useState("Ce interese ai?");
@@ -56,6 +59,33 @@ export const ProfilePage = () => {
     }
   };
 
+  const fetchAllPosts = async () => {
+    try {
+      const response = await axios.get(`${config.backendApiUrl}/api/posts`);
+
+      const allPosts = response.data;
+      console.log("All Posts:", allPosts);
+    } catch (error) {
+      console.error("Error fetching all posts:", error);
+    }
+  };
+
+  const fetchUserPosts = async (userId) => {
+    try {
+      const response = await axios.get(
+        `${config.backendApiUrl}/api/user-posts/${userId}`,
+        {
+          withCredentials: true,
+        }
+      );
+
+      const userPosts = response.data;
+      console.log(`Posts for User ${userId}:`, userPosts);
+    } catch (error) {
+      console.error(`Error fetching posts for User ${userId}:`, error);
+    }
+  };
+
   const updateUser = async (updatedData) => {
     try {
       const response = await axios.put(
@@ -79,7 +109,34 @@ export const ProfilePage = () => {
     } else {
       fetchUserData();
     }
+    fetchAllPosts();
   }, []);
+
+  useEffect(() => {
+    if (location.state && location.state.updatedUsername) {
+      // Handle the updated username from the Settings page
+      const updatedUsername = location.state.updatedUsername;
+      const updatedData = { ...userData, userName: updatedUsername };
+      console.log("Updated data:", updatedData);
+      updateUser(updatedData);
+      console.log("Intra in if.");
+    }
+  }, []);
+
+  // TO DO: Am schimbat in settings sa putem face updateUser, prblema e mai jos
+  //        Se face update inainte sa se faca fetch
+  // const fetchData = async () => {
+  //   await fetchUserData();
+
+  //   if (location.state && location.state.updatedUsername) {
+  //     // Handle the updated username from the Settings page
+  //     const updatedUsername = location.state.updatedUsername;
+  //     const updatedData = { ...userData, userName: updatedUsername };
+  //     console.log("Updated data:", updatedData);
+  //     updateUser(updatedData);
+  //     console.log("Intra in if.");
+  //   }
+  // };
 
   useEffect(() => {
     if (userData) {
@@ -87,6 +144,9 @@ export const ProfilePage = () => {
       setInterests(userData.interests || interests);
       setDescription(userData.description || description);
       setProfilePic(userData.profilePic || profilePic);
+    }
+    if (userData.uid) {
+      fetchUserPosts(userData.uid);
     }
   }, [userData]);
 

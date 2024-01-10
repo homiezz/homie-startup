@@ -109,18 +109,19 @@ export default function Navbar() {
                 ) : null}
 
                 {isAddImobRoute ||
-                  isAboutRoute ||
-                  isProfileRoute ||
-                  isSettings ||
-                  isPostsRoute ||
-                  isRentalDetails ? (
+                isAboutRoute ||
+                isProfileRoute ||
+                isSettings ||
+                isPostsRoute ||
+                isRentalDetails ? (
+
                   // Render specific content for certain pages
                   <>
                     <Link to="homie-startup" className="nav-item no-underline">
                       Exploreaza imobile
                     </Link>
-                    <Link to="/about" className="nav-item no-underline">
-                      Despre noi
+                    <Link to="/addImob" className="nav-item no-underline">
+                      Înregistrează-ți imobilul
                     </Link>
                     <Dropdown>
                       <Dropdown.Toggle
