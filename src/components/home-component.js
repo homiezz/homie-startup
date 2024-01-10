@@ -17,14 +17,10 @@ export default function Home() {
 
   return (
     <div className="homeBackground">
-      <div className="filters">
-        <FiltersComponent/>
-      </div>
       <div className="overlayStyle">
         <div className="homieTitle">Homie</div>
-        <div className="subtitleStyles">
-          Platformă de recenzii pentru proprietari și chiriași <br />
-          Încrederea se câștigă prin transparență
+        <div className="filters">
+          <FiltersComponent />
         </div>
         <div className="inputContainerStyle">
           <Button
@@ -39,6 +35,10 @@ export default function Home() {
             showModal={showModal}
             handleCloseModal={handleCloseModal}
           />
+        </div>
+        <div className="subtitleStyles">
+          Platformă de recenzii pentru proprietari și chiriași <br />
+          Încrederea se câștigă prin transparență
         </div>
       </div>
     </div>
