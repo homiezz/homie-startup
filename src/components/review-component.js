@@ -11,6 +11,7 @@ import { getAuth } from "firebase/auth";
 import storage from "../firebase.js"
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { getDate, generateId } from './helpers.js'
+import toast, { Toaster } from 'react-hot-toast';
 
 const CustomRating = ({ value, onChange }) => {
   return (
@@ -126,61 +127,92 @@ const ReviewModal = ({ showReviewModal, handleCloseReviewModal }) => {
     for(const url of uploadedPhotoUrls) {
       console.log(url);
     }
+
+    try {
+      const reviewData = {
+        id: generateId(),
+        date: getDate(),
+        description: reviewText,
+        images: uploadedPhotoUrls,
+        uid: await getUserUID(),
+        rating: calculateRating(), 
+        post_id: "hhfi2891d"// hardcoded pana e gata Rental Details  
+      };
+
+      const response = await axios.post(
+        `${config.backendApiUrl}/api/reviews`,
+        reviewData,
+        { useCredentials: true }
+      );
+
+      console.log("Review submitted successfully:", response.data);
+      toast.success("Recenzia a fost adaugata cu succes");
+    } catch (error) {
+      console.error("Error submitting post:", error);
+      toast.error("Eroare la adaugarea recenziei.");
+    }
+
     handleCloseReviewModal();
   };
 
   return (
-    <Modal
-      className="custom-modal"
-      show={showReviewModal}
-      onHide={handleCloseReviewModal}
-      centered
-    >
-      <Modal.Body className="modal-body">
-        <Form>
-          <Form.Group className="modal-field" controlId="formRatingP">
-            <Form.Label>Notă proprietar:</Form.Label>
-            <CustomRating value={ownerRating} onChange={handleOwnerRatingChange} />
-          </Form.Group>
-          <Form.Group className="modal-field" controlId="formRatingI">
-            <Form.Label>Notă imobil:</Form.Label>
-            <CustomRating value={apRating} onChange={handleApRatingChange} />
-          </Form.Group>
-          <Form.Group className="modal-field" controlId="formReviewText">
-            <Form.Label>Lasă-ne detalii despre experiența ta:</Form.Label>
-            <Form.Control
-              as="textarea"
-              rows={3}
-              placeholder="Scrie aici..."
-              value={reviewText}
-              onChange={handleReviewTextChange}
-            />
-          </Form.Group>
-          <Form.Group className="modal-field" controlId="formPhotoUpload">
-            <Form.Label>Incarcă poze:</Form.Label>
-            <CloudUploadIcon style={{ marginLeft: "5px" }} />
-            <Form.Control
-              type="file"
-              multiple
-              accept="image/*"
-              onChange={handlePhotoUpload}
-            />
-            <small className="text-muted">
-              Dimensiune maximă per fișier este de 5MB
-            </small>
-          </Form.Group>
-          <div className="submit-form-button-container">
-            <Button
-              className="submit-form-button"
-              type="button"
-              onClick={handleSaveReview}
-            >
-              Salvează
-            </Button>
-          </div>
-        </Form>
-      </Modal.Body>
-    </Modal>
+    <>
+      <Toaster
+        position="bottom-right"
+        reverseOrder={false}
+      />
+      <Modal
+        className="custom-modal"
+        show={showReviewModal}
+        onHide={handleCloseReviewModal}
+        centered
+      >
+        <Modal.Body className="modal-body">
+          <Form>
+            <Form.Group className="modal-field" controlId="formRatingP">
+              <Form.Label>Notă proprietar:</Form.Label>
+              <CustomRating value={ownerRating} onChange={handleOwnerRatingChange} />
+            </Form.Group>
+            <Form.Group className="modal-field" controlId="formRatingI">
+              <Form.Label>Notă imobil:</Form.Label>
+              <CustomRating value={apRating} onChange={handleApRatingChange} />
+            </Form.Group>
+            <Form.Group className="modal-field" controlId="formReviewText">
+              <Form.Label>Lasă-ne detalii despre experiența ta:</Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={3}
+                placeholder="Scrie aici..."
+                value={reviewText}
+                onChange={handleReviewTextChange}
+              />
+            </Form.Group>
+            <Form.Group className="modal-field" controlId="formPhotoUpload">
+              <Form.Label>Incarcă poze:</Form.Label>
+              <CloudUploadIcon style={{ marginLeft: "5px" }} />
+              <Form.Control
+                type="file"
+                multiple
+                accept="image/*"
+                onChange={handlePhotoUpload}
+              />
+              <small className="text-muted">
+                Dimensiune maximă per fișier este de 5MB
+              </small>
+            </Form.Group>
+            <div className="submit-form-button-container">
+              <Button
+                className="submit-form-button"
+                type="button"
+                onClick={handleSaveReview}
+              >
+                Salvează
+              </Button>
+            </div>
+          </Form>
+        </Modal.Body>
+      </Modal>
+    </>
   );
 };
 
