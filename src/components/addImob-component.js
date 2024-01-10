@@ -161,26 +161,12 @@ const AddImob = () => {
 
   const fetchUserData = async () => {
     try {
-      const user = getAuth().currentUser;
-      const idToken = await user.getIdToken();
-      setToken(idToken);
-
-      if (!idToken) {
-        console.error("ID token not found");
-        return;
-      }
-
       const response = await axios.get(
         `${config.backendApiUrl}/api/user-data`,
-        {
-          headers: {
-            Authorization: `Bearer ${idToken}`,
-          },
-        }
+        {}
       );
       setUserData(response.data);
       console.log("Received:", userData);
-      console.log("uid", userData.uid);
     } catch (error) {
       console.error("Error fetching user data:", error);
     }
