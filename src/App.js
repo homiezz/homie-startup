@@ -22,7 +22,7 @@ export default function App() {
         <Route path="/about" element={<About />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/settings" element={<Settings />} />
-        <Route path="/rental-details" element={<RentalDetails />} />
+        <Route path="/posts/:id" element={<RentalDetails />} />
       </Routes>
     </div>
   );

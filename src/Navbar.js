@@ -35,7 +35,7 @@ export default function Navbar() {
   const isHomeRoute = useMatch("/homie-startup");
   const isProfileRoute = useMatch("/profile");
   const isSettings = useMatch("/settings");
-  const isRentalDetails = useMatch("/rental-details");
+  const isRentalDetails = useMatch("/posts/*");
   const isPostsRoute = useMatch("/posts");
   const navigate = useNavigate();
 

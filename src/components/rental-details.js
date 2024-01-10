@@ -1,15 +1,34 @@
 import "./RentalDetails.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
 import LocationInputMap from "./LocationInputMap";
 import ReviewModal from "./review-component";
+import axios from "axios";
+import config from "../config";
 
 export const RentalDetails = () => {
+  const { id } = useParams();
+  const [postDetails, setPostDetails] = useState(null);
   const [isHeartFilled, setIsHeartFilled] = useState(false);
   const [showReviewModal, setShowReviewModal] = useState(false);
 
-  // ... rest of the component
+  useEffect(() => {
+    const fetchPostDetails = async () => {
+      try {
+        const response = await axios.get(`${config.backendApiUrl}/api/posts/${id}`);
+        console.log(response.data);
+        setPostDetails(response.data);
+      } catch (error) {
+        console.error("Error fetching post details:", error);
+        // Handle error
+      }
+    };
+
+    if (id) {
+      fetchPostDetails();
+    }
+  }, [id]);
 
   const handleSaveClick = () => {
     // Toggle the state when the "Salvează" button is clicked
@@ -56,7 +75,7 @@ export const RentalDetails = () => {
             alt="Mask group"
             src="https://c.animaapp.com/6XN1UVYO/img/mask-group-2@2x.png"
           />
-          <div className="div">Apartament in Floreasca</div>
+          <div className="div">{id}</div>
           <img
             className="ep-arrow-left"
             alt="Ep arrow left"

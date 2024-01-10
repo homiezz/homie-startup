@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import config from "../config";
 
-const PostCard = ({title, address, images}) => {   
+const PostCard = ({id, title, address, images}) => {   
     const navigate = useNavigate();
     const imageUrl = images && images.length > 0 ? images[0] : '../assets/background-landing.jpg';
 
@@ -71,7 +71,7 @@ const PostCard = ({title, address, images}) => {
                 color: 'black', 
                 fontFamily: '"Yeseva One", serif'
               }} 
-              onClick={() => navigate("/rental-details")}>
+              onClick={() => navigate(`/posts/${id}`)}>
               Vezi detalii
             </Button>
             </CardActions>
@@ -98,10 +98,11 @@ const Posts = () => {
 
   return (
     <div className="pageView">
-      {posts.map((post, index) => (
+      {posts.map((post) => (
         <PostCard
-          key={index} // Ideally, use a unique id from the post instead of index
+          key={post.id} // Ideally, use a unique id from the post instead of index
           title={post.title}
+          id={post.id}
           address={post.address.formattedAddress}
           images={post.images}>
         </PostCard>
