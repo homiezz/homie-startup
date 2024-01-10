@@ -117,7 +117,10 @@ export default function Navbar() {
                   // Render specific content for certain pages
                   <>
                     <Link to="homie-startup" className="nav-item no-underline">
-                      Exploreaza imobile
+                      Explorează imobile
+                    </Link>
+                    <Link to="/addImob" className="nav-item no-underline">
+                      Înregistrează-ți imobilul
                     </Link>
                     <Link to="/about" className="nav-item no-underline">
                       Despre noi

@@ -115,9 +115,9 @@ export const RentalDetails = () => {
               <div className="group-3">
                 <div className="text-wrapper-7">4.23</div>
                 <div className="label">Reviews...</div>
-                <div className="text-wrapper-8" onClick={handleSaveClick}>
+                {/* <div className="text-wrapper-8" onClick={handleSaveClick}>
                   {isHeartFilled ? "Adăugat la favorite" : "Adaugă la favorite"}
-                </div>
+                </div> */}
                 <img className="star" alt="Star" src="https://c.animaapp.com/6XN1UVYO/img/star-1-1.svg" />
               </div>
             </div>
