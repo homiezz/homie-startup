@@ -54,6 +54,73 @@ export const ProfilePage = () => {
     }
   };
 
+  const fetchAllPosts = async () => {
+    try {
+      const response = await axios.get(`${config.backendApiUrl}/api/posts`);
+
+      const allPosts = response.data;
+      console.log("All Posts:", allPosts);
+    } catch (error) {
+      console.error("Error fetching all posts:", error);
+    }
+  };
+
+  const fetchUserPosts = async (userId) => {
+    try {
+      const response = await axios.get(
+        `${config.backendApiUrl}/api/user-posts/${userId}`,
+        {
+        {
+          withCredentials: true,
+        }
+        }
+      );
+
+      const userPosts = response.data;
+      console.log(`Posts for User ${userId}:`, userPosts);
+    } catch (error) {
+      console.error(`Error fetching posts for User ${userId}:`, error);
+    }
+  };
+
+  const fetchAllPosts = async () => {
+    try {
+      const response = await axios.get(`${config.backendApiUrl}/api/posts`);
+
+      const allPosts = response.data;
+      console.log("All Posts:", allPosts);
+    } catch (error) {
+      console.error("Error fetching all posts:", error);
+    }
+  };
+
+  const fetchUserPosts = async (userId) => {
+    try {
+      const user = getAuth().currentUser;
+      const idToken = await user.getIdToken();
+
+      if (!idToken) {
+        console.error("ID token not found");
+        return;
+      }
+
+      const response = await axios.get(
+        `${config.backendApiUrl}/api/user-posts/${userId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${idToken}`,
+            "Cache-Control": "no-cache", // Add this header to disable caching
+          },
+        }
+      );
+
+      const userPosts = response.data;
+      console.log(`Posts for User ${userId}:`, userPosts);
+    } catch (error) {
+      console.error(`Error fetching posts for User ${userId}:`, error);
+    }
+  };
+
   const updateUser = async (updatedData) => {
     try {
       console.log("Inside updateUser function");
@@ -93,6 +160,18 @@ export const ProfilePage = () => {
     } else {
       fetchUserData();
     }
+    fetchAllPosts();
+  }, []);
+
+  useEffect(() => {
+    if (location.state && location.state.updatedUsername) {
+      // Handle the updated username from the Settings page
+      const updatedUsername = location.state.updatedUsername;
+      const updatedData = { ...userData, userName: updatedUsername };
+      console.log("Updated data:", updatedData);
+      updateUser(updatedData);
+      console.log("Intra in if.");
+    }
   }, []);
 
   // TO DO: Am schimbat in settings sa putem face updateUser, prblema e mai jos
@@ -110,20 +189,15 @@ export const ProfilePage = () => {
   //   }
   // };
 
-  // useEffect(() => {
-  //   if (location.state && location.state.updatedUsername) {
-  //     fetchData();
-  //   } else {
-  //     fetchUserData();
-  //   }
-  // }, []);
-
   useEffect(() => {
     if (userData) {
       setUserName(userData.userName || userName);
       setInterests(userData.interests || interests);
       setDescription(userData.description || description);
       setProfilePic(userData.profilePic || profilePic);
+    }
+    if (userData.uid) {
+      fetchUserPosts(userData.uid);
     }
   }, [userData]);
 

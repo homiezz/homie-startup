@@ -75,7 +75,7 @@ export default function Navbar() {
                 {isAddImobRoute ||
                 isAboutRoute ||
                 isProfileRoute ||
-                isSettings || 
+                isSettings ||
                 isPostsRoute ||
                 isRentalDetails ? (
                   // Render specific content for certain pages
@@ -86,8 +86,8 @@ export default function Navbar() {
                     <Link to="homie-startup" className="nav-item no-underline">
                       Exploreaza imobile
                     </Link>
-                    <Link to="/about" className="nav-item no-underline">
-                      Despre noi
+                    <Link to="/addImob" className="nav-item no-underline">
+                      Înregistrează-ți imobilul
                     </Link>
                     <Link to="/profile" className="nav-item no-underline">
                       Profil
