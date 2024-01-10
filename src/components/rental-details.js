@@ -43,6 +43,10 @@ export const RentalDetails = () => {
     setShowReviewModal(false);
   };
 
+  if (!postDetails) {
+    return <div>Loading...</div>; // Render a loading state or a spinner
+  }
+
   return (
     <div className="rental-details">
       <ReviewModal
@@ -57,7 +61,7 @@ export const RentalDetails = () => {
             src="https://c.animaapp.com/6XN1UVYO/img/background-gradientartboard-1-2.png"
           />
           <img className="rectangle" alt="Rectangle" src="https://c.animaapp.com/6XN1UVYO/img/rectangle-19.svg" />
-          <p className="text-wrapper">2 adults - 2 rooms - 1 bathroom</p>
+          <p className="text-wrapper">{postDetails[0].residents} residents - {postDetails[0].rooms} rooms - {postDetails[0].bathrooms} bathrooms</p>
           <img className="mask-group" alt="Mask group" src="https://c.animaapp.com/6XN1UVYO/img/mask-group-4.png" />
           <img className="img" alt="Mask group" src="https://c.animaapp.com/6XN1UVYO/img/mask-group-3@2x.png" />
           <img
@@ -75,7 +79,7 @@ export const RentalDetails = () => {
             alt="Mask group"
             src="https://c.animaapp.com/6XN1UVYO/img/mask-group-2@2x.png"
           />
-          <div className="div">{id}</div>
+          <div className="div">{postDetails[0].title}</div>
           <img
             className="ep-arrow-left"
             alt="Ep arrow left"
@@ -88,40 +92,18 @@ export const RentalDetails = () => {
           <div className="group">
             <div className="text-wrapper-2">Descriere</div>
             <p className="p">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore magna aliqua. Sit amet volutpat consequat mauris nunc congue nisi vitae suscipit. Non curabitur
-              gravida arcu ac tortor dignissim. Mattis vulputate enim nulla aliquet porttitor lacus. Auctor elit sed
-              vulputate mi sit amet. Mauris rhoncus aenean vel elit scelerisque.
+              {postDetails[0].description}
             </p>
-            <div className="refrigerator-oven">
-              Refrigerator
-              <br />
-              Oven
-              <br />
-              Washer
-              <br />
-              Drier
-              <br />
-              Street parking
-              <br />
-              Fire alarm
-            </div>
-            <div className="refrigerator-oven-2">
-              Refrigerator
-              <br />
-              Oven
-              <br />
-              Washer
-              <br />
-              Drier
-              <br />
-              Street parking
-              <br />
-              Fire alarm
+            <div> 
+              {postDetails[0].facilities.map((facility, index) => (
+                  <div key={index}>
+                    {facility}
+                  </div>
+                ))}
             </div>
           </div>
           <div className="group-2">
-            <p className="text-wrapper-3">Strada Lalalal, numarul 21, sector 1</p>
+            <p className="text-wrapper-3">{postDetails[0].address.formattedAddress}</p>
             <div className="text-wrapper-4">Adresă</div>
             <img
               className="streamline-location"
@@ -152,11 +134,11 @@ export const RentalDetails = () => {
           <div className="group-4">
             <div className="text-wrapper-9">Regulile casei</div>
             <div className="rules">
-              Pets are allowed
-              <br />
-              ?????
-              <br />
-              ???????
+            {postDetails[0].rules.map((rule, index) => (
+                  <div key={index}>
+                    {rule}
+                  </div>
+                ))}
             </div>
             <div className="group-6" onClick={handleOpenReviewModal}>
             <div className="overlap-5">
