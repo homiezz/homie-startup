@@ -1,0 +1,51 @@
+.exploreRentalsTitle {
+    color: #E89E84;
+    font-weight: bold;
+    text-align: center;
+    margin: 0;
+    font-family: "Yeseva One", serif;
+    font-size: 3vw;
+    background-color: rgba(102, 102, 102, 0.7);
+    border-color: #616161;
+    padding: 20px 20px;
+    border-radius: 8px; /* Border radius for a rounded appearance */
+}
+
+/* Rectangle 22 */
+.dropdown-container {
+    width: 696px;
+    height: 90px;
+    left: 353px;
+    top: 440px;
+
+    background: #4B4B4A;
+    border-radius: 12px;
+}
+
+.dropdown-item {
+    color: #E89E84;
+}
+
+.inputContainerStyle {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.custom-toggle {
+    color: #E89E84;
+    background-color: #4B4B4A; /* Background color for the custom toggle */
+    border: 1px solid #616161; /* Border for the custom toggle */
+    border-radius: 8px; /* Border radius for a rounded appearance */
+    padding: 10px; /* Adjust padding as needed */
+    cursor: pointer;
+}
+
+/* CustomMenu styles */
+.list-unstyled {
+    padding: 8px; /* Add some padding to the list to match the dropdown size */
+}
+
+.dropdown-menu {
+    background-color: #4B4B4A;
+}

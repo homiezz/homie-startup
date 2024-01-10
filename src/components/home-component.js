@@ -2,6 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState } from "react";
 import EmailModal from "../components/dialog-component";
 import { Button } from "react-bootstrap";
+import FiltersComponent from "./filters-component";
 
 export default function Home() {
   const [showModal, setShowModal] = useState(false);
@@ -16,6 +17,9 @@ export default function Home() {
 
   return (
     <div className="homeBackground">
+      <div className="filters">
+        <FiltersComponent/>
+      </div>
       <div className="overlayStyle">
         <div className="homieTitle">Homie</div>
         <div className="subtitleStyles">

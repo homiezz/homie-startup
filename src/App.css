@@ -26,6 +26,32 @@ body {
   flex-direction: column;
 }
 
+.overlayStyle {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 9998;
+}
+
+.filters {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 9997; /* Ensure filters appear above overlayStyle */
+}
+
 .no-underline:hover {
   opacity: 0.8; 
 }
@@ -79,6 +105,17 @@ body .btn-send-email {
 }
 
 @media only screen and (max-width: 650px) {
+  .filters,
+  .overlayStyle {
+    position: relative;
+    width: 100%;
+    left: 0;
+  }
+
+  .filters {
+    margin-bottom: 10px; /* Add margin between filters and overlayStyle */
+  }
+
   .navbarStyle {
     display: flex;
     justify-content: space-between;
@@ -96,18 +133,6 @@ body .btn-send-email {
     margin-left: 90vw !important;
   }
 
-  .overlayStyle {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    z-index: 9998;
-  }
 
   .homieTitle {
     font-size: 15vw;
@@ -123,6 +148,22 @@ body .btn-send-email {
 }
 
 @media only screen and (min-width: 651px) {
+  /*.filters {*/
+  /*  position: absolute;*/
+  /*  top: 0;*/
+  /*  left: 0;*/
+  /*  width: 50%;*/
+  /*  height: 100%;*/
+  /*  z-index: 9997; !* Ensure filters appear above overlayStyle *!*/
+  /*}*/
+
+  .overlayStyle {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+  }
+
   .navbarStyle {
     display: flex;
     justify-content: space-between;
@@ -140,19 +181,6 @@ body .btn-send-email {
     margin-right: 1vw; 
   }
 
-  .overlayStyle {
-    position: absolute;
-    top: 0;
-    left: 50vw;
-    width: 50%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    z-index: 9998;
-  }
 
   .buttonContainerStyle {
     display: flex;
