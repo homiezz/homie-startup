@@ -1,18 +1,13 @@
 import "./RentalDetails.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import React, { useState, useEffect } from "react";
-import { Link, useMatch } from "react-router-dom";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import LocationInputMap from "./LocationInputMap";
 import ReviewModal from "./review-component";
-import AddImageModal from "./addImage-component";
-import { Button } from "react-bootstrap";
-import { getAuth } from "firebase/auth";
-import axios from "axios";
-import config from "../config";
 
 export const RentalDetails = () => {
-  var user = getAuth.currentUser;
   const [isHeartFilled, setIsHeartFilled] = useState(false);
+  const [showReviewModal, setShowReviewModal] = useState(false);
 
   // ... rest of the component
 
@@ -20,8 +15,21 @@ export const RentalDetails = () => {
     // Toggle the state when the "Salvează" button is clicked
     setIsHeartFilled((prevValue) => !prevValue);
   };
+
+  const handleOpenReviewModal = () => {
+    setShowReviewModal(true);
+  };
+
+  const handleCloseReviewModal = () => {
+    setShowReviewModal(false);
+  };
+
   return (
     <div className="rental-details">
+      <ReviewModal
+        showReviewModal={showReviewModal}
+        handleCloseReviewModal={handleCloseReviewModal}
+      />
       <div className="overlap-wrapper">
         <div className="overlap">
           <img
@@ -130,6 +138,12 @@ export const RentalDetails = () => {
               ?????
               <br />
               ???????
+            </div>
+            <div className="group-6" onClick={handleOpenReviewModal}>
+            <div className="overlap-5">
+              <div className="text-wrapper-12" >Adaugă o recenzie</div>
+              <div className="rectangle-2" />
+            </div>
             </div>
           </div>
           <div className="group-5">

@@ -8,7 +8,6 @@ import { getAuth } from "firebase/auth";
 import axios from "axios";
 import config from "../config";
 
-
 export const ProfilePage = () => {
   const [showReviewModal, setShowReviewModal] = useState(false);
   const [showAddImageModal, setShowAddImageModal] = useState(false);

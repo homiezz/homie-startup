@@ -5,6 +5,12 @@ import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import "./ReviewModal.css";
+import axios from "axios";
+import config from "../config";
+import { getAuth } from "firebase/auth";
+import storage from "../firebase.js"
+import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+import { getDate, generateId } from './helpers.js'
 
 const CustomRating = ({ value, onChange }) => {
   return (
@@ -29,6 +35,31 @@ const ReviewModal = ({ showReviewModal, handleCloseReviewModal }) => {
     setOwnerRating(newValue);
   };
 
+  const getUserUID = async () => {
+    try {
+      const user = getAuth().currentUser;
+      const idToken = await user.getIdToken();
+
+      if (!idToken) {
+        console.error("ID token not found");
+        return;
+      }
+
+      const response = await axios.get(
+        `${config.backendApiUrl}/api/user-data`,
+        {
+          headers: {
+            Authorization: `Bearer ${idToken}`,
+          },
+        }
+      );
+      return response.data.uid;
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
+  };
+
+
   const handleApRatingChange = (newValue) => {
     setApRating(newValue);
   };
@@ -44,14 +75,57 @@ const ReviewModal = ({ showReviewModal, handleCloseReviewModal }) => {
 
   const handlePhotoUpload = (event) => {
     //TODO: logic to handle the uploaded photos
-    const files = event.target.files;
+    const files = Array.from(event.target.files);
+    setUploadedPhotos(files);
   };
 
-  const handleSaveReview = () => {
+  const handleSaveReview = async () => {
+    const uploadedPhotoUrls = [];
+
+    for (const file of uploadedPhotos) {
+      // Create a reference to the storage bucket location
+      const fileRef = ref(storage, `user_uploads/${getUserUID()}/${file.name}`);
+  
+      // Start the upload
+      const uploadTask = uploadBytesResumable(fileRef, file);
+  
+      // Wait for the upload to complete
+      await new Promise((resolve, reject) => {
+        uploadTask.on(
+          'state_changed',
+          (snapshot) => {
+            // Handle progress updates if you wish
+          },
+          (error) => {
+            // Handle unsuccessful uploads
+            console.error(error);
+            reject(error);
+          },
+          async () => {
+            // Handle successful uploads on complete
+            try {
+              const downloadUrl = await getDownloadURL(uploadTask.snapshot.ref);
+              uploadedPhotoUrls.push(downloadUrl);
+              resolve(downloadUrl);
+            } catch (error) {
+              console.error(error);
+              reject(error);
+            }
+          }
+        );
+      });
+    }
+  
     // TODO: logic to save the review, including the rating, reviewText, and uploadedPhotos
-    console.log(`Rating owner: ${ownerRating}`);
-    console.log(`Rating imobil: ${apRating}`);
-    console.log(`Review text provided by the user: ${reviewText}`);
+    console.log(`Date: ${getDate()}`);
+    console.log(`Description: ${reviewText}`);
+    console.log(`Id: ${generateId()}`);
+    console.log(`Rating ${calculateRating()}`);
+    console.log(`User id ${await getUserUID()}`)
+    //post id: hhfi2891d
+    for(const url of uploadedPhotoUrls) {
+      console.log(url);
+    }
     handleCloseReviewModal();
   };
 
