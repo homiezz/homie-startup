@@ -4,15 +4,20 @@ import ReviewModal from "./review-component";
 import AddImageModal from "./addImage-component";
 import { Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { getAuth } from "firebase/auth";
 import axios from "axios";
 import config from "../config";
+import "./ProfilePage.css";
+import { getAuth, signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
+import { useLocation } from "react-router-dom";
 
 export const ProfilePage = () => {
   const [showReviewModal, setShowReviewModal] = useState(false);
   const [showAddImageModal, setShowAddImageModal] = useState(false);
   const [isEditingDescription, setIsEditingDescription] = useState(false);
   const [isEditingInterests, setIsEditingInterests] = useState(false);
+  const location = useLocation();
 
   const [userName, setUserName] = useState("You");
   const [interests, setInterests] = useState("Ce interese ai?");
@@ -29,6 +34,8 @@ export const ProfilePage = () => {
     profilePic: "https://c.animaapp.com/3A91v25w/img/group@2x.png",
   });
 
+  const navigate = useNavigate();
+
   const handleOpenReviewModal = () => {
     setShowReviewModal(true);
   };
@@ -39,51 +46,52 @@ export const ProfilePage = () => {
 
   const fetchUserData = async () => {
     try {
-      const user = getAuth().currentUser;
-      const idToken = await user.getIdToken();
-
-      if (!idToken) {
-        console.error("ID token not found");
-        return;
-      }
-
       const response = await axios.get(
         `${config.backendApiUrl}/api/user-data`,
         {
-          headers: {
-            Authorization: `Bearer ${idToken}`,
-          },
+          withCredentials: true,
         }
       );
       setUserData(response.data);
-      console.log("Received:", userData);
+      console.log("User data:", response.data);
     } catch (error) {
       console.error("Error fetching user data:", error);
     }
   };
 
+  const fetchAllPosts = async () => {
+    try {
+      const response = await axios.get(`${config.backendApiUrl}/api/posts`);
+
+      const allPosts = response.data;
+      console.log("All Posts:", allPosts);
+    } catch (error) {
+      console.error("Error fetching all posts:", error);
+    }
+  };
+
+  const fetchUserPosts = async (userId) => {
+    try {
+      const response = await axios.get(
+        `${config.backendApiUrl}/api/user-posts/${userId}`,
+        {
+          withCredentials: true,
+        }
+      );
+
+      const userPosts = response.data;
+      console.log(`Posts for User ${userId}:`, userPosts);
+    } catch (error) {
+      console.error(`Error fetching posts for User ${userId}:`, error);
+    }
+  };
+
   const updateUser = async (updatedData) => {
     try {
-      console.log("Inside updateUser function");
-      const user = getAuth().currentUser;
-      console.log("USER:", user);
-      const idToken = await user.getIdToken();
-
-      if (!idToken) {
-        console.error("ID token not found");
-        return;
-      }
-
-      console.log("Updating user data with:", updatedData);
-
       const response = await axios.put(
         `${config.backendApiUrl}/api/update-user-data`,
         updatedData,
-        {
-          headers: {
-            Authorization: `Bearer ${idToken}`,
-          },
-        }
+        { withCredentials: true }
       );
 
       console.log("Update response:", response.data);
@@ -95,10 +103,40 @@ export const ProfilePage = () => {
     }
   };
 
+  useEffect(() => {
+    if (Cookies.get("idToken") === undefined) {
+      navigate("/homie-startup");
+    } else {
+      fetchUserData();
+    }
+    fetchAllPosts();
+  }, []);
 
   useEffect(() => {
-    fetchUserData();
+    if (location.state && location.state.updatedUsername) {
+      // Handle the updated username from the Settings page
+      const updatedUsername = location.state.updatedUsername;
+      const updatedData = { ...userData, userName: updatedUsername };
+      console.log("Updated data:", updatedData);
+      updateUser(updatedData);
+      console.log("Intra in if.");
+    }
   }, []);
+
+  // TO DO: Am schimbat in settings sa putem face updateUser, prblema e mai jos
+  //        Se face update inainte sa se faca fetch
+  // const fetchData = async () => {
+  //   await fetchUserData();
+
+  //   if (location.state && location.state.updatedUsername) {
+  //     // Handle the updated username from the Settings page
+  //     const updatedUsername = location.state.updatedUsername;
+  //     const updatedData = { ...userData, userName: updatedUsername };
+  //     console.log("Updated data:", updatedData);
+  //     updateUser(updatedData);
+  //     console.log("Intra in if.");
+  //   }
+  // };
 
   useEffect(() => {
     if (userData) {
@@ -106,6 +144,9 @@ export const ProfilePage = () => {
       setInterests(userData.interests || interests);
       setDescription(userData.description || description);
       setProfilePic(userData.profilePic || profilePic);
+    }
+    if (userData.uid) {
+      fetchUserPosts(userData.uid);
     }
   }, [userData]);
 
@@ -352,12 +393,9 @@ export const ProfilePage = () => {
           />
           <div className="group-6" onClick={handleOpenReviewModal}>
             <div className="overlap-5">
-              <div className="text-wrapper-12" >Adaugă o recenzie</div>
+              <div className="text-wrapper-12">Adaugă o recenzie</div>
               <div className="rectangle-2" />
             </div>
-            {/* <Button variant="link" onClick={handleOpenReviewModal}>
-              Adaugă o recenzie
-            </Button> */}
           </div>
         </div>
       </div>

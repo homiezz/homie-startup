@@ -3,7 +3,7 @@ import { Modal, Form, Button } from "react-bootstrap";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage"; // Import Firebase storage functions
 import "./ReviewModal.css";
-import storage from "../firebase.js"
+import storage from "../firebase.js";
 
 const AddImageModal = ({
   showAddImageModal,

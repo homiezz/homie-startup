@@ -1,26 +1,69 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./addImob.css";
 import { Button } from "react-bootstrap";
 import TrashCan from "../assets/white-bin.png";
 import "bootstrap/dist/css/bootstrap.min.css";
 import LocationInputMap from "./LocationInputMap";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
+import storage from "../firebase.js";
+import { getAuth } from "firebase/auth";
+import axios from "axios";
+import config from "../config";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 const AddImob = () => {
-  const [imobTitle, setImobTitle] = useState("");
-  const [imobDescription, setImobDescription] = useState("");
-  const [roomNumber, setRoomNumber] = useState(0);
-  const [residentsNumber, setResidentsNumber] = useState(0);
-  const [bathroomNumber, setBathroomNumber] = useState(0);
-  const [imobFacilities, setImobFacilities] = useState([]);
+  const [title, setImobTitle] = useState("");
+  const [description, setImobDescription] = useState("");
+  const [rooms, setRoomNumber] = useState(0);
+  const [residents, setResidentsNumber] = useState(0);
+  const [bathrooms, setBathroomNumber] = useState(0);
+  const [facilities, setImobFacilities] = useState([]);
   const [currentFacility, setCurrentFacility] = useState("");
   const [rules, setRules] = useState([]);
   const [currentRule, setCurrentRule] = useState("");
   const [images, setImages] = useState([]);
   const [imobLocation, setImobLocation] = useState({ lat: 0, lng: 0 });
+  const navigate = useNavigate();
+  const [userData, setUserData] = useState({});
+  const [token, setToken] = useState("");
+  // const [address, setAddress] = useState({ lat: 0, lng: 0 });
+
+  useEffect(() => {
+    if (Cookies.get("idToken") === undefined) {
+      navigate("/homie-startup");
+    } else {
+      //
+    }
+  }, []);
+
+  const getDate = () => {
+    const now = new Date();
+
+    const formatter = new Intl.DateTimeFormat("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "numeric",
+      minute: "2-digit",
+      second: "2-digit",
+      timeZoneName: "short",
+      hour12: true,
+    });
+
+    const formattedDate = formatter.format(now);
+    return formattedDate;
+  };
+
+  const generateId = () => {
+    const timestamp = Date.now().toString(36);
+    const randomString = Math.random().toString(36).substring(2, 8);
+    return timestamp + randomString;
+  };
 
   const handleInputChange = (e, index) => {
     const { name, value } = e.target;
-    const updatedFacilities = [...imobFacilities];
+    const updatedFacilities = [...facilities];
     const updatedRules = [...rules];
 
     switch (name) {
@@ -28,12 +71,12 @@ const AddImob = () => {
         updatedRules[index] = value;
         setRules(updatedRules);
         break;
-      case "imobFacilities":
+      case "facilities":
         updatedFacilities[index] = value;
         setImobFacilities(updatedFacilities);
         break;
-      case "imobTitle":
-        if (value && value.length <= 30) {
+      case "title":
+        if (value && value.length <= 1) {
           setImobTitle(value);
         } else {
           alert(
@@ -41,8 +84,8 @@ const AddImob = () => {
           );
         }
         break;
-      case "imobDescription":
-        if (value && value.length <= 500) {
+      case "description":
+        if (value && value.length <= 1) {
           setImobDescription(value);
         } else {
           alert(
@@ -50,13 +93,13 @@ const AddImob = () => {
           );
         }
         break;
-      case "roomNumber":
+      case "rooms":
         setRoomNumber(Number(value));
         break;
-      case "bathroomNumber":
+      case "bathrooms":
         setBathroomNumber(Number(value));
         break;
-      case "residentsNumber":
+      case "residents":
         setResidentsNumber(Number(value));
         break;
       case "currentFacility":
@@ -72,7 +115,7 @@ const AddImob = () => {
 
   const handleAddFacility = () => {
     if (currentFacility.trim() !== "") {
-      setImobFacilities([...imobFacilities, currentFacility]);
+      setImobFacilities([...facilities, currentFacility]);
       setCurrentFacility("");
     } else {
       alert("Va rugam sa adaugati o facilitate.");
@@ -80,7 +123,7 @@ const AddImob = () => {
   };
 
   const handleRemoveFacility = (index) => {
-    const updatedFacilities = [...imobFacilities];
+    const updatedFacilities = [...facilities];
     updatedFacilities.splice(index, 1);
     setImobFacilities(updatedFacilities);
   };
@@ -116,12 +159,29 @@ const AddImob = () => {
     console.log(location);
   };
 
-  const handleSubmit = () => {
+  const fetchUserData = async () => {
+    try {
+      const response = await axios.get(
+        `${config.backendApiUrl}/api/user-data`,
+        {}
+      );
+      setUserData(response.data);
+      console.log("Received:", userData);
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchUserData();
+  }, []);
+
+  const handleSubmit = async () => {
     if (
-      !imobTitle ||
-      !imobDescription ||
-      !roomNumber ||
-      !bathroomNumber ||
+      !title ||
+      !description ||
+      !rooms ||
+      !bathrooms ||
       !images ||
       imobLocation.lat === 0 ||
       imobLocation.lng === 0
@@ -130,17 +190,74 @@ const AddImob = () => {
       return;
     }
 
-    console.log("Submitting:", {
-      imobTitle,
-      imobDescription,
-      roomNumber,
-      bathroomNumber,
-      residentsNumber,
-      imobFacilities,
-      rules,
-      images,
-      imobLocation,
-    });
+    const author_uid = userData.uid;
+    console.log("uid", author_uid);
+
+    const uploadedPhotoUrls = [];
+    for (const file of images) {
+      // Create a reference to the storage bucket location
+      const fileRef = ref(storage, `user_uploads/${author_uid}/${file.name}`);
+
+      // Start the upload
+      const uploadTask = uploadBytesResumable(fileRef, file);
+
+      // Wait for the upload to complete
+      await new Promise((resolve, reject) => {
+        uploadTask.on(
+          "state_changed",
+          (snapshot) => {
+            // Handle progress updates if you wish
+          },
+          (error) => {
+            // Handle unsuccessful uploads
+            console.error(error);
+            reject(error);
+          },
+          async () => {
+            // Handle successful uploads on complete
+            try {
+              const downloadUrl = await getDownloadURL(uploadTask.snapshot.ref);
+              uploadedPhotoUrls.push(downloadUrl);
+              resolve(downloadUrl);
+            } catch (error) {
+              console.error(error);
+              reject(error);
+            }
+          }
+        );
+      });
+    }
+
+    for (const url of uploadedPhotoUrls) {
+      console.log(url);
+    }
+
+    try {
+      const postData = {
+        title,
+        description,
+        rooms,
+        bathrooms,
+        residents,
+        facilities,
+        rules,
+        images: uploadedPhotoUrls,
+        address: imobLocation,
+        author_uid,
+        id: generateId(),
+        date: getDate(),
+      };
+
+      const response = await axios.post(
+        `${config.backendApiUrl}/api/posts`,
+        postData,
+        { useCredentials: true }
+      );
+
+      console.log("Post submitted successfully:", response.data);
+    } catch (error) {
+      console.error("Error submitting post:", error);
+    }
   };
 
   return (
@@ -151,8 +268,8 @@ const AddImob = () => {
             <div className="formFieldTitle"> Titlu: </div>
             <input
               type="text"
-              name="imobTitle"
-              value={imobTitle}
+              name="title"
+              value={title}
               placeholder="Titlul imobilului"
               onChange={handleInputChange}
               className="titleField"
@@ -198,8 +315,8 @@ const AddImob = () => {
 
             <textarea
               type="text"
-              name="imobDescription"
-              value={imobDescription}
+              name="description"
+              value={description}
               placeholder="Descrierea imobilului..."
               onChange={handleInputChange}
             />
@@ -212,19 +329,19 @@ const AddImob = () => {
                   type="button"
                   className="buttonStyle"
                   onClick={() => {
-                    if (roomNumber > 0) {
-                      setRoomNumber(roomNumber - 1);
+                    if (rooms > 0) {
+                      setRoomNumber(rooms - 1);
                     }
                   }}
                 >
                   -
                 </Button>
-                <div className="number"> {roomNumber} </div>
+                <div className="number"> {rooms} </div>
                 <Button
                   type="button"
                   className="buttonStyle"
                   onClick={() => {
-                    setRoomNumber(roomNumber + 1);
+                    setRoomNumber(rooms + 1);
                   }}
                 >
                   +
@@ -236,19 +353,19 @@ const AddImob = () => {
                   type="button"
                   className="buttonStyle"
                   onClick={() => {
-                    if (bathroomNumber > 0) {
-                      setBathroomNumber(bathroomNumber - 1);
+                    if (bathrooms > 0) {
+                      setBathroomNumber(bathrooms - 1);
                     }
                   }}
                 >
                   <div className="incrementalItem">-</div>
                 </Button>
-                <div className="number"> {bathroomNumber} </div>
+                <div className="number"> {bathrooms} </div>
                 <Button
                   type="button"
                   className="buttonStyle"
                   onClick={() => {
-                    setBathroomNumber(bathroomNumber + 1);
+                    setBathroomNumber(bathrooms + 1);
                   }}
                 >
                   +
@@ -260,19 +377,19 @@ const AddImob = () => {
                   type="button"
                   className="buttonStyle"
                   onClick={() => {
-                    if (residentsNumber > 0) {
-                      setResidentsNumber(residentsNumber - 1);
+                    if (residents > 0) {
+                      setResidentsNumber(residents - 1);
                     }
                   }}
                 >
                   -
                 </Button>
-                <div className="number"> {residentsNumber} </div>
+                <div className="number"> {residents} </div>
                 <Button
                   type="button"
                   className="buttonStyle"
                   onClick={() => {
-                    setResidentsNumber(residentsNumber + 1);
+                    setResidentsNumber(residents + 1);
                   }}
                 >
                   +
@@ -300,10 +417,10 @@ const AddImob = () => {
                 +
               </Button>
             </div>
-            {imobFacilities.length > 0 && (
+            {facilities.length > 0 && (
               <div className="facilitiesList">
                 {" "}
-                {imobFacilities.map((facility, index) => (
+                {facilities.map((facility, index) => (
                   <div key={index} className="facilityItem">
                     {" "}
                     <Button
