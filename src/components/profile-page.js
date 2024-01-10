@@ -10,7 +10,6 @@ import { getAuth, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
-
 export const ProfilePage = () => {
   const [showReviewModal, setShowReviewModal] = useState(false);
   const [showAddImageModal, setShowAddImageModal] = useState(false);
@@ -51,7 +50,7 @@ export const ProfilePage = () => {
         }
       );
       setUserData(response.data);
-      console.log("Received:", userData);
+      console.log("User data:", response.data);
     } catch (error) {
       console.error("Error fetching user data:", error);
     }
@@ -59,26 +58,10 @@ export const ProfilePage = () => {
 
   const updateUser = async (updatedData) => {
     try {
-      console.log("Inside updateUser function");
-      const user = getAuth().currentUser;
-      console.log("USER:", user);
-      const idToken = await user.getIdToken();
-
-      if (!idToken) {
-        console.error("ID token not found");
-        return;
-      }
-
-      console.log("Updating user data with:", updatedData);
-
       const response = await axios.put(
         `${config.backendApiUrl}/api/update-user-data`,
         updatedData,
-        {
-          headers: {
-            Authorization: `Bearer ${idToken}`,
-          },
-        }
+        { withCredentials: true }
       );
 
       console.log("Update response:", response.data);
@@ -350,7 +333,7 @@ export const ProfilePage = () => {
           />
           <div className="group-6" onClick={handleOpenReviewModal}>
             <div className="overlap-5">
-              <div className="text-wrapper-12" >Adaugă o recenzie</div>
+              <div className="text-wrapper-12">Adaugă o recenzie</div>
               <div className="rectangle-2" />
             </div>
           </div>
