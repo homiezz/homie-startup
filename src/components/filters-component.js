@@ -1,14 +1,14 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./FiltersComponent.css"; // Import your MyComponent styles
 import * as React from "react";
-import {useState} from "react";
-import {Button, Dropdown} from "react-bootstrap";
+import { useState } from "react";
+import { Button, Dropdown } from "react-bootstrap";
 import Form from 'react-bootstrap/Form';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // The forwardRef is important!!
 // Dropdown needs access to the DOM node in order to position the Menu
-const CustomToggle = React.forwardRef(({children, onClick}, ref) => (
+const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
     <a
         href=""
         ref={ref}
@@ -26,7 +26,7 @@ const CustomToggle = React.forwardRef(({children, onClick}, ref) => (
 // forwardRef again here!
 // Dropdown needs access to the DOM of the Menu to measure it
 const CustomMenu = React.forwardRef(
-    ({children, style, className, 'aria-labelledby': labeledBy}, ref) => {
+    ({ children, style, className, 'aria-labelledby': labeledBy }, ref) => {
         const [value, setValue] = useState('');
 
         return (
@@ -62,7 +62,8 @@ export default function FiltersComponent(props) {
     };
 
     return (
-        <div>
+        <div className="containerWithRectangle">
+
             <div className="exploreRentalsTitle"> Explorează imobilele</div>
             <Dropdown onSelect={handleDropdownSelect}>
                 <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components">
@@ -83,7 +84,7 @@ export default function FiltersComponent(props) {
                         variant="primary"
                         className="btn-send-email"
                     >
-                        Arată-mi anunțurile
+                        Caută
                     </Button>
                 </Link>
             </div>
