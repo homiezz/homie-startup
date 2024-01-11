@@ -6,6 +6,7 @@ import { Button } from "react-bootstrap";
 import { getAuth } from "firebase/auth";
 import axios from "axios";
 import config from "../config";
+import PostCard from './posts-component';
 
 export const ProfilePage = () => {
   const [showReviewModal, setShowReviewModal] = useState(false);
@@ -149,8 +150,7 @@ export const ProfilePage = () => {
   };
 
   return (
-    <div className="overlayContainerProfile">
-    <div className="profilePageContent">
+    <div className="profile-page-container">
       <div className="profileOverlay">
         <div className="profile-pic-container">
           <img className="profile-pic-profile" alt="Gg profile" src="https://c.animaapp.com/6XN1UVYO/img/gg-profile.svg" />
@@ -167,6 +167,7 @@ export const ProfilePage = () => {
           </div>
           
         </div>
+        <div className="separator"></div>
         <div className="description">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                   do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -175,9 +176,38 @@ export const ProfilePage = () => {
                   Mattis vulputate enim nulla aliquet porttitor lacus....
         </div>
       </div>
-    </div>
-  </div>
+      <div className="profile-info-container">
+        <div className="title">
+          About George
+        </div>
+        <div className="separator"></div>
+        <div className="secondary-title">
+          Reviews
+        </div>
+        <div className="reviews-list-container">
+          <div className="reviews-list-item">
+            <p className="review-content">   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Sit amet volutpat consequat mauris nunc congue nisi vitae
+                  suscipit. Non curabitur gravida arcu ac tortor dignissim.
+                  Mattis vulputate enim nulla aliquet porttitor lacus....l</p>
+            <div className="rating">
+              4.5
+            </div>
+          </div>
+        </div>
+        <div className="separator"></div>
+        <div className="secondary-title">
+          Listings
+        </div>
+        <div className="post">
+       
+        </div>
+
+      </div>
+    </div>  
   );
 };
 
 export default ProfilePage;
+

@@ -12,7 +12,7 @@
 }
 
 .profileOverlay {
-  position: absolute;
+  /* position: absolute; */
   top: 0;
   height: 100%;
   width: 30%;
@@ -84,10 +84,86 @@
   padding-left: 10px;
 }
 
+.description {
+  padding-top: 1.5rem;
+  padding-bottom: 2rem;
+}
+
+.profile-page-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+}
+
+.title {
+  margin: 0;
+  color: #fff;
+}
+
+.profile-info-container {
+  width: 100%;
+  padding-top: 10rem;
+  padding-left: 2rem;
+}
+
+.secondary-title {
+  color: #e79d83;
+  padding-top: 1rem;
+  font-family: "Yeseva One", Helvetica;
+  font-size: 2rem;
+  white-space: normal; 
+  overflow: hidden;
+  text-overflow: ellipsis; 
+}
+
+.reviews-list-item {
+  border-radius: 41px;
+  background-color: rgba(251, 243, 243, 0.33);
+  width: 10rem;
+  height: 10rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.review-content {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  max-height: 7rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #D6D6D6;
+  text-align: justify;
+  font-family: Poppins;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 275;
+  line-height: normal;
+}
+
+.rating {
+  color: #FFF;
+  font-family: Yeseva One;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-align: center;
+}
+
+.listing-list-item {
+  width: 10rem;
+  height: 10rem;
+}
+
+
 @media (max-width: 780px) {
   .profileOverlay {
+    padding-top: 10rem;
     flex-direction: row;
-    height: 50%;
+    height: fit-content;
     width: 100%;
     align-items:last baseline;
     justify-content: space-around;
@@ -108,8 +184,22 @@
   }
   
   .profile-pic-profile {
-    width: 10rem;
-    height: 10rem;
     margin-top: 0;
   }
+
+  .description {
+    padding-top: 1.5rem;
+    padding-bottom: 2rem;
+  }
+
+  .profile-page-container {
+    flex-direction: column;
+  }
+
+  .profile-info-container {
+    padding-top: 2rem;
+    padding-left: 3rem;
+
+  }
+
 }

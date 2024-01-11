@@ -48,14 +48,7 @@ const Posts = () => {
             title="Apartament Militari 2 camere"
             address="Drumul Osiei 18-28">
         </PostCard>
-        <PostCard
-            title="Apartament Militari 2 camere"
-            address="Drumul Osiei 18-28">
-        </PostCard>
-        <PostCard
-            title="Apartament Militari 2 camere"
-            address="Drumul Osiei 18-28">
-        </PostCard>
+
       </div>
       </div>
     );
