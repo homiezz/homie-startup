@@ -6,6 +6,7 @@ import { Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import { Dropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import EmailModal from "./dialog-component";
 
 // The forwardRef is important!!
 // Dropdown needs access to the DOM node in order to position the Menu
@@ -67,38 +68,67 @@ export default function FiltersComponent(props) {
     setSearchValue(e.target.value);
   };
 
+  const [showModal, setShowModal] = useState(false);
+
+  const handleOpenModal = () => {
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
   return (
     <div className="containerWithRectangle">
       <div className="exploreRentalsTitle"> Explorează imobilele</div>
-      <div className="dropdownRectangle">
-        <Dropdown onSelect={handleDropdownSelect}>
-          <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components">
-            {selectedValue || "Selectează orașul..."}
-          </Dropdown.Toggle>
+      <div className="selectCity">
+        <div className="dropdownRectangle">
+          <Dropdown onSelect={handleDropdownSelect}>
+            <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components">
+              {selectedValue || "Selectează orașul..."}
+            </Dropdown.Toggle>
 
-          <Dropdown.Menu as={CustomMenu}>
-            <Dropdown.Item eventKey="Bucuresti">București</Dropdown.Item>
-            <Dropdown.Item eventKey="Cluj">Cluj</Dropdown.Item>
-            <Dropdown.Item eventKey="Iasi">Iași</Dropdown.Item>
-            <Dropdown.Item eventKey="Timisoara">Timișoara</Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
+            <Dropdown.Menu as={CustomMenu}>
+              <Dropdown.Item eventKey="Bucuresti">București</Dropdown.Item>
+              <Dropdown.Item eventKey="Cluj">Cluj</Dropdown.Item>
+              <Dropdown.Item eventKey="Iasi">Iași</Dropdown.Item>
+              <Dropdown.Item eventKey="Timisoara">Timișoara</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+        </div>
+        <div className="buttonContainerHome">
+          <Link to={`/posts?search=${searchValue}`}>
+            <Button variant="primary" className="btn-search">
+              Caută
+            </Button>
+          </Link>
+        </div>
       </div>
-      <div className="searchContainer">
-        <Form.Control
-          autoFocus
-          className="mx-3 my-2 w-auto cozy-search-bar"
-          placeholder="Caută proprietar..."
-          onChange={handleSearchChange}
-          value={searchValue}
-        />
-      </div>
-      <div className="buttonContainer">
-        <Link to={`/posts?search=${searchValue}`}>
-          <Button variant="primary" className="btn-search">
-            Caută
+
+      <div className="selectCity">
+        <div className="searchContainer">
+          <Form.Control
+            autoFocus
+            className="mx-3 my-2 w-auto cozy-search-bar"
+            placeholder="Caută proprietar/chirias..."
+            onChange={handleSearchChange}
+            value={searchValue}
+          />
+        </div>
+        <div className="inputContainerStyle">
+          <Button
+            variant="primary"
+            onClick={handleOpenModal}
+            className="btn-send-email"
+          >
+            Arată-mi recenzii
           </Button>
-        </Link>
+
+          <EmailModal
+            showModal={showModal}
+            handleCloseModal={handleCloseModal}
+          />
+        </div>
       </div>
     </div>
   );

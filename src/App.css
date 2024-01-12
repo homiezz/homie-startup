@@ -59,10 +59,11 @@ body {
 body .btn-send-email {
   background-color: #e89e84 !important;
   color: white !important;
-  font-size: 1.5rem !important;
+  font-size: 1rem !important;
   padding: 6px 12px !important;
   border: #e89e84;
   border-radius: 10px !important;
+  width: fit-content;
 }
 
 .white-placeholder::placeholder {
@@ -217,7 +218,7 @@ body .btn-send-email {
   font-family: "Poppins", sans-serif;
   text-align: center;
   white-space: pre-line;
-  padding-top: 20px;
+  margin-top: 630px;
 }
 
 .sendIconStyle {
