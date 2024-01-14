@@ -31,7 +31,7 @@ const AuthModal = ({ showAuthModal, handleCloseAuthModal }) => {
       );
       Cookies.set("idToken", await userCredential.user.getIdToken());
       handleCloseAuthModal();
-      navigate("/profile");
+      navigate("/homie-startup");
     } catch (err) {
       console.error(err);
     }
@@ -60,7 +60,7 @@ const AuthModal = ({ showAuthModal, handleCloseAuthModal }) => {
         );
 
         if (response.status === 200) {
-          navigate("/profile");
+          navigate("/homie-startup");
           handleCloseAuthModal();
         } else {
           console.error(response.data.message);
@@ -74,10 +74,10 @@ const AuthModal = ({ showAuthModal, handleCloseAuthModal }) => {
   const handleSignInWithGoogle = async () => {
     try {
       const userCredential = await signInWithPopup(auth, googleProvider);
-      const credential = googleProvider.credentialFromResult(userCredential);
-      const token = credential.accessToken;
-      Cookies.set("idToken", token);
-      navigate("/profile");
+      // const credential = googleProvider.credentialFromResult(userCredential);
+      // const token = credential.accessToken;
+      // Cookies.set("idToken", token);
+      navigate("/homie-startup");
       handleCloseAuthModal();
     } catch (err) {
       console.error(err);
