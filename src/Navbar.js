@@ -33,6 +33,7 @@ export default function Navbar() {
   const isAddImobRoute = useMatch("/addImob");
   const isAboutRoute = useMatch("/about");
   const isHomeRoute = useMatch("/homie-startup");
+  const isHomeRoute2 = useMatch("/");
   const isProfileRoute = useMatch("/profile");
   const isSettings = useMatch("/settings");
   const isRentalDetails = useMatch("/posts/*");
@@ -67,13 +68,22 @@ export default function Navbar() {
               id="navbarNav"
             >
               <ul className="navbar-nav ms-auto">
-                {isHomeRoute ? (
+                {isHomeRoute || isHomeRoute2 || isAddImobRoute ||
+                  isAboutRoute ? (
                   // Render specific content for home page
                   <>
-                    <Link to="/posts" className="nav-item no-underline">
+                    {/*<Link to="/posts" className="nav-item no-underline">*/}
+                    {/*  Vezi imobile disponibile*/}
+                    {/*</Link>*/}
+                    {/*Disabled for landing page*/}
+                    <Link to="/homie-startup" className="nav-item no-underline">
                       Vezi imobile disponibile
                     </Link>
-                    <Link to="/addImob" className="nav-item no-underline">
+                    {/*<Link to="/addImob" className="nav-item no-underline">*/}
+                    {/*  Înregistrează-ți imobilul*/}
+                    {/*</Link>                    */}
+                    {/*Disabled for landing page*/}
+                    <Link to="/homie-startup" className="nav-item no-underline">
                       Înregistrează-ți imobilul
                     </Link>
                     <Link to="/about" className="nav-item no-underline">
@@ -84,33 +94,34 @@ export default function Navbar() {
                         Conectează-te
                       </li>
                     ) : (
-                      <Dropdown>
-                        <Dropdown.Toggle
-                          variant="link"
-                          id="dropdown-basic"
-                          style={{ display: 'flex', alignItems: 'center', marginTop: '-6px', marginLeft: '86px' }}
-                        >
-                          Profil
-                        </Dropdown.Toggle>
-                        <Dropdown.Menu>
-                          <Dropdown.Item as={Link} to="/profile">
-                            Vezi profil
-                          </Dropdown.Item>
-                          <Dropdown.Item as={Link} to="/settings">
-                            Setări
-                          </Dropdown.Item>
-                          <Dropdown.Item as={Link} onClick={handleLogout}>
-                            Deconectează-te
-                          </Dropdown.Item>
-                        </Dropdown.Menu>
-                      </Dropdown>
+                        <li className="nav-item no-underline" onClick={handleLogout}>
+                          Deconectează-te
+                        </li>
+                      // <Dropdown>
+                      //   <Dropdown.Toggle
+                      //     variant="link"
+                      //     id="dropdown-basic"
+                      //     style={{ display: 'flex', alignItems: 'center', marginTop: '-6px', marginLeft: '86px' }}
+                      //   >
+                      //     Profil
+                      //   </Dropdown.Toggle>
+                      //   <Dropdown.Menu>
+                      //     <Dropdown.Item as={Link} to="/profile">
+                      //       Vezi profil
+                      //     </Dropdown.Item>
+                      //     <Dropdown.Item as={Link} to="/settings">
+                      //       Setări
+                      //     </Dropdown.Item>
+                      //     <Dropdown.Item as={Link} onClick={handleLogout}>
+                      //       Deconectează-te
+                      //     </Dropdown.Item>
+                      //   </Dropdown.Menu>
+                      // </Dropdown>
                     )}
                   </>
                 ) : null}
 
-                {isAddImobRoute ||
-                isAboutRoute ||
-                isProfileRoute ||
+                {isProfileRoute ||
                 isSettings ||
                 isPostsRoute ||
                 isRentalDetails ? (

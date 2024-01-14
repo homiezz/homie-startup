@@ -97,11 +97,23 @@ export default function FiltersComponent(props) {
           </Dropdown>
         </div>
         <div className="buttonContainerHome">
-          <Link to={`/posts?search=${searchValue}`}>
-            <Button variant="primary" className="btn-search">
-              Caută
-            </Button>
-          </Link>
+          {/*<Link to={`/posts?search=${searchValue}`}>*/}
+          {/*  <Button variant="primary" className="btn-search">*/}
+          {/*    Caută*/}
+          {/*  </Button>*/}
+          {/*</Link>*/}
+          <Button
+              variant="primary"
+              onClick={handleOpenModal}
+              className="btn-send-email"
+          >
+            Caută
+          </Button>
+
+          <EmailModal
+              showModal={showModal}
+              handleCloseModal={handleCloseModal}
+          />
         </div>
       </div>
 
@@ -115,7 +127,7 @@ export default function FiltersComponent(props) {
             value={searchValue}
           />
         </div>
-        <div className="inputContainerStyle">
+        <div className="buttonContainerHome">
           <Button
             variant="primary"
             onClick={handleOpenModal}
