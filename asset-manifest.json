@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "/homie-startup/static/css/main.b0a412f5.css",
-    "main.js": "/homie-startup/static/js/main.b9a99542.js",
+    "main.js": "/homie-startup/static/js/main.767a4f77.js",
     "static/js/787.16151682.chunk.js": "/homie-startup/static/js/787.16151682.chunk.js",
     "static/media/background-landing.jpg": "/homie-startup/static/media/background-landing.5cc0a9b01a8abfd57f7c.jpg",
     "static/media/about-us-asset.png": "/homie-startup/static/media/about-us-asset.bdebf504c80c99c2fc0e.png",
     "static/media/logo-homie.png": "/homie-startup/static/media/logo-homie.4fa2f155a9b1c8a2682c.png",
     "index.html": "/homie-startup/index.html",
     "main.b0a412f5.css.map": "/homie-startup/static/css/main.b0a412f5.css.map",
-    "main.b9a99542.js.map": "/homie-startup/static/js/main.b9a99542.js.map",
+    "main.767a4f77.js.map": "/homie-startup/static/js/main.767a4f77.js.map",
     "787.16151682.chunk.js.map": "/homie-startup/static/js/787.16151682.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.b0a412f5.css",
-    "static/js/main.b9a99542.js"
+    "static/js/main.767a4f77.js"
   ]
 }
