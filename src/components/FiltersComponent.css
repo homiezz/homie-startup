@@ -1,0 +1,113 @@
+.exploreRentalsTitle {
+  color: #e89e84;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 40px;
+  /* top: 15px; */
+  font-family: "Yeseva One", serif;
+  font-size: 3vw;
+  /* position: relative; */
+  /* background-color: rgba(102, 102, 102, 0.7);
+    border-color: #616161;
+    padding: 20px 20px;
+    border-radius: 8px; */
+  /* Border radius for a rounded appearance */
+}
+
+.containerWithRectangle {
+  background-color: rgba(0, 0, 0, 0.7);
+  /*padding: 35px;*/
+  border-radius: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+  top: 400px;
+}
+
+.dropdown-container {
+  width: 896px;
+  height: 90px;
+  left: 353px;
+  top: 440px;
+  background: #4b4b4a;
+  border-radius: 32px;
+}
+
+.dropdown-item {
+  color: #e89e84;
+}
+
+.inputContainerStyle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-toggle {
+  color: #e89e84;
+  background-color: #4b4b4a;
+  width: 200px;
+  font-size: 20px;
+  /* Background color for the custom toggle */
+  border: 1px solid #616161;
+  /* Border for the custom toggle */
+  border-radius: 8px;
+  /* Border radius for a rounded appearance */
+  padding: 20px;
+  margin-bottom: 20px;
+  /* Adjust padding as needed */
+  cursor: pointer;
+}
+
+/* CustomMenu styles */
+.list-unstyled {
+  padding: 8px;
+  /* Add some padding to the list to match the dropdown size */
+}
+
+.dropdown-menu {
+  background-color: #4b4b4a;
+}
+
+body .btn-search {
+  background-color: #e89e84 !important;
+  color: white !important;
+  font-size: 1.1rem !important;
+  padding: 4px 8px !important;
+  border: #e89e84;
+  border-radius: 10px !important;
+}
+
+.searchContainer {
+  margin-bottom: 20px;
+  margin-left: 30px;
+  font-size: 1.1rem;
+  width: fit-content;
+}
+
+.form-control {
+  width: fit-content;
+}
+
+.cozy-search-bar {
+  width: 200px;
+}
+
+.dropdownRectangle {
+  margin-bottom: 40px;
+  flex-direction: column;
+}
+
+.selectCity {
+  display: flex;
+  flex: 0 0 50%;
+  justify-content: center;
+}
+
+.buttonContainerHome {
+  padding-left: 13px;
+}
+
+.buttonContainerHome2 {
+  margin-top: 8px;
+  margin-right: 5px;
+}

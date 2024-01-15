@@ -1,0 +1,54 @@
+.settingsPageView {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+input::placeholder {
+  color: #000000; /* Placeholder color set to black */
+  font-family: "Poppins";
+}
+
+.inputField {
+  width: 100%;
+  padding: 10px;
+  background: transparent;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: rgba(133, 108, 99, 0.91);
+}
+
+.submitButton {
+  border: 1px solid white;
+  background: transparent;
+  color: white;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+
+.submitButton:hover {
+  background-color: #0056b3;
+}
+
+.usernameInput {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #666666; /* Greyish border color */
+  border-radius: 5px;
+}

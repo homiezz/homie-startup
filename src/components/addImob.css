@@ -1,0 +1,152 @@
+.pageView {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 160px;
+}
+
+.formContainer {
+  max-width: 70vw;
+  width: 100%;
+  background-color: rgba(40, 39, 40, 0.5);
+  border-radius: 20px;
+}
+
+.formStyle {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.formStyle label {
+  font-size: 1rem;
+}
+
+.formStyle textarea,
+.formStyle input {
+  width: 100%;
+  padding: 10px;
+  background: transparent;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: rgba(133, 108, 99, 0.91);
+}
+
+.buttonStyle {
+  border: 1px solid white;
+  background: transparent;
+  color: white;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+
+.imageList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.imageItem {
+  position: relative;
+}
+
+.imageStyleImob {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.deleteButton {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: rgba(255, 255, 255, 0.7);
+  border: none;
+  border-radius: 50%;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.facilityInputContainer {
+  display: flex;
+  gap: 10px;
+}
+
+.facilitiesList {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.facilityItem {
+  flex: 0 0 48%;
+  margin: 5px;
+  position: relative;
+  color: white;
+  margin-left: 3px;
+}
+
+.trashIconStyle {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.incrementalWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.incrementalItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.submitDiv {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.formFieldTitle {
+  color: #e89e84;
+  font-family: "Yeseva One, serif";
+  font-size: 2rem;
+}
+
+input::placeholder {
+  color: #ffffff;
+  font-family: "Poppins";
+}
+
+.titleField {
+  color: #e89e84;
+  font-family: "Yeseva One, serif";
+  font-size: 2rem;
+}
+
+.imobDescription::placeholder {
+  color: #ffffff;
+  font-family: "Poppins";
+}
+
+.roomNo {
+  margin-left: 5px;
+  color: white;
+}
+
+.number {
+  margin-left: 5px;
+  margin-right: 5px;
+  color: white;
+}

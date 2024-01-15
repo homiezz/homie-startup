@@ -4,16 +4,66 @@
 
 body {
   width: 100%;
-  height:100%;
+  height: 100%;
+}
+
+.no-underline {
+  text-decoration: none;
+  cursor: pointer;
+  color: inherit;
+}
+
+.overlayContainer {
+  position: absolute;
+  top: 0;
+  left: 700;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.overlayStyle {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 9998;
+}
+
+.filters {
+  position: absolute;
+  top: 0;
+  left: 50;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 9997; /* Ensure filters appear above overlayStyle */
+}
+
+.no-underline:hover {
+  opacity: 0.8;
 }
 
 body .btn-send-email {
-  background-color: #E89E84 !important;
+  background-color: #e89e84 !important;
   color: white !important;
-  font-size: 1.5rem !important;
+  font-size: 1rem !important;
   padding: 6px 12px !important;
-  border: #E89E84;
+  border: #e89e84;
   border-radius: 10px !important;
+  width: fit-content;
 }
 
 .white-placeholder::placeholder {
@@ -22,24 +72,32 @@ body .btn-send-email {
 }
 
 .backgroundStyle {
-  background-image: url('./assets/landing-bun.jpg');
+  background-image: url("./assets/background-gradient.png");
   background-size: cover;
-  background-position: center top; 
+  background-position: center top;
+  background-repeat: no-repeat;
+  position: relative;
+  z-index: 1;
+}
+
+.homeBackground {
+  background-image: url("./assets/background-landing.jpg");
+  background-size: cover;
+  background-position: center top;
   background-repeat: no-repeat;
   height: 100vh;
   position: relative;
+  z-index: 2;
 }
 
 .cropContainer {
   position: absolute;
   top: 0;
-  left: 200px; /* Adjust the starting position */
-  width: calc(100% - 200px); /* Adjust the width */
+  left: 200px;
+  width: calc(100% - 200px);
   height: 100%;
   overflow: hidden;
 }
-
-
 
 .imageStyle {
   width: 60px;
@@ -47,7 +105,18 @@ body .btn-send-email {
   margin-right: 10px;
 }
 
-@media only screen and (max-width: 650px){
+@media only screen and (max-width: 650px) {
+  .filters,
+  .overlayStyle {
+    position: relative;
+    width: 100%;
+    left: 0;
+  }
+
+  .filters {
+    margin-bottom: 10px; /* Add margin between filters and overlayStyle */
+  }
+
   .navbarStyle {
     display: flex;
     justify-content: space-between;
@@ -58,26 +127,15 @@ body .btn-send-email {
     left: 0;
     width: 100%;
     background-color: transparent;
+    z-index: 9999;
   }
 
   .navbarOnTop {
     margin-left: 90vw !important;
   }
 
-  .overlayStyle {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-  }
-
   .homieTitle {
-    font-size: 15vw;
+    font-size: 10vw;
   }
 
   .subtitleStyles {
@@ -85,11 +143,27 @@ body .btn-send-email {
   }
 
   .navbar-collapse {
-    background-color: rgb(0,0,0,0.5);
+    background-color: rgb(0, 0, 0, 0.5);
   }
 }
 
-@media only screen and (min-width: 651px){
+@media only screen and (min-width: 651px) {
+  /*.filters {*/
+  /*  position: absolute;*/
+  /*  top: 0;*/
+  /*  left: 0;*/
+  /*  width: 50%;*/
+  /*  height: 100%;*/
+  /*  z-index: 9997; !* Ensure filters appear above overlayStyle *!*/
+  /*}*/
+
+  .overlayStyle {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+  }
+
   .navbarStyle {
     display: flex;
     justify-content: space-between;
@@ -100,32 +174,20 @@ body .btn-send-email {
     left: 0;
     width: 100%;
     background-color: transparent;
+    z-index: 9999;
   }
 
   .buttonContainerStyle .nav-item {
-    margin-right: 1vw /* Adjust the margin as needed for your design */
-  }
-
-  .overlayStyle {
-    position: absolute;
-    top: 0;
-    left: 50vw;
-    width: 50%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+    margin-right: 1vw;
   }
 
   .buttonContainerStyle {
     display: flex;
-    margin-left: 200px; /* Adjust the gap as needed for your design */
+    margin-left: 200px;
   }
 
   .homieTitle {
-    font-size: 10vw;
+    font-size: 5vw;
   }
 
   .subtitleStyles {
@@ -137,7 +199,7 @@ body .btn-send-email {
 
   .nav-item {
     color: white;
-    margin-left:7vw;
+    margin-left: 7vw;
   }
 }
 
@@ -146,17 +208,19 @@ body .btn-send-email {
   font-weight: bold;
   text-align: center;
   margin: 0;
-  font-family: 'Yeseva One', serif;
+  padding-bottom: 450px;
+  font-family: "Yeseva One", serif;
 }
 
 .subtitleStyles {
   color: white !important;
   margin: 2px;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   text-align: center;
   white-space: pre-line;
+  position: absolute;
+  bottom: 3rem;
 }
-
 
 .sendIconStyle {
   margin-left: 10px;
@@ -180,7 +244,7 @@ body .btn-send-email {
   background-color: transparent;
   border: 2px solid #e89e84;
   color: white;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 18px;
   padding: 10px;
   border-radius: 5px;
@@ -188,13 +252,12 @@ body .btn-send-email {
 
 .buttonStyle {
   border: 2px solid #e89e84;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   color: white;
   display: flex;
   align-items: center;
   padding: 8px;
 }
-
 
 .btn-link {
   color: white !important;
@@ -222,5 +285,18 @@ body .btn-send-email {
 }
 
 .custom-toggler.navbar-toggler {
-  border-color: rgb(255,255,255);
-} 
+  border-color: rgb(255, 255, 255);
+}
+
+.overlayContainer {
+  position: absolute;
+  top: 0;
+  left: 700;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
