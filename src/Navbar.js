@@ -33,6 +33,7 @@ export default function Navbar() {
   const isAddImobRoute = useMatch("/addImob");
   const isAboutRoute = useMatch("/about");
   const isHomeRoute = useMatch("/homie-startup");
+  const isHomeRoute2 = useMatch("/");
   const isProfileRoute = useMatch("/profile");
   const isSettings = useMatch("/settings");
   const isRentalDetails = useMatch("/posts/*");
@@ -67,7 +68,7 @@ export default function Navbar() {
               id="navbarNav"
             >
               <ul className="navbar-nav ms-auto">
-                {isHomeRoute ? (
+                {isHomeRoute || isHomeRoute2 ? (
                   // Render specific content for home page
                   <>
                     <Link to="/posts" className="nav-item no-underline">
