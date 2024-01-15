@@ -76,7 +76,7 @@ const AddImob = () => {
         setImobFacilities(updatedFacilities);
         break;
       case "title":
-        if (value && value.length <= 1) {
+        if (value && value.length <= 30) {
           setImobTitle(value);
         } else {
           alert(
@@ -85,7 +85,7 @@ const AddImob = () => {
         }
         break;
       case "description":
-        if (value && value.length <= 1) {
+        if (value && value.length <= 500) {
           setImobDescription(value);
         } else {
           alert(
