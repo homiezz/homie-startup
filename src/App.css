@@ -218,7 +218,8 @@ body .btn-send-email {
   font-family: "Poppins", sans-serif;
   text-align: center;
   white-space: pre-line;
-  margin-top: 630px;
+  position: absolute;
+  bottom: 3rem;
 }
 
 .sendIconStyle {

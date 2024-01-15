@@ -127,13 +127,13 @@ export default function FiltersComponent(props) {
             value={searchValue}
           />
         </div>
-        <div className="buttonContainerHome">
+        <div className="buttonContainerHome2">
           <Button
             variant="primary"
             onClick={handleOpenModal}
             className="btn-send-email"
           >
-            Arată-mi recenzii
+            Vezi recenzii
           </Button>
 
           <EmailModal
