@@ -66,16 +66,6 @@ body .btn-send-email {
   width: fit-content;
 }
 
-.btn-send-email2 {
-  background-color: #e89e84 !important;
-  color: white !important;
-  font-size: 1rem !important;
-  padding: 6px 12px !important;
-  border: #e89e84;
-  border-radius: 10px !important;
-  margin-left: 10px; /* Adjusted margin */
-}
-
 .white-placeholder::placeholder {
   color: rgb(252, 250, 250) !important;
   font-size: 15px;
@@ -229,8 +219,6 @@ body .btn-send-email {
   text-align: center;
   white-space: pre-line;
   margin-top: 630px;
-  position: absolute;
-  bottom: 3rem;
 }
 
 .sendIconStyle {

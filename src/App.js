@@ -16,7 +16,6 @@ export default function App() {
     <div className="backgroundStyle">
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} />
         <Route path="/homie-startup" element={<Home />} />
         <Route path="/addImob" element={<AddImob />} />
         <Route path="/posts" element= {<Posts />}/>
