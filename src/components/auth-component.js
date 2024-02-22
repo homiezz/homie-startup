@@ -29,7 +29,17 @@ const AuthModal = ({ showAuthModal, handleCloseAuthModal }) => {
         email,
         password
       );
-      Cookies.set("idToken", await userCredential.user.getIdToken());
+      Cookies.set("idToken", await userCredential.user.getIdToken(), {
+        secure: false,
+        sameSite: "None",
+        domain: "homie-concept.live",
+      });
+      // Cookies.set("token", token, {
+      //   domain: window.location.hostname,
+      //   expire: 1 / 24, // One hour
+      //   path: "/",
+      //   secure: true, // If served over HTTPS
+      // });
       handleCloseAuthModal();
       navigate("/profile");
     } catch (err) {

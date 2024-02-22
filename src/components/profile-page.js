@@ -46,6 +46,9 @@ export const ProfilePage = () => {
 
   const fetchUserData = async () => {
     try {
+      // const headers = {
+      //   "Access-Control-Allow-Origin": "*",
+      // };
       const response = await axios.get(
         `${config.backendApiUrl}/api/user-data`,
         {
