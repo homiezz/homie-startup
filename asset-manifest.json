@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/homie-startup/static/css/main.36f13613.css",
-    "main.js": "/homie-startup/static/js/main.b622b3d9.js",
-    "static/js/787.16151682.chunk.js": "/homie-startup/static/js/787.16151682.chunk.js",
-    "static/media/background-landing.jpg": "/homie-startup/static/media/background-landing.5cc0a9b01a8abfd57f7c.jpg",
-    "static/media/about-us-asset.png": "/homie-startup/static/media/about-us-asset.bdebf504c80c99c2fc0e.png",
-    "static/media/logo-homie.png": "/homie-startup/static/media/logo-homie.4fa2f155a9b1c8a2682c.png",
-    "index.html": "/homie-startup/index.html",
-    "main.36f13613.css.map": "/homie-startup/static/css/main.36f13613.css.map",
-    "main.b622b3d9.js.map": "/homie-startup/static/js/main.b622b3d9.js.map",
-    "787.16151682.chunk.js.map": "/homie-startup/static/js/787.16151682.chunk.js.map"
+    "main.css": "/static/css/main.06f6f850.css",
+    "main.js": "/static/js/main.3f620925.js",
+    "static/js/787.16151682.chunk.js": "/static/js/787.16151682.chunk.js",
+    "static/media/background-landing.jpg": "/static/media/background-landing.5cc0a9b01a8abfd57f7c.jpg",
+    "static/media/about-us-asset.png": "/static/media/about-us-asset.bdebf504c80c99c2fc0e.png",
+    "static/media/logo-homie.png": "/static/media/logo-homie.4fa2f155a9b1c8a2682c.png",
+    "index.html": "/index.html",
+    "main.06f6f850.css.map": "/static/css/main.06f6f850.css.map",
+    "main.3f620925.js.map": "/static/js/main.3f620925.js.map",
+    "787.16151682.chunk.js.map": "/static/js/787.16151682.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.36f13613.css",
-    "static/js/main.b622b3d9.js"
+    "static/css/main.06f6f850.css",
+    "static/js/main.3f620925.js"
   ]
 }
